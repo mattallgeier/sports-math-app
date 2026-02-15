@@ -348,6 +348,103 @@
             color: #FDB927;
         }
         
+        .name-input-section {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .name-input-section label {
+            font-size: 1.3em;
+            color: #006BB6;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .name-input {
+            padding: 12px 20px;
+            font-size: 1.3em;
+            border: 3px solid #006BB6;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+            width: 300px;
+            max-width: 100%;
+            font-family: 'Comic Sans MS', 'Arial Rounded MT Bold', sans-serif;
+        }
+
+        .name-input:focus {
+            outline: none;
+            border-color: #FDB927;
+            box-shadow: 0 0 10px rgba(253, 185, 39, 0.3);
+        }
+
+        .leaderboard-section {
+            background: #f8f9ff;
+            border: 3px solid #FDB927;
+            border-radius: 20px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+
+        .leaderboard-section h3 {
+            color: #006BB6;
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+
+        .leaderboard-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 1.05em;
+        }
+
+        .leaderboard-table th {
+            background: linear-gradient(135deg, #FDB927 0%, #006BB6 100%);
+            color: white;
+            padding: 10px 15px;
+            text-align: left;
+        }
+
+        .leaderboard-table th:first-child {
+            border-radius: 10px 0 0 0;
+        }
+
+        .leaderboard-table th:last-child {
+            border-radius: 0 10px 0 0;
+        }
+
+        .leaderboard-table td {
+            padding: 10px 15px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .leaderboard-table tr:nth-child(even) {
+            background: #eef2ff;
+        }
+
+        .leaderboard-table tr:first-child td:first-child {
+            font-weight: bold;
+            color: #FDB927;
+        }
+
+        .leaderboard-empty {
+            text-align: center;
+            color: #999;
+            font-style: italic;
+            padding: 20px;
+        }
+
+        .btn-end {
+            background: #ef4444;
+            color: white;
+        }
+
+        .btn-end:hover {
+            background: #dc2626;
+        }
+
         @media (max-width: 768px) {
             h1 {
                 font-size: 2em;
@@ -387,7 +484,7 @@
                 <div class="team-logo">⚽</div>
             </div>
             <div style="text-align: center; color: #006BB6; font-weight: bold; margin-top: 10px; font-size: 0.9em;">
-                Warriors • 49ers • Giants • Sharks • Earthquakes • Commanders • Buffaloes • Cal Bears • Inter Miami
+                Warriors • 49ers • Giants • Sharks • Earthquakes • Commanders • Buffaloes • Cal Bears • Inter Miami • Red Sox
             </div>
         </div>
         
@@ -412,9 +509,19 @@
         
         <!-- Start Screen -->
         <div id="startScreen" class="start-screen">
-            <h2>Welcome to the GOAT Challenge, Reid! 🏆</h2>
+            <h2>Welcome to the GOAT Challenge! 🏆</h2>
             <p>Get ready to solve awesome math problems about your favorite teams and players!</p>
-            
+
+            <div class="name-input-section">
+                <label for="playerName">Enter Your Name:</label>
+                <input type="text" id="playerName" class="name-input" placeholder="Your name here" maxlength="20">
+            </div>
+
+            <div id="leaderboardSection" class="leaderboard-section">
+                <h3>🏆 All-Time Leaderboard</h3>
+                <div id="leaderboardContent"></div>
+            </div>
+
             <div class="topic-selection">
                 <h3>📚 Choose Your Math Topics:</h3>
                 <div class="topic-checkboxes">
@@ -472,7 +579,10 @@
                 </div>
             </div>
             
-            <button id="nextBtn" class="btn btn-next hidden" onclick="nextQuestion()">Next Question →</button>
+            <div class="button-group" style="margin-top: 20px;">
+                <button id="nextBtn" class="btn btn-next hidden" onclick="nextQuestion()">Next Question →</button>
+                <button class="btn btn-end" onclick="endGame()">🏁 End Game</button>
+            </div>
         </div>
     </div>
     
@@ -484,6 +594,9 @@
         let currentLevel = 'rookie';
         let currentQuestion = null;
         let selectedTopics = ['geometry', 'word', 'fraction', 'multiplication'];
+        let playerName = '';
+        let usedQuestions = { rookie: [], allstar: [], mvp: [] };
+        let questionAnswered = false;
         
         // Question Bank with Bay Area Teams
         const questions = {
@@ -616,9 +729,111 @@
                     answer: 80,
                     hint: '(8 ÷ 10) × 100',
                     funFact: 'Lionel Messi has won 8 Ballon d\'Or awards - the most ever!'
+                },
+                // Additional Rookie Questions
+                {
+                    type: 'multiplication',
+                    sport: '🏀',
+                    question: 'The Warriors made 12 three-pointers in a game. Each three-pointer is worth 3 points. How many points came from three-pointers?',
+                    answer: 36,
+                    funFact: 'The Warriors set an NBA record with 29 three-pointers in a single game!'
+                },
+                {
+                    type: 'word',
+                    sport: '🏒',
+                    question: 'The Sharks scored 3 goals in the first period, 1 goal in the second period, and 2 goals in the third period. How many goals total?',
+                    answer: 6,
+                    funFact: 'An NHL game has 3 periods of 20 minutes each!'
+                },
+                {
+                    type: 'geometry',
+                    sport: '⚽',
+                    question: 'The Inter Miami goal is 24 feet wide and 8 feet tall. What is the area of the goal opening?',
+                    answer: 192,
+                    hint: 'Area = width × height',
+                    diagram: 'Rectangle: 24 feet × 8 feet',
+                    funFact: 'Soccer goals are the same size worldwide - set by FIFA rules!'
+                },
+                {
+                    type: 'fraction',
+                    sport: '🏈',
+                    question: 'The 49ers won 6 out of their first 8 games. What fraction did they win? (Enter as decimal: 0.xx)',
+                    answer: 0.75,
+                    hint: '6 ÷ 8 = ?',
+                    funFact: 'The 49ers play at Levi\'s Stadium in Santa Clara!'
+                },
+                {
+                    type: 'word',
+                    sport: '🏀',
+                    question: 'Steph Curry scored 15 points in the first half and 22 points in the second half. How many points did he score in the whole game?',
+                    answer: 37,
+                    funFact: 'Steph Curry has scored over 20,000 career points!'
+                },
+                {
+                    type: 'multiplication',
+                    sport: '⚽',
+                    question: 'The Earthquakes play 2 games per week for 6 weeks. How many games is that?',
+                    answer: 12,
+                    funFact: 'An MLS regular season has 34 games!'
+                },
+                {
+                    type: 'geometry',
+                    sport: '🏈',
+                    question: 'The Commanders\' end zone is shaped like a rectangle that is 10 yards long and 53 yards wide. What is the area?',
+                    answer: 530,
+                    hint: 'Area = length × width',
+                    diagram: 'Rectangle: 10 yards × 53 yards',
+                    funFact: 'End zones were originally 25 yards deep when football first started!'
+                },
+                {
+                    type: 'word',
+                    sport: '🏈',
+                    question: 'Travis Hunter caught 4 passes for the Buffaloes. Each catch gained 12 yards. How many total receiving yards?',
+                    answer: 48,
+                    funFact: 'Travis Hunter was a 5-star recruit who originally committed to Florida State!'
+                },
+                {
+                    type: 'fraction',
+                    sport: '⚾',
+                    question: 'A Giants pitcher threw 60 pitches. 45 of them were strikes. What percentage were strikes?',
+                    answer: 75,
+                    hint: '(45 ÷ 60) × 100',
+                    funFact: 'A typical MLB pitcher throws about 90-100 pitches per game!'
+                },
+                // Boston Red Sox - Rookie
+                {
+                    type: 'word',
+                    sport: '⚾',
+                    question: 'Rafael Devers hit 3 home runs in the first game, 0 in the second, and 2 in the third for the Red Sox. How many total home runs did he hit?',
+                    answer: 5,
+                    funFact: 'Rafael Devers became one of the youngest players to hit a postseason home run at age 20!'
+                },
+                {
+                    type: 'multiplication',
+                    sport: '⚾',
+                    question: 'The Red Sox sell 8 hot dogs per inning at a concession stand. A baseball game has 9 innings. How many hot dogs do they sell per game?',
+                    answer: 72,
+                    funFact: 'Fenway Park is the oldest ballpark in Major League Baseball, built in 1912!'
+                },
+                {
+                    type: 'geometry',
+                    sport: '⚾',
+                    question: 'The pitcher\'s mound at Fenway Park is a circle with a radius of 9 feet. What is the area of the mound? (Use 3.14 for pi, round to nearest whole number)',
+                    answer: 254,
+                    hint: 'Area = π × r² = 3.14 × 9 × 9',
+                    diagram: 'Circle: radius = 9 feet',
+                    funFact: 'The pitcher\'s mound is exactly 60 feet 6 inches from home plate!'
+                },
+                {
+                    type: 'fraction',
+                    sport: '⚾',
+                    question: 'The Red Sox won 7 out of their first 10 games. What percentage of games did they win?',
+                    answer: 70,
+                    hint: '(7 ÷ 10) × 100',
+                    funFact: 'The Red Sox broke an 86-year championship drought by winning the 2004 World Series!'
                 }
             ],
-            
+
             allstar: [
                 // Geometry - All-Star
                 {
@@ -755,9 +970,110 @@
                     answer: 2,
                     hint: '48 ÷ 24',
                     funFact: 'Inter Miami won the Leagues Cup in Messi\'s first tournament with the team!'
+                },
+                // Additional All-Star Questions
+                {
+                    type: 'geometry',
+                    sport: '🏀',
+                    question: 'The basketball key (paint area) at Chase Center is 16 feet wide and 19 feet long. What is its area in square feet?',
+                    answer: 304,
+                    hint: 'Area = length × width = 16 × 19',
+                    diagram: 'Rectangle: 16 feet × 19 feet',
+                    funFact: 'The NBA expanded the paint from 12 feet to 16 feet wide in 1951!'
+                },
+                {
+                    type: 'word',
+                    sport: '🏒',
+                    question: 'A Sharks player had 14 goals and 23 assists for 37 points. His teammate had 18 goals and 15 assists. How many more total points does the first player have?',
+                    answer: 4,
+                    hint: 'First: 37 points. Second: 18 + 15 = 33. Difference = ?',
+                    funFact: 'In hockey, a "point" is either a goal or an assist!'
+                },
+                {
+                    type: 'multiplication',
+                    sport: '🏀',
+                    question: 'Steph Curry averages 8 three-point attempts per game. Over a 5-game stretch, he made 42% of them. How many threes did he make? (Round to nearest whole number)',
+                    answer: 17,
+                    hint: 'Total attempts = 8 × 5 = 40. Made = 40 × 0.42 = 16.8 ≈ 17',
+                    funFact: 'Steph Curry\'s career three-point percentage is over 42%!'
+                },
+                {
+                    type: 'fraction',
+                    sport: '⚾',
+                    question: 'The Giants won 5/9 of their 27 games in a month. How many games did they win?',
+                    answer: 15,
+                    hint: '27 × 5/9 = ?',
+                    funFact: 'The Giants moved from New York to San Francisco in 1958!'
+                },
+                {
+                    type: 'word',
+                    sport: '🏈',
+                    question: 'The Commanders gained 156 rushing yards and 248 passing yards. The opponent gained 180 rushing yards and 195 passing yards. How many more total yards did the Commanders have?',
+                    answer: 29,
+                    hint: 'Commanders: 156 + 248 = 404. Opponent: 180 + 195 = 375. Difference = ?',
+                    funFact: 'The Commanders play in the NFC East division!'
+                },
+                {
+                    type: 'geometry',
+                    sport: '⚽',
+                    question: 'The center circle on a soccer field has a radius of 10 yards. What is the area of the center circle? (Use 3.14 for pi, round to nearest whole number)',
+                    answer: 314,
+                    hint: 'Area = π × r² = 3.14 × 10 × 10',
+                    diagram: 'Circle: radius = 10 yards',
+                    funFact: 'The center circle is used at kickoff - only the kicking team can be inside it!'
+                },
+                {
+                    type: 'multiplication',
+                    sport: '🏈',
+                    question: 'Shedeur Sanders completed 22 passes at an average of 11 yards per completion. How many total passing yards?',
+                    answer: 242,
+                    hint: '22 × 11 = ?',
+                    funFact: 'Shedeur Sanders was named Big 12 Offensive Player of the Year!'
+                },
+                {
+                    type: 'word',
+                    sport: '🏈',
+                    question: 'Cal scored 14 points in the first quarter, 7 in the second, 0 in the third, and 10 in the fourth. Their opponent scored 7 in each quarter. Did Cal win, and by how many points?',
+                    answer: 3,
+                    hint: 'Cal: 14+7+0+10 = 31. Opponent: 7×4 = 28. Difference = ?',
+                    funFact: 'The Big Game between Cal and Stanford is one of college football\'s oldest rivalries!'
+                },
+                // Boston Red Sox - All-Star
+                {
+                    type: 'word',
+                    sport: '⚾',
+                    question: 'Rafael Devers had a batting average of .280 for the Red Sox. If he had 500 at-bats, how many hits did he get?',
+                    answer: 140,
+                    hint: '500 × 0.280 = ?',
+                    funFact: 'Rafael Devers signed a 10-year contract extension with the Red Sox!'
+                },
+                {
+                    type: 'fraction',
+                    sport: '⚾',
+                    question: 'The Red Sox won 5/8 of their 40 home games at Fenway Park. How many home games did they win?',
+                    answer: 25,
+                    hint: '40 × 5/8 = ?',
+                    funFact: 'Fenway Park\'s Green Monster in left field is 37 feet tall!'
+                },
+                {
+                    type: 'geometry',
+                    sport: '⚾',
+                    question: 'The Green Monster at Fenway Park is 37 feet tall and 231 feet long. What is the area of the Green Monster wall in square feet?',
+                    answer: 8547,
+                    hint: 'Area = height × length = 37 × 231',
+                    diagram: 'Rectangle: 37 feet × 231 feet',
+                    funFact: 'The Green Monster has been a Fenway landmark since 1934!'
+                },
+                {
+                    type: 'multiplication',
+                    sport: '⚾',
+                    question: 'A Red Sox pitcher struck out an average of 9 batters per game over 7 games. How many total strikeouts?',
+                    answer: 63,
+                    hint: '9 × 7 = ?',
+                    funFact: 'Pedro Martinez struck out 17 batters in a single game for the Red Sox!'
                 }
             ],
-            
+
             mvp: [
                 // Geometry - MVP
                 {
@@ -897,6 +1213,107 @@
                     answer: 158,
                     hint: '45 × 3.5 = 157.5 ≈ 158',
                     funFact: 'Messi\'s arrival increased Inter Miami\'s social media followers by over 10 million!'
+                },
+                // Additional MVP Questions
+                {
+                    type: 'geometry',
+                    sport: '🏒',
+                    question: 'The Sharks\' ice rink is 200 feet long and 85 feet wide. Each goal crease is a semi-circle with radius 6 feet. What is the rink area minus BOTH creases? (Use 3.14 for pi, round to nearest whole number)',
+                    answer: 16887,
+                    hint: 'Rink = 200 × 85 = 17000. Each crease = (3.14 × 36)/2 = 56.52. Both = 113. 17000 - 113 = 16887',
+                    diagram: 'Rink: 200ft × 85ft. Two semi-circle creases: radius 6ft each',
+                    funFact: 'The Sharks\' teal jerseys are one of the most popular in the NHL!'
+                },
+                {
+                    type: 'fraction',
+                    sport: '🏀',
+                    question: 'The Warriors made 5/12 of their two-pointers (worth 2 pts each) on 48 attempts and 3/8 of their three-pointers (worth 3 pts each) on 40 attempts. How many total points from these shots?',
+                    answer: 85,
+                    hint: 'Two-pointers made: 48 × 5/12 = 20, worth 40 pts. Three-pointers made: 40 × 3/8 = 15, worth 45 pts. Total = 85',
+                    funFact: 'The Warriors won 73 games in the 2015-16 season - an NBA record!'
+                },
+                {
+                    type: 'word',
+                    sport: '🏈',
+                    question: 'The 49ers scored 7 points in Q1, 14 in Q2, 3 in Q3, and 10 in Q4. Their opponent scored 10, 7, 14, and 7. What was the final point difference?',
+                    answer: -4,
+                    hint: '49ers: 7+14+3+10 = 34. Opponent: 10+7+14+7 = 38. Difference = 34-38 = -4',
+                    funFact: 'The 49ers have appeared in 7 Super Bowls!'
+                },
+                {
+                    type: 'multiplication',
+                    sport: '⚾',
+                    question: 'A Giants pitcher\'s ERA is calculated as: (Earned Runs × 9) ÷ Innings Pitched. If he allowed 12 earned runs in 36 innings, what is his ERA?',
+                    answer: 3,
+                    hint: '(12 × 9) ÷ 36 = 108 ÷ 36',
+                    funFact: 'An ERA under 3.00 is considered excellent in Major League Baseball!'
+                },
+                {
+                    type: 'geometry',
+                    sport: '🏈',
+                    question: 'The Buffaloes\' 50-yard-line logo is a circle with diameter 20 yards. The "CU" text inside covers 15% of the circle area. How many square yards does the text cover? (Use 3.14 for pi, round to nearest whole number)',
+                    answer: 47,
+                    hint: 'Circle area = 3.14 × 10² = 314. Text = 314 × 0.15 = 47.1 ≈ 47',
+                    diagram: 'Circle: diameter 20 yards. Text covers 15% of area',
+                    funFact: 'Colorado\'s mascot Ralphie the Buffalo charges across the field before every home game!'
+                },
+                {
+                    type: 'word',
+                    sport: '🏈',
+                    question: 'Jayden Daniels threw for 275 yards and rushed for 68 yards. His passer rating bonus is (passing yards ÷ 5) + (rushing yards ÷ 2). What is his bonus? (Round to nearest whole number)',
+                    answer: 89,
+                    hint: '275 ÷ 5 = 55. 68 ÷ 2 = 34. Total = 89',
+                    funFact: 'Jayden Daniels was the 2nd overall pick in the 2024 NFL Draft!'
+                },
+                {
+                    type: 'fraction',
+                    sport: '🏈',
+                    question: 'Cal\'s kicker made 7/8 of field goals under 40 yards and 3/5 of field goals over 40 yards. He attempted 16 short and 10 long. How many total field goals did he make?',
+                    answer: 20,
+                    hint: 'Short: 16 × 7/8 = 14. Long: 10 × 3/5 = 6. Total = 20',
+                    funFact: 'The longest field goal in Cal history is 52 yards!'
+                },
+                {
+                    type: 'multiplication',
+                    sport: '⚽',
+                    question: 'Inter Miami\'s stadium has 25 sections with 720 seats each. If tickets average $85 for a sold-out game, what is the total revenue in thousands of dollars?',
+                    answer: 1530,
+                    hint: 'Total seats = 25 × 720 = 18000. Revenue = 18000 × 85 = 1,530,000. In thousands = 1530',
+                    funFact: 'Inter Miami plays at Chase Stadium, which was renamed after a sponsorship deal!'
+                },
+                // Boston Red Sox - MVP
+                {
+                    type: 'word',
+                    sport: '⚾',
+                    question: 'In a doubleheader, a Red Sox player went 4-for-5 in game one and 1-for-4 in game two. What was his batting average for both games? (Enter as decimal: 0.xxx)',
+                    answer: 0.556,
+                    hint: 'Total hits (4+1) ÷ Total at-bats (5+4) = 5÷9 = 0.556',
+                    funFact: 'Ted Williams hit .406 in 1941 - the last player to hit over .400 in a season!'
+                },
+                {
+                    type: 'multiplication',
+                    sport: '⚾',
+                    question: 'Calculate a Red Sox hitter\'s slugging %: (Singles × 1 + Doubles × 2 + Triples × 3 + HRs × 4) ÷ At-Bats. He had 50 singles, 15 doubles, 2 triples, 12 HRs in 250 at-bats. What\'s his slugging? (Decimal: 0.xx)',
+                    answer: 0.52,
+                    hint: '(50×1 + 15×2 + 2×3 + 12×4) = 50+30+6+48 = 134. Then 134÷250 = 0.536 ≈ 0.54',
+                    funFact: 'Ted Williams is considered one of the greatest hitters in baseball history!'
+                },
+                {
+                    type: 'fraction',
+                    sport: '⚾',
+                    question: 'The Red Sox closer saved 5/7 of his save opportunities in April (28 chances) and 3/4 in May (20 chances). How many total saves did he earn?',
+                    answer: 35,
+                    hint: 'April: 28 × 5/7 = 20. May: 20 × 3/4 = 15. Total = 35',
+                    funFact: 'The Red Sox have won 9 World Series championships!'
+                },
+                {
+                    type: 'geometry',
+                    sport: '⚾',
+                    question: 'Fenway Park\'s outfield warning track is a strip that runs along the outfield wall. If the track is 15 feet wide and runs 820 feet along the wall, what is its area in square feet?',
+                    answer: 12300,
+                    hint: 'Area = width × length = 15 × 820',
+                    diagram: 'Strip: 15 feet × 820 feet',
+                    funFact: 'Fenway Park has a seating capacity of about 37,755 - one of the smallest in MLB!'
                 }
             ]
         };
@@ -932,11 +1349,21 @@
         }
         
         function startGame(level) {
+            playerName = document.getElementById('playerName').value.trim();
+            if (!playerName) {
+                alert('Please enter your name first!');
+                document.getElementById('playerName').focus();
+                return;
+            }
             getSelectedTopics();
             if (selectedTopics.length === 0) {
                 alert('Please select at least one math topic!');
                 return;
             }
+            score = 0;
+            streak = 0;
+            questionsAnswered = 0;
+            usedQuestions = { rookie: [], allstar: [], mvp: [] };
             currentLevel = level;
             document.getElementById('startScreen').classList.add('hidden');
             document.getElementById('questionScreen').classList.remove('hidden');
@@ -964,17 +1391,37 @@
         
         function loadQuestion() {
             const levelQuestions = questions[currentLevel];
-            
+
             // Filter questions by selected topics
             const filteredQuestions = levelQuestions.filter(q => selectedTopics.includes(q.type));
-            
+
             if (filteredQuestions.length === 0) {
                 alert('No questions available for selected topics at this level!');
                 return;
             }
-            
-            currentQuestion = filteredQuestions[Math.floor(Math.random() * filteredQuestions.length)];
-            
+
+            // Get indices of filtered questions within the full level array
+            const availableIndices = [];
+            filteredQuestions.forEach(q => {
+                const idx = levelQuestions.indexOf(q);
+                if (!usedQuestions[currentLevel].includes(idx)) {
+                    availableIndices.push(idx);
+                }
+            });
+
+            // If all questions used, reset tracking for this level
+            if (availableIndices.length === 0) {
+                usedQuestions[currentLevel] = [];
+                filteredQuestions.forEach(q => {
+                    availableIndices.push(levelQuestions.indexOf(q));
+                });
+            }
+
+            const chosenIdx = availableIndices[Math.floor(Math.random() * availableIndices.length)];
+            usedQuestions[currentLevel].push(chosenIdx);
+            currentQuestion = levelQuestions[chosenIdx];
+            questionAnswered = false;
+
             document.getElementById('sportIcon').textContent = currentQuestion.sport;
             document.getElementById('questionText').textContent = currentQuestion.question;
             document.getElementById('answerInput').value = '';
@@ -995,6 +1442,8 @@
         }
         
         function checkAnswer() {
+            if (questionAnswered) return;
+            questionAnswered = true;
             const userAnswer = parseFloat(document.getElementById('answerInput').value);
             const correctAnswer = currentQuestion.answer;
             const feedback = document.getElementById('feedback');
@@ -1034,6 +1483,8 @@
         }
         
         function skipQuestion() {
+            if (questionAnswered) return;
+            questionAnswered = true;
             questionsAnswered++;
             streak = 0;
             const feedback = document.getElementById('feedback');
@@ -1078,6 +1529,56 @@
             document.getElementById('currentLevel').textContent = levelNames[currentLevel];
         }
         
+        // Leaderboard functions
+        function getLeaderboard() {
+            try {
+                return JSON.parse(localStorage.getItem('mathGoatLeaderboard')) || [];
+            } catch (e) {
+                return [];
+            }
+        }
+
+        function saveToLeaderboard(name, finalScore) {
+            if (finalScore <= 0) return;
+            const leaderboard = getLeaderboard();
+            const today = new Date();
+            const dateStr = (today.getMonth() + 1) + '/' + today.getDate() + '/' + today.getFullYear();
+            leaderboard.push({ name: name, score: finalScore, date: dateStr });
+            leaderboard.sort((a, b) => b.score - a.score);
+            // Keep top 50 entries
+            if (leaderboard.length > 50) leaderboard.length = 50;
+            localStorage.setItem('mathGoatLeaderboard', JSON.stringify(leaderboard));
+        }
+
+        function renderLeaderboard() {
+            const leaderboard = getLeaderboard();
+            const container = document.getElementById('leaderboardContent');
+            if (leaderboard.length === 0) {
+                container.innerHTML = '<div class="leaderboard-empty">No scores yet. Be the first GOAT!</div>';
+                return;
+            }
+            const top10 = leaderboard.slice(0, 10);
+            let html = '<table class="leaderboard-table"><thead><tr><th>#</th><th>Name</th><th>Score</th><th>Date</th></tr></thead><tbody>';
+            top10.forEach((entry, i) => {
+                const medal = i === 0 ? '🥇 ' : i === 1 ? '🥈 ' : i === 2 ? '🥉 ' : '';
+                html += '<tr><td>' + medal + (i + 1) + '</td><td>' + entry.name + '</td><td>' + entry.score + '</td><td>' + entry.date + '</td></tr>';
+            });
+            html += '</tbody></table>';
+            container.innerHTML = html;
+        }
+
+        function endGame() {
+            if (score > 0) {
+                saveToLeaderboard(playerName, score);
+            }
+            document.getElementById('questionScreen').classList.add('hidden');
+            document.getElementById('startScreen').classList.remove('hidden');
+            renderLeaderboard();
+        }
+
+        // Render leaderboard on page load
+        renderLeaderboard();
+
         // Allow Enter key to submit
         document.getElementById('answerInput').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
