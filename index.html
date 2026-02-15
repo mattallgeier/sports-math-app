@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sports Math Challenge!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Comic Sans MS', 'Arial Rounded MT Bold', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 25px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            color: #667eea;
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+        
+        .stats-bar {
+            display: flex;
+            justify-content: space-around;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        
+        .stat-value {
+            font-size: 2em;
+            font-weight: bold;
+        }
+        
+        .level-selector {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .level-btn {
+            padding: 15px 30px;
+            border: 3px solid #667eea;
+            background: white;
+            color: #667eea;
+            border-radius: 15px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .level-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .level-btn.active {
+            background: #667eea;
+            color: white;
+        }
+        
+        .question-card {
+            background: #f8f9ff;
+            border: 3px solid #667eea;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 20px;
+        }
+        
+        .sport-icon {
+            font-size: 3em;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        
+        .question-text {
+            font-size: 1.3em;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        .diagram {
+            background: white;
+            border: 2px dashed #667eea;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            font-size: 1.1em;
+            color: #666;
+        }
+        
+        .answer-section {
+            margin-top: 25px;
+        }
+        
+        .answer-input {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.5em;
+            border: 3px solid #667eea;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            flex: 1;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            font-weight: bold;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            min-width: 150px;
+        }
+        
+        .btn-submit {
+            background: #10b981;
+            color: white;
+        }
+        
+        .btn-submit:hover {
+            background: #059669;
+            transform: scale(1.05);
+        }
+        
+        .btn-skip {
+            background: #f59e0b;
+            color: white;
+        }
+        
+        .btn-skip:hover {
+            background: #d97706;
+        }
+        
+        .btn-next {
+            background: #667eea;
+            color: white;
+        }
+        
+        .btn-next:hover {
+            background: #5568d3;
+        }
+        
+        .feedback {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 15px;
+            font-size: 1.2em;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .correct {
+            background: #d1fae5;
+            color: #065f46;
+            border: 3px solid #10b981;
+        }
+        
+        .incorrect {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 3px solid #ef4444;
+        }
+        
+        .fun-fact {
+            background: #fef3c7;
+            border: 3px solid #f59e0b;
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 15px;
+        }
+        
+        .fun-fact-title {
+            font-size: 1.3em;
+            color: #92400e;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .fun-fact-text {
+            color: #78350f;
+            line-height: 1.6;
+        }
+        
+        .celebration {
+            text-align: center;
+            font-size: 5em;
+            animation: bounce 0.5s;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .start-screen {
+            text-align: center;
+            padding: 40px;
+        }
+        
+        .start-screen h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        
+        .start-screen p {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .topic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        .topic-card {
+            background: #f8f9ff;
+            border: 2px solid #667eea;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .topic-icon {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .topic-title {
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+            
+            .stat-value {
+                font-size: 1.5em;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏀 Sports Math Challenge! ⚽</h1>
+        </div>
+        
+        <div class="stats-bar">
+            <div class="stat">
+                <div class="stat-label">Score</div>
+                <div class="stat-value" id="score">0</div>
+            </div>
+            <div class="stat">
+                <div class="stat-label">Streak</div>
+                <div class="stat-value" id="streak">0</div>
+            </div>
+            <div class="stat">
+                <div class="stat-label">Level</div>
+                <div class="stat-value" id="currentLevel">Rookie</div>
+            </div>
+            <div class="stat">
+                <div class="stat-label">Questions</div>
+                <div class="stat-value"><span id="questionsAnswered">0</span>/<span id="totalQuestions">0</span></div>
+            </div>
+        </div>
+        
+        <!-- Start Screen -->
+        <div id="startScreen" class="start-screen">
+            <h2>Welcome, Math Champion! 🏆</h2>
+            <p>Get ready to solve awesome math problems about your favorite sports! Pick your difficulty level to start:</p>
+            
+            <div class="topic-grid">
+                <div class="topic-card">
+                    <div class="topic-icon">📐</div>
+                    <div class="topic-title">Geometry</div>
+                </div>
+                <div class="topic-card">
+                    <div class="topic-icon">📊</div>
+                    <div class="topic-title">Sports Stats</div>
+                </div>
+                <div class="topic-card">
+                    <div class="topic-icon">🍕</div>
+                    <div class="topic-title">Fractions</div>
+                </div>
+                <div class="topic-card">
+                    <div class="topic-icon">✖️</div>
+                    <div class="topic-title">Multiplication</div>
+                </div>
+            </div>
+            
+            <div class="level-selector">
+                <button class="level-btn active" onclick="startGame('rookie')">🌟 Rookie</button>
+                <button class="level-btn" onclick="startGame('allstar')">⭐ All-Star</button>
+                <button class="level-btn" onclick="startGame('mvp')">🏆 MVP</button>
+            </div>
+        </div>
+        
+        <!-- Question Screen -->
+        <div id="questionScreen" class="hidden">
+            <div class="level-selector">
+                <button class="level-btn" onclick="changeLevel('rookie')">🌟 Rookie</button>
+                <button class="level-btn" onclick="changeLevel('allstar')">⭐ All-Star</button>
+                <button class="level-btn" onclick="changeLevel('mvp')">🏆 MVP</button>
+            </div>
+            
+            <div class="question-card">
+                <div class="sport-icon" id="sportIcon"></div>
+                <div class="question-text" id="questionText"></div>
+                <div id="diagram" class="diagram hidden"></div>
+                
+                <div class="answer-section">
+                    <input type="number" id="answerInput" class="answer-input" placeholder="Type your answer here" step="0.01">
+                    <div class="button-group">
+                        <button class="btn btn-submit" onclick="checkAnswer()">✓ Submit Answer</button>
+                        <button class="btn btn-skip" onclick="skipQuestion()">→ Skip</button>
+                    </div>
+                </div>
+                
+                <div id="feedback" class="feedback hidden"></div>
+                <div id="funFact" class="fun-fact hidden">
+                    <div class="fun-fact-title">⚡ Fun Sports Fact!</div>
+                    <div class="fun-fact-text" id="funFactText"></div>
+                </div>
+            </div>
+            
+            <button id="nextBtn" class="btn btn-next hidden" onclick="nextQuestion()">Next Question →</button>
+        </div>
+    </div>
+    
+    <script>
+        // Game State
+        let score = 0;
+        let streak = 0;
+        let questionsAnswered = 0;
+        let currentLevel = 'rookie';
+        let currentQuestion = null;
+        
+        // Question Bank
+        const questions = {
+            rookie: [
+                // Geometry - Rookie
+                {
+                    type: 'geometry',
+                    sport: '⚽',
+                    question: 'A soccer field is shaped like a rectangle. If the field is 50 yards long and 30 yards wide, what is the perimeter (distance around) the field?',
+                    answer: 160,
+                    hint: 'Perimeter = 2 × (length + width)',
+                    diagram: 'Rectangle: Length = 50 yards, Width = 30 yards',
+                    funFact: 'A professional soccer field is about 110 yards long!'
+                },
+                {
+                    type: 'geometry',
+                    sport: '🏀',
+                    question: 'A basketball court has 4 rectangular free-throw lanes. Each lane is 12 feet long and 15 feet wide. What is the area of ONE lane?',
+                    answer: 180,
+                    hint: 'Area = length × width',
+                    diagram: 'Rectangle: 12 feet × 15 feet',
+                    funFact: 'NBA players practice free throws for hours every day!'
+                },
+                // Word Problems - Rookie
+                {
+                    type: 'word',
+                    sport: '⚾',
+                    question: 'In baseball, Mike got 3 hits in his first game, 5 hits in his second game, and 4 hits in his third game. How many total hits did Mike get?',
+                    answer: 12,
+                    funFact: 'The record for most hits in a single MLB season is 262 by Ichiro Suzuki!'
+                },
+                {
+                    type: 'word',
+                    sport: '🏈',
+                    question: 'A football team scored 2 touchdowns (6 points each) and 1 field goal (3 points). How many total points did they score?',
+                    answer: 15,
+                    funFact: 'The highest-scoring Super Bowl game had 75 total points!'
+                },
+                // Fractions - Rookie
+                {
+                    type: 'fraction',
+                    sport: '🏀',
+                    question: 'Sarah made 6 out of 10 free throws. What fraction of her free throws did she make? (Enter as a decimal: 0.6)',
+                    answer: 0.6,
+                    hint: '6 ÷ 10 = ?',
+                    funFact: 'The best NBA free throw shooters make over 90% of their shots!'
+                },
+                {
+                    type: 'fraction',
+                    sport: '⚽',
+                    question: 'A soccer team won 8 out of 12 games. What percentage of games did they win? (Just enter the number)',
+                    answer: 67,
+                    hint: '(8 ÷ 12) × 100, then round to nearest whole number',
+                    funFact: 'Winning 67% of your games is considered excellent in soccer!'
+                },
+                // Multiplication - Rookie
+                {
+                    type: 'multiplication',
+                    sport: '🏈',
+                    question: 'If a football team scores 7 points per touchdown and they score 4 touchdowns, how many points is that?',
+                    answer: 28,
+                    funFact: 'The most touchdowns scored by one player in a game is 6!'
+                },
+                {
+                    type: 'multiplication',
+                    sport: '⚾',
+                    question: 'A baseball team has 9 players on the field. If each player catches 3 balls during practice, how many total catches is that?',
+                    answer: 27,
+                    funFact: 'Some professional baseball players can catch a ball going over 100 mph!'
+                }
+            ],
+            
+            allstar: [
+                // Geometry - All-Star
+                {
+                    type: 'geometry',
+                    sport: '🏀',
+                    question: 'The three-point line forms a semi-circle. If the radius is 23.75 feet, what is the area of the semi-circle? (Use 3.14 for pi and round to nearest whole number)',
+                    answer: 886,
+                    hint: 'Area of circle = π × r². Then divide by 2 for semi-circle',
+                    diagram: 'Semi-circle with radius = 23.75 feet',
+                    funFact: 'The three-point line in the NBA is farther than in college basketball!'
+                },
+                {
+                    type: 'geometry',
+                    sport: '⚽',
+                    question: 'A soccer goal is 8 yards wide and 8 feet tall. If 1 yard = 3 feet, what is the area of the goal opening in square feet?',
+                    answer: 192,
+                    hint: 'First convert width to feet (8 yards × 3), then multiply by height',
+                    diagram: 'Rectangle: Width = 8 yards, Height = 8 feet',
+                    funFact: 'Goalkeepers have to protect all 192 square feet of the goal!'
+                },
+                // Word Problems - All-Star
+                {
+                    type: 'word',
+                    sport: '🏈',
+                    question: 'A quarterback threw 28 passes. He completed 3/4 of them. How many passes did he complete?',
+                    answer: 21,
+                    hint: '28 × 3/4 = 28 × 0.75',
+                    funFact: 'Completing 75% of passes is considered elite quarterback play!'
+                },
+                {
+                    type: 'word',
+                    sport: '⚾',
+                    question: 'A baseball player has a batting average of 0.300. If he has 200 at-bats, how many hits has he gotten?',
+                    answer: 60,
+                    hint: '200 × 0.300 = ?',
+                    funFact: 'A .300 batting average is the mark of an excellent hitter!'
+                },
+                // Fractions - All-Star
+                {
+                    type: 'fraction',
+                    sport: '🏀',
+                    question: 'LeBron played 3/4 of a 48-minute game. His teammate played 5/6 of the game. How many MORE minutes did his teammate play? (Round to nearest whole number)',
+                    answer: 4,
+                    hint: 'Calculate 5/6 of 48, then 3/4 of 48, then subtract',
+                    funFact: 'Top NBA players often play more than 35 minutes per game!'
+                },
+                {
+                    type: 'fraction',
+                    sport: '⚽',
+                    question: 'A soccer team won 2/3 of their 18 games and tied 1/6 of them. How many games did they lose?',
+                    answer: 3,
+                    hint: 'Won = 12, Tied = 3, so Lost = 18 - 12 - 3',
+                    funFact: 'In soccer, a tie gives you 1 point and a win gives you 3 points!'
+                },
+                // Multiplication & Division - All-Star
+                {
+                    type: 'multiplication',
+                    sport: '🏈',
+                    question: 'A running back gained 156 yards in 12 carries. What was his average yards per carry? (Round to nearest whole number)',
+                    answer: 13,
+                    hint: '156 ÷ 12 = ?',
+                    funFact: 'Averaging 13 yards per carry would be incredible - most NFL running backs average 4-5!'
+                },
+                {
+                    type: 'multiplication',
+                    sport: '⚾',
+                    question: 'If a pitcher throws an average of 15 pitches per inning and pitches 6 complete innings, how many total pitches does he throw?',
+                    answer: 90,
+                    funFact: 'Starting pitchers are usually limited to around 100 pitches per game!'
+                }
+            ],
+            
+            mvp: [
+                // Geometry - MVP
+                {
+                    type: 'geometry',
+                    sport: '🏀',
+                    question: 'A basketball court is 94 feet long and 50 feet wide. The center circle has a diameter of 12 feet. What is the area of the court NOT including the center circle? (Use 3.14 for pi, round to nearest whole number)',
+                    answer: 4587,
+                    hint: 'Area of court (94 × 50) minus area of circle (π × 6²)',
+                    diagram: 'Court: 94 × 50 feet. Circle diameter: 12 feet (radius = 6)',
+                    funFact: 'NBA courts must be exactly 94 feet by 50 feet - no exceptions!'
+                },
+                {
+                    type: 'geometry',
+                    sport: '⚽',
+                    question: 'A soccer field is 100 meters long and 60 meters wide. Each penalty box is 40 meters wide and 16 meters deep. What percentage of the field do BOTH penalty boxes cover? (Round to nearest whole number)',
+                    answer: 21,
+                    hint: 'Field area = 6000. Each box = 640. Both boxes = 1280. Then (1280/6000) × 100',
+                    diagram: 'Field: 100m × 60m. Each penalty box: 40m × 16m',
+                    funFact: 'Most penalty kicks are scored - goalies only save about 20%!'
+                },
+                // Word Problems - MVP
+                {
+                    type: 'word',
+                    sport: '🏈',
+                    question: 'A team gained 85 yards on their first drive, lost 12 yards on their second drive, gained 47 yards on their third drive, and then scored a touchdown from 18 yards out. What was their total yardage?',
+                    answer: 138,
+                    hint: '85 + (-12) + 47 + 18',
+                    funFact: 'The longest touchdown in NFL history was 109 yards on a missed field goal return!'
+                },
+                {
+                    type: 'word',
+                    sport: '⚾',
+                    question: 'In a doubleheader (two games in one day), a player went 3-for-5 in the first game (3 hits in 5 at-bats) and 2-for-4 in the second game. What was his batting average for the day? (Enter as decimal: 0.556)',
+                    answer: 0.556,
+                    hint: 'Total hits (3 + 2) ÷ Total at-bats (5 + 4)',
+                    funFact: 'Getting 5 hits in a doubleheader is an awesome day at the plate!'
+                },
+                // Advanced Fractions - MVP
+                {
+                    type: 'fraction',
+                    sport: '🏀',
+                    question: 'Steph Curry made 5/8 of his three-pointers and 7/10 of his two-pointers. He shot 24 three-pointers and 30 two-pointers. How many total baskets did he make?',
+                    answer: 36,
+                    hint: 'Three-pointers made: 24 × 5/8 = 15. Two-pointers made: 30 × 7/10 = 21. Total = 36',
+                    funFact: 'Steph Curry holds the record for most three-pointers made in a season with 402!'
+                },
+                {
+                    type: 'fraction',
+                    sport: '⚽',
+                    question: 'A soccer player scored in 2/5 of her games. She played 30 games total. Her team won 80% of the games she scored in. How many games did her team win when she scored?',
+                    answer: 10,
+                    hint: 'Games scored = 30 × 2/5 = 12. Team wins when scored = 12 × 0.8 = 10',
+                    funFact: 'When star players score, their teams win about 75-85% of the time!'
+                },
+                // Advanced Multiplication - MVP
+                {
+                    type: 'multiplication',
+                    sport: '🏈',
+                    question: 'A quarterback\'s passer rating is calculated as: (Completions × 2) + (Yards ÷ 10) + (Touchdowns × 20). If he had 25 completions, 300 yards, and 3 touchdowns, what\'s his rating?',
+                    answer: 140,
+                    hint: '(25 × 2) + (300 ÷ 10) + (3 × 20)',
+                    funFact: 'This is a simplified version - the real NFL passer rating formula is much more complex!'
+                },
+                {
+                    type: 'multiplication',
+                    sport: '⚾',
+                    question: 'A baseball player\'s slugging percentage is: (Singles × 1 + Doubles × 2 + Triples × 3 + Home Runs × 4) ÷ At-Bats. If he had 40 singles, 15 doubles, 2 triples, and 8 home runs in 200 at-bats, what is his slugging %? (Enter as decimal: 0.xxx)',
+                    answer: 0.49,
+                    hint: '(40×1 + 15×2 + 2×3 + 8×4) = 98. Then 98÷200 = 0.49',
+                    funFact: 'A slugging percentage above .500 is considered excellent in Major League Baseball!'
+                }
+            ]
+        };
+        
+        const funFacts = [
+            'Michael Jordan scored 32,292 points in his NBA career!',
+            'The fastest recorded soccer shot was 131 mph!',
+            'A baseball spins about 15 times when thrown from pitcher to catcher!',
+            'An NFL football weighs exactly 14-15 ounces!',
+            'Basketball was invented in 1891 with a soccer ball and peach baskets!',
+            'Soccer is played in over 200 countries worldwide!',
+            'The average MLB game uses about 120 baseballs!',
+            'An NFL field is exactly 100 yards between the goal lines!'
+        ];
+        
+        function startGame(level) {
+            currentLevel = level;
+            document.getElementById('startScreen').classList.add('hidden');
+            document.getElementById('questionScreen').classList.remove('hidden');
+            updateLevelButtons();
+            loadQuestion();
+            updateStats();
+        }
+        
+        function changeLevel(level) {
+            currentLevel = level;
+            updateLevelButtons();
+            loadQuestion();
+        }
+        
+        function updateLevelButtons() {
+            const buttons = document.querySelectorAll('.level-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+                const levelText = btn.textContent.toLowerCase();
+                if (levelText.includes(currentLevel)) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+        
+        function loadQuestion() {
+            const levelQuestions = questions[currentLevel];
+            currentQuestion = levelQuestions[Math.floor(Math.random() * levelQuestions.length)];
+            
+            document.getElementById('sportIcon').textContent = currentQuestion.sport;
+            document.getElementById('questionText').textContent = currentQuestion.question;
+            document.getElementById('answerInput').value = '';
+            document.getElementById('answerInput').focus();
+            
+            // Show diagram if available
+            if (currentQuestion.diagram) {
+                document.getElementById('diagram').textContent = currentQuestion.diagram;
+                document.getElementById('diagram').classList.remove('hidden');
+            } else {
+                document.getElementById('diagram').classList.add('hidden');
+            }
+            
+            // Hide feedback and fun fact
+            document.getElementById('feedback').classList.add('hidden');
+            document.getElementById('funFact').classList.add('hidden');
+            document.getElementById('nextBtn').classList.add('hidden');
+        }
+        
+        function checkAnswer() {
+            const userAnswer = parseFloat(document.getElementById('answerInput').value);
+            const correctAnswer = currentQuestion.answer;
+            const feedback = document.getElementById('feedback');
+            const funFact = document.getElementById('funFact');
+            
+            // Allow for small rounding differences
+            const isCorrect = Math.abs(userAnswer - correctAnswer) < 0.6;
+            
+            questionsAnswered++;
+            
+            if (isCorrect) {
+                score += getLevelPoints();
+                streak++;
+                
+                feedback.className = 'feedback correct';
+                feedback.innerHTML = `
+                    <div class="celebration">🎉</div>
+                    <div>Correct! Great job!</div>
+                    <div style="font-size: 0.9em; margin-top: 10px;">+${getLevelPoints()} points</div>
+                `;
+                
+                // Show fun fact
+                funFact.classList.remove('hidden');
+                document.getElementById('funFactText').textContent = currentQuestion.funFact || getRandomFunFact();
+            } else {
+                streak = 0;
+                feedback.className = 'feedback incorrect';
+                feedback.innerHTML = `
+                    <div>Not quite! The answer was ${correctAnswer}</div>
+                    ${currentQuestion.hint ? `<div style="font-size: 0.9em; margin-top: 10px;">💡 Hint: ${currentQuestion.hint}</div>` : ''}
+                `;
+            }
+            
+            feedback.classList.remove('hidden');
+            document.getElementById('nextBtn').classList.remove('hidden');
+            updateStats();
+        }
+        
+        function skipQuestion() {
+            questionsAnswered++;
+            streak = 0;
+            const feedback = document.getElementById('feedback');
+            feedback.className = 'feedback incorrect';
+            feedback.innerHTML = `
+                <div>Skipped! The answer was ${currentQuestion.answer}</div>
+                ${currentQuestion.hint ? `<div style="font-size: 0.9em; margin-top: 10px;">💡 ${currentQuestion.hint}</div>` : ''}
+            `;
+            feedback.classList.remove('hidden');
+            document.getElementById('nextBtn').classList.remove('hidden');
+            updateStats();
+        }
+        
+        function nextQuestion() {
+            loadQuestion();
+        }
+        
+        function getLevelPoints() {
+            const points = {
+                'rookie': 10,
+                'allstar': 20,
+                'mvp': 30
+            };
+            return points[currentLevel] + (streak * 5);
+        }
+        
+        function getRandomFunFact() {
+            return funFacts[Math.floor(Math.random() * funFacts.length)];
+        }
+        
+        function updateStats() {
+            document.getElementById('score').textContent = score;
+            document.getElementById('streak').textContent = streak;
+            document.getElementById('questionsAnswered').textContent = questionsAnswered;
+            document.getElementById('totalQuestions').textContent = questionsAnswered;
+            
+            const levelNames = {
+                'rookie': '🌟 Rookie',
+                'allstar': '⭐ All-Star',
+                'mvp': '🏆 MVP'
+            };
+            document.getElementById('currentLevel').textContent = levelNames[currentLevel];
+        }
+        
+        // Allow Enter key to submit
+        document.getElementById('answerInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkAnswer();
+            }
+        });
+    </script>
+</body>
+</html>
