@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+<!-- saved from url=(0052)file:///Users/matthewallgeier/Downloads/index_1.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sports Math Challenge!</title>
+    <title>Reid's Math GOAT Challenge</title>
     <style>
         * {
             margin: 0;
@@ -13,13 +13,13 @@
         
         body {
             font-family: 'Comic Sans MS', 'Arial Rounded MT Bold', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #FDB927 0%, #006BB6 100%);
             min-height: 100vh;
             padding: 20px;
         }
         
         .container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
             background: white;
             border-radius: 25px;
@@ -33,15 +33,36 @@
         }
         
         h1 {
-            color: #667eea;
+            background: linear-gradient(135deg, #FDB927 0%, #006BB6 50%, #FF6900 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             font-size: 3em;
             margin-bottom: 10px;
+        }
+        
+        .team-logos {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        
+        .team-logo {
+            font-size: 3em;
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+        
+        .team-logo:hover {
+            transform: scale(1.2);
         }
         
         .stats-bar {
             display: flex;
             justify-content: space-around;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #FDB927 0%, #006BB6 100%);
             color: white;
             padding: 20px;
             border-radius: 15px;
@@ -74,9 +95,9 @@
         
         .level-btn {
             padding: 15px 30px;
-            border: 3px solid #667eea;
+            border: 3px solid #006BB6;
             background: white;
-            color: #667eea;
+            color: #006BB6;
             border-radius: 15px;
             font-size: 1.2em;
             font-weight: bold;
@@ -89,13 +110,13 @@
         }
         
         .level-btn.active {
-            background: #667eea;
+            background: #006BB6;
             color: white;
         }
         
         .question-card {
             background: #f8f9ff;
-            border: 3px solid #667eea;
+            border: 3px solid #006BB6;
             border-radius: 20px;
             padding: 30px;
             margin-bottom: 20px;
@@ -116,7 +137,7 @@
         
         .diagram {
             background: white;
-            border: 2px dashed #667eea;
+            border: 2px dashed #006BB6;
             border-radius: 15px;
             padding: 20px;
             margin: 20px 0;
@@ -133,7 +154,7 @@
             width: 100%;
             padding: 15px;
             font-size: 1.5em;
-            border: 3px solid #667eea;
+            border: 3px solid #006BB6;
             border-radius: 10px;
             text-align: center;
             font-weight: bold;
@@ -178,12 +199,24 @@
         }
         
         .btn-next {
-            background: #667eea;
+            background: #006BB6;
             color: white;
         }
         
         .btn-next:hover {
-            background: #5568d3;
+            background: #005a94;
+        }
+        
+        .btn-start {
+            background: #FDB927;
+            color: #006BB6;
+            font-size: 1.5em;
+            padding: 20px 40px;
+            margin-top: 20px;
+        }
+        
+        .btn-start:hover {
+            background: #FFD700;
         }
         
         .feedback {
@@ -244,11 +277,11 @@
         
         .start-screen {
             text-align: center;
-            padding: 40px;
+            padding: 40px 20px;
         }
         
         .start-screen h2 {
-            color: #667eea;
+            color: #006BB6;
             font-size: 2em;
             margin-bottom: 20px;
         }
@@ -260,29 +293,59 @@
             line-height: 1.6;
         }
         
-        .topic-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
+        .topic-selection {
+            background: #f8f9ff;
+            border: 3px solid #006BB6;
+            border-radius: 20px;
+            padding: 30px;
             margin: 30px 0;
+            text-align: left;
         }
         
-        .topic-card {
-            background: #f8f9ff;
-            border: 2px solid #667eea;
-            border-radius: 15px;
-            padding: 20px;
+        .topic-selection h3 {
+            color: #006BB6;
+            margin-bottom: 20px;
             text-align: center;
         }
         
-        .topic-icon {
-            font-size: 2.5em;
-            margin-bottom: 10px;
+        .topic-checkboxes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
         }
         
-        .topic-title {
+        .topic-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px;
+            background: white;
+            border: 2px solid #006BB6;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .topic-checkbox:hover {
+            background: #f0f9ff;
+            transform: scale(1.02);
+        }
+        
+        .topic-checkbox input[type="checkbox"] {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+        }
+        
+        .topic-checkbox label {
+            cursor: pointer;
             font-weight: bold;
-            color: #667eea;
+            color: #006BB6;
+            font-size: 1.1em;
+        }
+        
+        .topic-checkbox input:checked + label {
+            color: #FDB927;
         }
         
         @media (max-width: 768px) {
@@ -301,13 +364,31 @@
             .btn {
                 width: 100%;
             }
+            
+            .team-logo {
+                font-size: 2em;
+            }
+            
+            .topic-checkboxes {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>🏀 Sports Math Challenge! ⚽</h1>
+            <h1>🐐 Reid's Math GOAT Challenge 🐐</h1>
+            <div class="team-logos">
+                <div class="team-logo">🏀</div>
+                <div class="team-logo">🏈</div>
+                <div class="team-logo">⚾</div>
+                <div class="team-logo">🏒</div>
+                <div class="team-logo">⚽</div>
+            </div>
+            <div style="text-align: center; color: #006BB6; font-weight: bold; margin-top: 10px; font-size: 0.9em;">
+                Warriors • 49ers • Giants • Sharks • Earthquakes • Commanders • Buffaloes • Cal Bears • Inter Miami
+            </div>
         </div>
         
         <div class="stats-bar">
@@ -331,41 +412,44 @@
         
         <!-- Start Screen -->
         <div id="startScreen" class="start-screen">
-            <h2>Welcome, Math Champion! 🏆</h2>
-            <p>Get ready to solve awesome math problems about your favorite sports! Pick your difficulty level to start:</p>
+            <h2>Welcome to the GOAT Challenge, Reid! 🏆</h2>
+            <p>Get ready to solve awesome math problems about your favorite teams and players!</p>
             
-            <div class="topic-grid">
-                <div class="topic-card">
-                    <div class="topic-icon">📐</div>
-                    <div class="topic-title">Geometry</div>
-                </div>
-                <div class="topic-card">
-                    <div class="topic-icon">📊</div>
-                    <div class="topic-title">Sports Stats</div>
-                </div>
-                <div class="topic-card">
-                    <div class="topic-icon">🍕</div>
-                    <div class="topic-title">Fractions</div>
-                </div>
-                <div class="topic-card">
-                    <div class="topic-icon">✖️</div>
-                    <div class="topic-title">Multiplication</div>
+            <div class="topic-selection">
+                <h3>📚 Choose Your Math Topics:</h3>
+                <div class="topic-checkboxes">
+                    <div class="topic-checkbox">
+                        <input type="checkbox" id="geometry" value="geometry" checked="">
+                        <label for="geometry">📐 Geometry</label>
+                    </div>
+                    <div class="topic-checkbox">
+                        <input type="checkbox" id="word" value="word" checked="">
+                        <label for="word">📊 Sports Stats</label>
+                    </div>
+                    <div class="topic-checkbox">
+                        <input type="checkbox" id="fraction" value="fraction" checked="">
+                        <label for="fraction">🍕 Fractions &amp; %</label>
+                    </div>
+                    <div class="topic-checkbox">
+                        <input type="checkbox" id="multiplication" value="multiplication" checked="">
+                        <label for="multiplication">✖️ Multiplication</label>
+                    </div>
                 </div>
             </div>
             
             <div class="level-selector">
-                <button class="level-btn active" onclick="startGame('rookie')">🌟 Rookie</button>
-                <button class="level-btn" onclick="startGame('allstar')">⭐ All-Star</button>
-                <button class="level-btn" onclick="startGame('mvp')">🏆 MVP</button>
+                <button class="level-btn active" onclick="startGame(&#39;rookie&#39;)">🌟 Rookie</button>
+                <button class="level-btn" onclick="startGame(&#39;allstar&#39;)">⭐ All-Star</button>
+                <button class="level-btn" onclick="startGame(&#39;mvp&#39;)">🏆 MVP</button>
             </div>
         </div>
         
         <!-- Question Screen -->
         <div id="questionScreen" class="hidden">
             <div class="level-selector">
-                <button class="level-btn" onclick="changeLevel('rookie')">🌟 Rookie</button>
-                <button class="level-btn" onclick="changeLevel('allstar')">⭐ All-Star</button>
-                <button class="level-btn" onclick="changeLevel('mvp')">🏆 MVP</button>
+                <button class="level-btn" onclick="changeLevel(&#39;rookie&#39;)">🌟 Rookie</button>
+                <button class="level-btn" onclick="changeLevel(&#39;allstar&#39;)">⭐ All-Star</button>
+                <button class="level-btn" onclick="changeLevel(&#39;mvp&#39;)">🏆 MVP</button>
             </div>
             
             <div class="question-card">
@@ -399,75 +483,139 @@
         let questionsAnswered = 0;
         let currentLevel = 'rookie';
         let currentQuestion = null;
+        let selectedTopics = ['geometry', 'word', 'fraction', 'multiplication'];
         
-        // Question Bank
+        // Question Bank with Bay Area Teams
         const questions = {
             rookie: [
                 // Geometry - Rookie
                 {
                     type: 'geometry',
-                    sport: '⚽',
-                    question: 'A soccer field is shaped like a rectangle. If the field is 50 yards long and 30 yards wide, what is the perimeter (distance around) the field?',
-                    answer: 160,
+                    sport: '🏀',
+                    question: 'The Warriors\' home court at Chase Center is shaped like a rectangle. If the court is 94 feet long and 50 feet wide, what is the perimeter (distance around) the court?',
+                    answer: 288,
                     hint: 'Perimeter = 2 × (length + width)',
-                    diagram: 'Rectangle: Length = 50 yards, Width = 30 yards',
-                    funFact: 'A professional soccer field is about 110 yards long!'
+                    diagram: 'Rectangle: Length = 94 feet, Width = 50 feet',
+                    funFact: 'The Warriors won their first championship at Chase Center in 2022!'
                 },
                 {
                     type: 'geometry',
-                    sport: '🏀',
-                    question: 'A basketball court has 4 rectangular free-throw lanes. Each lane is 12 feet long and 15 feet wide. What is the area of ONE lane?',
-                    answer: 180,
+                    sport: '⚽',
+                    question: 'The Earthquakes practice field is 80 yards long and 50 yards wide. What is the area of the field?',
+                    answer: 4000,
                     hint: 'Area = length × width',
-                    diagram: 'Rectangle: 12 feet × 15 feet',
-                    funFact: 'NBA players practice free throws for hours every day!'
+                    diagram: 'Rectangle: 80 yards × 50 yards',
+                    funFact: 'The Earthquakes were one of the original 10 MLS teams in 1996!'
                 },
                 // Word Problems - Rookie
                 {
                     type: 'word',
                     sport: '⚾',
-                    question: 'In baseball, Mike got 3 hits in his first game, 5 hits in his second game, and 4 hits in his third game. How many total hits did Mike get?',
-                    answer: 12,
-                    funFact: 'The record for most hits in a single MLB season is 262 by Ichiro Suzuki!'
+                    question: 'Buster Posey hit 2 home runs in the first game, 1 home run in the second game, and 3 home runs in the third game for the Giants. How many total home runs did he hit?',
+                    answer: 6,
+                    funFact: 'Buster Posey helped the Giants win 3 World Series championships!'
                 },
                 {
                     type: 'word',
                     sport: '🏈',
-                    question: 'A football team scored 2 touchdowns (6 points each) and 1 field goal (3 points). How many total points did they score?',
-                    answer: 15,
-                    funFact: 'The highest-scoring Super Bowl game had 75 total points!'
+                    question: 'The 49ers scored 3 touchdowns (6 points each) and 2 field goals (3 points each). How many total points did they score?',
+                    answer: 24,
+                    funFact: 'The 49ers have won 5 Super Bowls - tied for third-most all time!'
                 },
                 // Fractions - Rookie
                 {
                     type: 'fraction',
                     sport: '🏀',
-                    question: 'Sarah made 6 out of 10 free throws. What fraction of her free throws did she make? (Enter as a decimal: 0.6)',
-                    answer: 0.6,
-                    hint: '6 ÷ 10 = ?',
-                    funFact: 'The best NBA free throw shooters make over 90% of their shots!'
+                    question: 'Steph Curry made 8 out of 10 three-point shots at practice. What fraction did he make? (Enter as decimal: 0.8)',
+                    answer: 0.8,
+                    hint: '8 ÷ 10 = ?',
+                    funFact: 'Steph Curry is the all-time leader in three-pointers made!'
                 },
                 {
                     type: 'fraction',
-                    sport: '⚽',
-                    question: 'A soccer team won 8 out of 12 games. What percentage of games did they win? (Just enter the number)',
-                    answer: 67,
-                    hint: '(8 ÷ 12) × 100, then round to nearest whole number',
-                    funFact: 'Winning 67% of your games is considered excellent in soccer!'
+                    sport: '🏒',
+                    question: 'The Sharks won 9 out of 15 games this month. What percentage of games did they win? (Round to nearest whole number)',
+                    answer: 60,
+                    hint: '(9 ÷ 15) × 100',
+                    funFact: 'The Sharks have made the playoffs more than 20 times!'
                 },
                 // Multiplication - Rookie
                 {
                     type: 'multiplication',
                     sport: '🏈',
-                    question: 'If a football team scores 7 points per touchdown and they score 4 touchdowns, how many points is that?',
-                    answer: 28,
-                    funFact: 'The most touchdowns scored by one player in a game is 6!'
+                    question: 'Brock Purdy threw 5 touchdown passes for the 49ers. If each touchdown is worth 6 points, how many points is that?',
+                    answer: 30,
+                    funFact: 'Brock Purdy was the last pick in the 2022 NFL Draft but became a star!'
                 },
                 {
                     type: 'multiplication',
                     sport: '⚾',
-                    question: 'A baseball team has 9 players on the field. If each player catches 3 balls during practice, how many total catches is that?',
-                    answer: 27,
-                    funFact: 'Some professional baseball players can catch a ball going over 100 mph!'
+                    question: 'Each Giants player gets 4 at-bats per game. If there are 9 players in the lineup, how many total at-bats is that?',
+                    answer: 36,
+                    funFact: 'The Giants have won 8 World Series championships in their history!'
+                },
+                // Washington Commanders - Rookie
+                {
+                    type: 'word',
+                    sport: '🏈',
+                    question: 'Jayden Daniels threw for 2 touchdowns (6 points each), ran for 1 touchdown (6 points), and the Commanders kicked 1 field goal (3 points). How many total points?',
+                    answer: 21,
+                    funFact: 'The Commanders were originally called the Washington Redskins and won 3 Super Bowls!'
+                },
+                {
+                    type: 'multiplication',
+                    sport: '🏈',
+                    question: 'If the Commanders defense gets 3 sacks per game and they play 4 games, how many total sacks is that?',
+                    answer: 12,
+                    funFact: 'The Commanders play at FedEx Field in Maryland!'
+                },
+                // Colorado Buffaloes - Rookie
+                {
+                    type: 'word',
+                    sport: '🏈',
+                    question: 'Shedeur Sanders threw 4 touchdown passes for Colorado. If each touchdown is worth 6 points, how many points from touchdowns?',
+                    answer: 24,
+                    funFact: 'Coach Deion Sanders brought his son Shedeur to play QB for Colorado!'
+                },
+                {
+                    type: 'multiplication',
+                    sport: '🏈',
+                    question: 'Travis Hunter plays both offense and defense for Colorado. If he plays 15 plays on offense and 15 plays on defense, how many total plays?',
+                    answer: 30,
+                    funFact: 'Travis Hunter won the Heisman Trophy in 2024 - he plays both WR and CB!'
+                },
+                // Cal Bears - Rookie
+                {
+                    type: 'word',
+                    sport: '🏈',
+                    question: 'The Cal Bears scored 2 touchdowns (7 points each including extra point) and 2 field goals (3 points each). How many total points?',
+                    answer: 20,
+                    funFact: 'Cal plays at California Memorial Stadium with a view of the San Francisco Bay!'
+                },
+                {
+                    type: 'geometry',
+                    sport: '🏈',
+                    question: 'The Cal Bears practice field is 120 yards long (including end zones) and 53 yards wide. What is the perimeter?',
+                    answer: 346,
+                    hint: 'Perimeter = 2 × (length + width)',
+                    diagram: 'Rectangle: 120 yards × 53 yards',
+                    funFact: 'Cal Berkeley is one of the top public universities in the world!'
+                },
+                // Inter Miami - Rookie
+                {
+                    type: 'word',
+                    sport: '⚽',
+                    question: 'Lionel Messi scored 2 goals in the first half and 1 goal in the second half for Inter Miami. How many total goals?',
+                    answer: 3,
+                    funFact: 'Messi won the 2022 World Cup with Argentina before joining Inter Miami!'
+                },
+                {
+                    type: 'fraction',
+                    sport: '⚽',
+                    question: 'Inter Miami won 8 out of 10 games with Messi playing. What percentage of games did they win?',
+                    answer: 80,
+                    hint: '(8 ÷ 10) × 100',
+                    funFact: 'Lionel Messi has won 8 Ballon d\'Or awards - the most ever!'
                 }
             ],
             
@@ -476,70 +624,137 @@
                 {
                     type: 'geometry',
                     sport: '🏀',
-                    question: 'The three-point line forms a semi-circle. If the radius is 23.75 feet, what is the area of the semi-circle? (Use 3.14 for pi and round to nearest whole number)',
+                    question: 'The Warriors three-point line at Chase Center forms a semi-circle with a radius of 23.75 feet. What is the area? (Use 3.14 for pi, round to nearest whole number)',
                     answer: 886,
                     hint: 'Area of circle = π × r². Then divide by 2 for semi-circle',
                     diagram: 'Semi-circle with radius = 23.75 feet',
-                    funFact: 'The three-point line in the NBA is farther than in college basketball!'
+                    funFact: 'Klay Thompson once scored 37 points in a single quarter at Oracle Arena!'
                 },
                 {
                     type: 'geometry',
-                    sport: '⚽',
-                    question: 'A soccer goal is 8 yards wide and 8 feet tall. If 1 yard = 3 feet, what is the area of the goal opening in square feet?',
-                    answer: 192,
-                    hint: 'First convert width to feet (8 yards × 3), then multiply by height',
-                    diagram: 'Rectangle: Width = 8 yards, Height = 8 feet',
-                    funFact: 'Goalkeepers have to protect all 192 square feet of the goal!'
+                    sport: '🏈',
+                    question: 'Levi\'s Stadium (49ers home) has end zones that are 10 yards deep and 53 yards wide. What is the area of ONE end zone in square yards?',
+                    answer: 530,
+                    hint: 'Area = length × width = 10 × 53',
+                    diagram: 'Rectangle: 10 yards × 53 yards',
+                    funFact: 'Levi\'s Stadium hosted Super Bowl 50 in 2016!'
                 },
                 // Word Problems - All-Star
                 {
                     type: 'word',
                     sport: '🏈',
-                    question: 'A quarterback threw 28 passes. He completed 3/4 of them. How many passes did he complete?',
-                    answer: 21,
-                    hint: '28 × 3/4 = 28 × 0.75',
-                    funFact: 'Completing 75% of passes is considered elite quarterback play!'
+                    question: 'Christian McCaffrey ran for 85 yards, caught passes for 42 yards, and returned a kick for 18 yards. How many total yards did he gain?',
+                    answer: 145,
+                    funFact: 'Christian McCaffrey was NFL Offensive Player of the Year in 2023!'
                 },
                 {
                     type: 'word',
                     sport: '⚾',
-                    question: 'A baseball player has a batting average of 0.300. If he has 200 at-bats, how many hits has he gotten?',
-                    answer: 60,
-                    hint: '200 × 0.300 = ?',
-                    funFact: 'A .300 batting average is the mark of an excellent hitter!'
+                    question: 'Matt Chapman had a batting average of .250 for the Giants. If he had 200 at-bats, how many hits did he get?',
+                    answer: 50,
+                    hint: '200 × 0.250 = ?',
+                    funFact: 'Matt Chapman is one of the best defensive third basemen in baseball!'
                 },
                 // Fractions - All-Star
                 {
                     type: 'fraction',
                     sport: '🏀',
-                    question: 'LeBron played 3/4 of a 48-minute game. His teammate played 5/6 of the game. How many MORE minutes did his teammate play? (Round to nearest whole number)',
+                    question: 'Draymond Green played 3/4 of a 48-minute game. Kevon Looney played 5/6 of the game. How many MORE minutes did Looney play? (Round to nearest whole number)',
                     answer: 4,
-                    hint: 'Calculate 5/6 of 48, then 3/4 of 48, then subtract',
-                    funFact: 'Top NBA players often play more than 35 minutes per game!'
+                    hint: 'Looney: 5/6 of 48 = 40. Draymond: 3/4 of 48 = 36. Difference = 4',
+                    funFact: 'Draymond Green is a 4-time NBA champion and Defensive Player of the Year!'
                 },
                 {
                     type: 'fraction',
-                    sport: '⚽',
-                    question: 'A soccer team won 2/3 of their 18 games and tied 1/6 of them. How many games did they lose?',
+                    sport: '🏒',
+                    question: 'The Sharks won 2/3 of their 18 home games and lost 1/6 of them. How many home games did they tie?',
                     answer: 3,
-                    hint: 'Won = 12, Tied = 3, so Lost = 18 - 12 - 3',
-                    funFact: 'In soccer, a tie gives you 1 point and a win gives you 3 points!'
+                    hint: 'Won = 12, Lost = 3, so Tied = 18 - 12 - 3',
+                    funFact: 'SAP Center (Sharks Tank) is one of the loudest arenas in the NHL!'
                 },
                 // Multiplication & Division - All-Star
                 {
                     type: 'multiplication',
                     sport: '🏈',
-                    question: 'A running back gained 156 yards in 12 carries. What was his average yards per carry? (Round to nearest whole number)',
+                    question: 'Deebo Samuel gained 156 yards on 12 carries for the 49ers. What was his average yards per carry? (Round to nearest whole number)',
                     answer: 13,
                     hint: '156 ÷ 12 = ?',
-                    funFact: 'Averaging 13 yards per carry would be incredible - most NFL running backs average 4-5!'
+                    funFact: 'Deebo Samuel is known as a "wide back" because he can run and catch!'
                 },
                 {
                     type: 'multiplication',
                     sport: '⚾',
-                    question: 'If a pitcher throws an average of 15 pitches per inning and pitches 6 complete innings, how many total pitches does he throw?',
+                    question: 'Logan Webb pitched 6 innings for the Giants and threw an average of 15 pitches per inning. How many total pitches did he throw?',
                     answer: 90,
-                    funFact: 'Starting pitchers are usually limited to around 100 pitches per game!'
+                    funFact: 'Logan Webb was the Giants Opening Day starter in 2024!'
+                },
+                // Washington Commanders - All-Star
+                {
+                    type: 'word',
+                    sport: '🏈',
+                    question: 'Jayden Daniels completed 3/4 of his 32 pass attempts. How many passes did he complete?',
+                    answer: 24,
+                    hint: '32 × 3/4 = 32 × 0.75',
+                    funFact: 'Jayden Daniels won the Heisman Trophy at LSU before joining the Commanders!'
+                },
+                {
+                    type: 'fraction',
+                    sport: '🏈',
+                    question: 'Terry McLaurin caught 5/8 of the passes thrown to him in a game. If he was targeted 16 times, how many catches did he make?',
+                    answer: 10,
+                    hint: '16 × 5/8 = 16 × 0.625',
+                    funFact: 'Terry McLaurin is one of the NFL\'s best wide receivers!'
+                },
+                // Colorado Buffaloes - All-Star
+                {
+                    type: 'word',
+                    sport: '🏈',
+                    question: 'Shedeur Sanders threw for 285 yards, ran for 42 yards, and had 18 yards receiving on a trick play. How many total yards?',
+                    answer: 345,
+                    funFact: 'Shedeur Sanders is the son of Hall of Famer Deion "Prime Time" Sanders!'
+                },
+                {
+                    type: 'geometry',
+                    sport: '🏈',
+                    question: 'Folsom Field (Colorado\'s stadium) end zone is 10 yards deep and 160 feet wide. If 1 yard = 3 feet, what is the area in square feet?',
+                    answer: 4800,
+                    hint: 'Convert 10 yards to 30 feet, then multiply: 30 × 160',
+                    diagram: 'Rectangle: 30 feet × 160 feet',
+                    funFact: 'Folsom Field is located at 5,345 feet elevation - one of the highest in college football!'
+                },
+                // Cal Bears - All-Star
+                {
+                    type: 'fraction',
+                    sport: '🏈',
+                    question: 'The Cal Bears won 2/3 of their 12 conference games. How many conference games did they win?',
+                    answer: 8,
+                    hint: '12 × 2/3 = 12 × 0.667',
+                    funFact: 'Cal has produced over 90 Olympic medalists - more than most countries!'
+                },
+                {
+                    type: 'word',
+                    sport: '🏈',
+                    question: 'A Cal running back gained 125 yards on 25 carries. What was his average yards per carry?',
+                    answer: 5,
+                    hint: '125 ÷ 25',
+                    funFact: 'Cal plays in the ACC conference as of 2024!'
+                },
+                // Inter Miami - All-Star
+                {
+                    type: 'fraction',
+                    sport: '⚽',
+                    question: 'Messi took 20 shots on goal and scored on 3/10 of them. How many goals did he score?',
+                    answer: 6,
+                    hint: '20 × 3/10 = 20 × 0.3',
+                    funFact: 'Messi scored 672 goals for Barcelona - the most by any player for one club!'
+                },
+                {
+                    type: 'word',
+                    sport: '⚽',
+                    question: 'Inter Miami scored 48 goals in 24 games. What was their average goals per game?',
+                    answer: 2,
+                    hint: '48 ÷ 24',
+                    funFact: 'Inter Miami won the Leagues Cup in Messi\'s first tournament with the team!'
                 }
             ],
             
@@ -548,87 +763,180 @@
                 {
                     type: 'geometry',
                     sport: '🏀',
-                    question: 'A basketball court is 94 feet long and 50 feet wide. The center circle has a diameter of 12 feet. What is the area of the court NOT including the center circle? (Use 3.14 for pi, round to nearest whole number)',
+                    question: 'Chase Center court is 94 feet long and 50 feet wide. The center circle has a diameter of 12 feet. What is the area of the court NOT including the center circle? (Use 3.14 for pi, round to nearest whole number)',
                     answer: 4587,
-                    hint: 'Area of court (94 × 50) minus area of circle (π × 6²)',
-                    diagram: 'Court: 94 × 50 feet. Circle diameter: 12 feet (radius = 6)',
-                    funFact: 'NBA courts must be exactly 94 feet by 50 feet - no exceptions!'
+                    hint: 'Court area (94 × 50) minus circle area (π × 6²)',
+                    diagram: 'Court: 94 × 50 feet. Circle diameter: 12 feet',
+                    funFact: 'Chase Center cost $1.4 billion to build and opened in 2019!'
                 },
                 {
                     type: 'geometry',
                     sport: '⚽',
-                    question: 'A soccer field is 100 meters long and 60 meters wide. Each penalty box is 40 meters wide and 16 meters deep. What percentage of the field do BOTH penalty boxes cover? (Round to nearest whole number)',
+                    question: 'PayPal Park (Earthquakes stadium) field is 110 yards long and 70 yards wide. The two penalty boxes are each 44 yards wide and 18 yards deep. What percentage of the field do BOTH penalty boxes cover? (Round to nearest whole number)',
                     answer: 21,
-                    hint: 'Field area = 6000. Each box = 640. Both boxes = 1280. Then (1280/6000) × 100',
-                    diagram: 'Field: 100m × 60m. Each penalty box: 40m × 16m',
-                    funFact: 'Most penalty kicks are scored - goalies only save about 20%!'
+                    hint: 'Field = 7700. Each box = 792. Both = 1584. Then (1584/7700) × 100',
+                    diagram: 'Field: 110yd × 70yd. Each box: 44yd × 18yd',
+                    funFact: 'The Earthquakes won MLS Cup in 2001 and 2003!'
                 },
                 // Word Problems - MVP
                 {
                     type: 'word',
                     sport: '🏈',
-                    question: 'A team gained 85 yards on their first drive, lost 12 yards on their second drive, gained 47 yards on their third drive, and then scored a touchdown from 18 yards out. What was their total yardage?',
-                    answer: 138,
-                    hint: '85 + (-12) + 47 + 18',
-                    funFact: 'The longest touchdown in NFL history was 109 yards on a missed field goal return!'
+                    question: 'The 49ers gained 78 yards on their first drive, lost 15 yards on second drive, gained 52 yards on third drive, and scored a touchdown from 22 yards out. What was their total yardage?',
+                    answer: 137,
+                    hint: '78 + (-15) + 52 + 22',
+                    funFact: 'The 49ers had a 16-game winning streak in the 1989-1990 season!'
                 },
                 {
                     type: 'word',
                     sport: '⚾',
-                    question: 'In a doubleheader (two games in one day), a player went 3-for-5 in the first game (3 hits in 5 at-bats) and 2-for-4 in the second game. What was his batting average for the day? (Enter as decimal: 0.556)',
+                    question: 'In a doubleheader, a Giants player went 3-for-5 in game one and 2-for-4 in game two. What was his batting average for both games? (Enter as decimal: 0.xxx)',
                     answer: 0.556,
-                    hint: 'Total hits (3 + 2) ÷ Total at-bats (5 + 4)',
-                    funFact: 'Getting 5 hits in a doubleheader is an awesome day at the plate!'
+                    hint: 'Total hits (3+2) ÷ Total at-bats (5+4) = 5÷9',
+                    funFact: 'The Giants set a franchise record with 107 wins in 2021!'
                 },
                 // Advanced Fractions - MVP
                 {
                     type: 'fraction',
                     sport: '🏀',
-                    question: 'Steph Curry made 5/8 of his three-pointers and 7/10 of his two-pointers. He shot 24 three-pointers and 30 two-pointers. How many total baskets did he make?',
+                    question: 'Steph Curry made 7/10 of his three-pointers and Klay Thompson made 3/5 of his. Steph shot 30 threes and Klay shot 25. How many total three-pointers did they make?',
                     answer: 36,
-                    hint: 'Three-pointers made: 24 × 5/8 = 15. Two-pointers made: 30 × 7/10 = 21. Total = 36',
-                    funFact: 'Steph Curry holds the record for most three-pointers made in a season with 402!'
+                    hint: 'Steph: 30 × 0.7 = 21. Klay: 25 × 0.6 = 15. Total = 36',
+                    funFact: 'Steph and Klay are known as the "Splash Brothers"!'
                 },
                 {
                     type: 'fraction',
-                    sport: '⚽',
-                    question: 'A soccer player scored in 2/5 of her games. She played 30 games total. Her team won 80% of the games she scored in. How many games did her team win when she scored?',
-                    answer: 10,
-                    hint: 'Games scored = 30 × 2/5 = 12. Team wins when scored = 12 × 0.8 = 10',
-                    funFact: 'When star players score, their teams win about 75-85% of the time!'
+                    sport: '🏒',
+                    question: 'A Sharks player scored in 3/8 of his 32 games. The team won 75% of the games he scored in. How many wins came when he scored?',
+                    answer: 9,
+                    hint: 'Games scored = 32 × 3/8 = 12. Wins = 12 × 0.75 = 9',
+                    funFact: 'The Sharks have retired jersey numbers for legends like Joe Thornton!'
                 },
                 // Advanced Multiplication - MVP
                 {
                     type: 'multiplication',
                     sport: '🏈',
-                    question: 'A quarterback\'s passer rating is calculated as: (Completions × 2) + (Yards ÷ 10) + (Touchdowns × 20). If he had 25 completions, 300 yards, and 3 touchdowns, what\'s his rating?',
-                    answer: 140,
-                    hint: '(25 × 2) + (300 ÷ 10) + (3 × 20)',
-                    funFact: 'This is a simplified version - the real NFL passer rating formula is much more complex!'
+                    question: 'Brock Purdy\'s passer rating is: (Completions × 2) + (Yards ÷ 10) + (TDs × 20). He had 28 completions, 320 yards, and 4 TDs. What\'s his rating?',
+                    answer: 168,
+                    hint: '(28 × 2) + (320 ÷ 10) + (4 × 20) = 56 + 32 + 80',
+                    funFact: 'Brock Purdy led the 49ers to the Super Bowl in his first season as starter!'
                 },
                 {
                     type: 'multiplication',
                     sport: '⚾',
-                    question: 'A baseball player\'s slugging percentage is: (Singles × 1 + Doubles × 2 + Triples × 3 + Home Runs × 4) ÷ At-Bats. If he had 40 singles, 15 doubles, 2 triples, and 8 home runs in 200 at-bats, what is his slugging %? (Enter as decimal: 0.xxx)',
-                    answer: 0.49,
-                    hint: '(40×1 + 15×2 + 2×3 + 8×4) = 98. Then 98÷200 = 0.49',
-                    funFact: 'A slugging percentage above .500 is considered excellent in Major League Baseball!'
+                    question: 'Calculate slugging %: (Singles × 1 + Doubles × 2 + Triples × 3 + HRs × 4) ÷ At-Bats. Player had 45 singles, 12 doubles, 3 triples, 10 HRs in 200 at-bats. What\'s his slugging? (Decimal: 0.xx)',
+                    answer: 0.54,
+                    hint: '(45×1 + 12×2 + 3×3 + 10×4) = 108. Then 108÷200',
+                    funFact: 'Willie Mays hit 660 home runs as a Giant - the most in franchise history!'
+                },
+                // Washington Commanders - MVP
+                {
+                    type: 'word',
+                    sport: '🏈',
+                    question: 'The Commanders gained 92 yards on drive 1, lost 8 yards on drive 2, gained 67 yards on drive 3, and scored from 28 yards out. What was their total yardage?',
+                    answer: 179,
+                    hint: '92 + (-8) + 67 + 28',
+                    funFact: 'The Commanders won Super Bowls in 1982, 1987, and 1991!'
+                },
+                {
+                    type: 'multiplication',
+                    sport: '🏈',
+                    question: 'Jayden Daniels\' QB rating: (Completions × 2) + (Yards ÷ 10) + (TDs × 20). He had 26 completions, 310 yards, 3 TDs. What\'s his rating?',
+                    answer: 143,
+                    hint: '(26 × 2) + (310 ÷ 10) + (3 × 20) = 52 + 31 + 60',
+                    funFact: 'Jayden Daniels set rookie records for the Commanders in his first season!'
+                },
+                // Colorado Buffaloes - MVP
+                {
+                    type: 'fraction',
+                    sport: '🏈',
+                    question: 'Shedeur Sanders completed 5/8 of his passes and Travis Hunter caught 3/5 of his targets. Shedeur threw 40 passes, Travis was targeted 25 times. How many total: completions + catches?',
+                    answer: 40,
+                    hint: 'Shedeur: 40 × 5/8 = 25. Travis: 25 × 3/5 = 15. Total = 40',
+                    funFact: 'Travis Hunter is the first player to win Heisman playing both ways since the 1940s!'
+                },
+                {
+                    type: 'geometry',
+                    sport: '🏈',
+                    question: 'Folsom Field is 120 yards long (with end zones) and 160 feet wide. If 1 yard = 3 feet, what is the field area in square feet?',
+                    answer: 57600,
+                    hint: 'Convert 120 yards to feet (120 × 3 = 360), then multiply: 360 × 160',
+                    diagram: 'Field: 120 yards = 360 feet. Width: 160 feet',
+                    funFact: 'Colorado won the national championship in 1990!'
+                },
+                // Cal Bears - MVP
+                {
+                    type: 'word',
+                    sport: '🏈',
+                    question: 'In "The Play" (famous 1982 game), Cal returned a kickoff through 5 laterals for a touchdown. Each lateral gained: 25, 15, 20, 10, and 5 yards. How many total yards?',
+                    answer: 75,
+                    hint: '25 + 15 + 20 + 10 + 5',
+                    funFact: '"The Play" is one of the most famous plays in college football history!'
+                },
+                {
+                    type: 'fraction',
+                    sport: '🏈',
+                    question: 'Cal won 3/7 of their 14 games and lost 4/7 of them. How many games did they tie?',
+                    answer: 0,
+                    hint: 'Won = 6, Lost = 8, Total = 14, so Tied = 0',
+                    funFact: 'Cal Memorial Stadium was built in 1923 and has been renovated several times!'
+                },
+                // Inter Miami - MVP
+                {
+                    type: 'fraction',
+                    sport: '⚽',
+                    question: 'Messi scored in 7/12 of Inter Miami\'s 36 games. In games he scored, Miami won 5/6 of them. How many games did Miami win when Messi scored? (Round to nearest whole)',
+                    answer: 18,
+                    hint: 'Games scored = 36 × 7/12 = 21. Wins when scored = 21 × 5/6 = 17.5 ≈ 18',
+                    funFact: 'Messi scored 10 goals in his first 7 games for Inter Miami!'
+                },
+                {
+                    type: 'word',
+                    sport: '⚽',
+                    question: 'Inter Miami ticket prices went up after Messi joined. Before: $45 average. After: 3.5 times higher. What\'s the new average price? (Round to nearest dollar)',
+                    answer: 158,
+                    hint: '45 × 3.5 = 157.5 ≈ 158',
+                    funFact: 'Messi\'s arrival increased Inter Miami\'s social media followers by over 10 million!'
                 }
             ]
         };
         
         const funFacts = [
-            'Michael Jordan scored 32,292 points in his NBA career!',
-            'The fastest recorded soccer shot was 131 mph!',
-            'A baseball spins about 15 times when thrown from pitcher to catcher!',
-            'An NFL football weighs exactly 14-15 ounces!',
-            'Basketball was invented in 1891 with a soccer ball and peach baskets!',
-            'Soccer is played in over 200 countries worldwide!',
-            'The average MLB game uses about 120 baseballs!',
-            'An NFL field is exactly 100 yards between the goal lines!'
+            'The Warriors have won 7 NBA championships!',
+            'The 49ers dynasty in the 1980s won 4 Super Bowls in 9 years!',
+            'The Giants Oracle Park has the shortest right field in baseball - only 309 feet!',
+            'The Sharks hold the record for most consecutive playoff appearances in NHL history with 15!',
+            'Steph Curry hit 402 three-pointers in the 2015-16 season - an NBA record!',
+            'Joe Montana was a 4-time Super Bowl champion with the 49ers!',
+            'The Earthquakes\' Chris Wondolowski is the all-time leading goal scorer in MLS history!',
+            'Klay Thompson scored 60 points in only 29 minutes of play in 2016!',
+            'Jayden Daniels became one of the best rookie QBs in NFL history!',
+            'The Commanders won 3 Super Bowls with legendary coach Joe Gibbs!',
+            'Coach Prime (Deion Sanders) brought star power back to Colorado football!',
+            'Travis Hunter is the first two-way superstar since the early days of football!',
+            'Cal Berkeley has produced more Olympic athletes than most countries!',
+            'The famous "The Play" at Cal in 1982 is shown on highlight reels every year!',
+            'Lionel Messi is considered by many to be the greatest soccer player of all time!',
+            'Inter Miami sold out every game after Messi joined the team!',
+            'Messi won the World Cup with Argentina in 2022 at age 35!',
+            'Shedeur Sanders threw for over 3,000 yards in his first season at Colorado!'
         ];
         
+        function getSelectedTopics() {
+            selectedTopics = [];
+            const checkboxes = document.querySelectorAll('.topic-checkbox input[type="checkbox"]:checked');
+            checkboxes.forEach(checkbox => {
+                selectedTopics.push(checkbox.value);
+            });
+            return selectedTopics;
+        }
+        
         function startGame(level) {
+            getSelectedTopics();
+            if (selectedTopics.length === 0) {
+                alert('Please select at least one math topic!');
+                return;
+            }
             currentLevel = level;
             document.getElementById('startScreen').classList.add('hidden');
             document.getElementById('questionScreen').classList.remove('hidden');
@@ -656,7 +964,16 @@
         
         function loadQuestion() {
             const levelQuestions = questions[currentLevel];
-            currentQuestion = levelQuestions[Math.floor(Math.random() * levelQuestions.length)];
+            
+            // Filter questions by selected topics
+            const filteredQuestions = levelQuestions.filter(q => selectedTopics.includes(q.type));
+            
+            if (filteredQuestions.length === 0) {
+                alert('No questions available for selected topics at this level!');
+                return;
+            }
+            
+            currentQuestion = filteredQuestions[Math.floor(Math.random() * filteredQuestions.length)];
             
             document.getElementById('sportIcon').textContent = currentQuestion.sport;
             document.getElementById('questionText').textContent = currentQuestion.question;
@@ -695,7 +1012,7 @@
                 feedback.className = 'feedback correct';
                 feedback.innerHTML = `
                     <div class="celebration">🎉</div>
-                    <div>Correct! Great job!</div>
+                    <div>Correct! You're a GOAT!</div>
                     <div style="font-size: 0.9em; margin-top: 10px;">+${getLevelPoints()} points</div>
                 `;
                 
@@ -768,5 +1085,5 @@
             }
         });
     </script>
-</body>
-</html>
+
+</body></html>
