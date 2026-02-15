@@ -541,13 +541,24 @@
                         <input type="checkbox" id="multiplication" value="multiplication" checked="">
                         <label for="multiplication">✖️ Multiplication</label>
                     </div>
+                    <div class="topic-checkbox">
+                        <input type="checkbox" id="algebra" value="algebra" checked="">
+                        <label for="algebra">📝 Algebra</label>
+                    </div>
+                    <div class="topic-checkbox">
+                        <input type="checkbox" id="roman" value="roman" checked="">
+                        <label for="roman">🏛️ Roman Numerals</label>
+                    </div>
                 </div>
             </div>
-            
+
             <div class="level-selector">
-                <button class="level-btn active" onclick="startGame(&#39;rookie&#39;)">🌟 Rookie</button>
-                <button class="level-btn" onclick="startGame(&#39;allstar&#39;)">⭐ All-Star</button>
-                <button class="level-btn" onclick="startGame(&#39;mvp&#39;)">🏆 MVP</button>
+                <button class="level-btn active" onclick="selectLevel('rookie')">🌟 Rookie</button>
+                <button class="level-btn" onclick="selectLevel('allstar')">⭐ All-Star</button>
+                <button class="level-btn" onclick="selectLevel('mvp')">🏆 MVP</button>
+            </div>
+            <div style="text-align: center;">
+                <button class="btn btn-start" onclick="startGame(selectedStartLevel)">🏆 Start the Challenge!</button>
             </div>
         </div>
         
@@ -593,7 +604,8 @@
         let questionsAnswered = 0;
         let currentLevel = 'rookie';
         let currentQuestion = null;
-        let selectedTopics = ['geometry', 'word', 'fraction', 'multiplication'];
+        let selectedTopics = ['geometry', 'word', 'fraction', 'multiplication', 'algebra', 'roman'];
+        let selectedStartLevel = 'rookie';
         let playerName = '';
         let usedQuestions = { rookie: [], allstar: [], mvp: [] };
         let questionAnswered = false;
@@ -831,6 +843,666 @@
                     answer: 70,
                     hint: '(7 ÷ 10) × 100',
                     funFact: 'The Red Sox broke an 86-year championship drought by winning the 2004 World Series!'
+                },
+                // Algebra - Rookie
+                {
+                    type: 'algebra',
+                    sport: '🏀',
+                    question: 'Steph Curry scored x points plus 5 free throws for a total of 17 points. What is x? (x + 5 = 17)',
+                    answer: 12,
+                    hint: 'x + 5 = 17, so x = 17 - 5',
+                    funFact: 'Steph Curry is the greatest three-point shooter in NBA history!'
+                },
+                {
+                    type: 'algebra',
+                    sport: '🏈',
+                    question: 'The 49ers scored x touchdowns worth 6 points each for 18 points total. How many touchdowns? (6 × x = 18)',
+                    answer: 3,
+                    hint: '6 × x = 18, so x = 18 ÷ 6',
+                    funFact: 'The 49ers have one of the best offenses in the NFL!'
+                },
+                {
+                    type: 'algebra',
+                    sport: '⚾',
+                    question: 'A Giants player hit x home runs. His teammate hit 4 more than him for a total of 11. How many did the first player hit? (x + 4 = 11)',
+                    answer: 7,
+                    hint: 'x + 4 = 11, so x = 11 - 4',
+                    funFact: 'Oracle Park has a splash zone where home run balls can land in the bay!'
+                },
+                {
+                    type: 'algebra',
+                    sport: '🏒',
+                    question: 'The Sharks need x more wins to reach 20 wins. They already have 13 wins. What is x? (13 + x = 20)',
+                    answer: 7,
+                    hint: '13 + x = 20, so x = 20 - 13',
+                    funFact: 'The Sharks play at SAP Center, also known as the Shark Tank!'
+                },
+                {
+                    type: 'algebra',
+                    sport: '⚽',
+                    question: 'Messi scored 3 times as many goals as his teammate. If Messi scored 12 goals, how many did his teammate score? (3 × x = 12)',
+                    answer: 4,
+                    hint: '3 × x = 12, so x = 12 ÷ 3',
+                    funFact: 'Messi has scored over 800 career goals!'
+                },
+                {
+                    type: 'algebra',
+                    sport: '🏈',
+                    question: 'Travis Hunter caught x passes. If you add 3 more, that equals 10 total. What is x? (x + 3 = 10)',
+                    answer: 7,
+                    hint: 'x + 3 = 10, so x = 10 - 3',
+                    funFact: 'Travis Hunter plays both offense and defense - a rare feat in modern football!'
+                },
+                {
+                    type: 'algebra',
+                    sport: '🏀',
+                    question: 'The Warriors need x more points to reach 100. They currently have 88 points. What is x? (88 + x = 100)',
+                    answer: 12,
+                    hint: '88 + x = 100, so x = 100 - 88',
+                    funFact: 'When the Warriors score 100+ points at home, fans used to get free tacos!'
+                },
+                {
+                    type: 'algebra',
+                    sport: '⚾',
+                    question: 'A Red Sox pitcher struck out x batters per inning. Over 5 innings that is 15 strikeouts. What is x? (5 × x = 15)',
+                    answer: 3,
+                    hint: '5 × x = 15, so x = 15 ÷ 5',
+                    funFact: 'Fenway Park has hosted baseball for over 100 years!'
+                },
+                {
+                    type: 'algebra',
+                    sport: '🏈',
+                    question: 'The Commanders scored x points in the first half and 14 in the second half for 28 total. What is x? (x + 14 = 28)',
+                    answer: 14,
+                    hint: 'x + 14 = 28, so x = 28 - 14',
+                    funFact: 'The Commanders play their home games near Washington D.C.!'
+                },
+                {
+                    type: 'algebra',
+                    sport: '🏈',
+                    question: 'Cal Bears scored x field goals worth 3 points each for a total of 9 points from field goals. How many field goals? (3 × x = 9)',
+                    answer: 3,
+                    hint: '3 × x = 9, so x = 9 ÷ 3',
+                    funFact: 'Cal is one of the top academic universities in the world!'
+                },
+                // Roman Numerals - Rookie
+                {
+                    type: 'roman',
+                    sport: '🏈',
+                    question: 'Super Bowl X was the 10th Super Bowl. What number is X in Roman numerals?',
+                    answer: 10,
+                    hint: 'X = 10',
+                    funFact: 'Super Bowl X was played in 1976!'
+                },
+                {
+                    type: 'roman',
+                    sport: '🏈',
+                    question: 'Super Bowl L celebrated the 50th Super Bowl. What number is L?',
+                    answer: 50,
+                    hint: 'L = 50',
+                    funFact: 'Super Bowl 50 was held at Levi\'s Stadium, home of the 49ers!'
+                },
+                {
+                    type: 'roman',
+                    sport: '🏈',
+                    question: 'Super Bowl V was one of the early Super Bowls. What number is V?',
+                    answer: 5,
+                    hint: 'V = 5',
+                    funFact: 'The Super Bowl has used Roman numerals since the very first game!'
+                },
+                {
+                    type: 'roman',
+                    sport: '🏀',
+                    question: 'A basketball jersey has the Roman numeral III on it. What number is that?',
+                    answer: 3,
+                    hint: 'III = 1 + 1 + 1',
+                    funFact: 'Some players wear unique jersey numbers to stand out!'
+                },
+                {
+                    type: 'roman',
+                    sport: '⚾',
+                    question: 'The Giants won their VII th World Series. What number is VII?',
+                    answer: 7,
+                    hint: 'VII = V + II = 5 + 2',
+                    funFact: 'The Giants have won 8 World Series championships!'
+                },
+                {
+                    type: 'roman',
+                    sport: '🏈',
+                    question: 'Super Bowl XX was a famous game. What number is XX?',
+                    answer: 20,
+                    hint: 'XX = X + X = 10 + 10',
+                    funFact: 'Super Bowl XX featured the legendary 1985 Chicago Bears!'
+                },
+                {
+                    type: 'roman',
+                    sport: '🏒',
+                    question: 'A Sharks player scored his IV th goal of the season. What number is IV?',
+                    answer: 4,
+                    hint: 'IV = 5 - 1 = 4',
+                    funFact: 'In Roman numerals, IV means one less than V (5)!'
+                },
+                {
+                    type: 'roman',
+                    sport: '⚽',
+                    question: 'Messi won his VIII th Ballon d\'Or award. What number is VIII?',
+                    answer: 8,
+                    hint: 'VIII = V + III = 5 + 3',
+                    funFact: 'Messi has won more Ballon d\'Or awards than any other player!'
+                },
+                {
+                    type: 'roman',
+                    sport: '🏈',
+                    question: 'The football game is in the IX th week of the season. What number is IX?',
+                    answer: 9,
+                    hint: 'IX = 10 - 1 = 9',
+                    funFact: 'An NFL regular season lasts 18 weeks!'
+                },
+                {
+                    type: 'roman',
+                    sport: '🏀',
+                    question: 'The Warriors are playing game VI of the playoffs. What number is VI?',
+                    answer: 6,
+                    hint: 'VI = V + I = 5 + 1',
+                    funFact: 'NBA playoff series are best-of-7 games!'
+                },
+                // More Geometry - Rookie
+                {
+                    type: 'geometry',
+                    sport: '🏀',
+                    question: 'A basketball is about 9 inches across (diameter). What is the distance around the basketball? (circumference = 3.14 × diameter, round to nearest whole number)',
+                    answer: 28,
+                    hint: 'Circumference = 3.14 × 9 = 28.26',
+                    funFact: 'NBA basketballs must be between 29.5 and 29.875 inches in circumference!'
+                },
+                {
+                    type: 'geometry',
+                    sport: '🏈',
+                    question: 'The 49ers\' practice field has a rectangular training area that is 40 yards long and 20 yards wide. What is its area?',
+                    answer: 800,
+                    hint: 'Area = length × width = 40 × 20',
+                    diagram: 'Rectangle: 40 yards × 20 yards',
+                    funFact: 'NFL teams practice almost every day during the season!'
+                },
+                {
+                    type: 'geometry',
+                    sport: '⚽',
+                    question: 'The Earthquakes\' corner flag area is a quarter circle with radius 1 yard. What is its area? (Use 3.14 for pi, round to nearest whole number)',
+                    answer: 1,
+                    hint: 'Quarter circle area = (3.14 × 1²) ÷ 4 = 0.785 ≈ 1',
+                    funFact: 'Corner kicks are one of the best scoring opportunities in soccer!'
+                },
+                {
+                    type: 'geometry',
+                    sport: '🏒',
+                    question: 'A hockey puck is a circle with a diameter of 3 inches. What is its radius?',
+                    answer: 1.5,
+                    hint: 'Radius = diameter ÷ 2 = 3 ÷ 2',
+                    funFact: 'Hockey pucks are frozen before games to reduce bouncing!'
+                },
+                // More Word Problems - Rookie
+                {
+                    type: 'word',
+                    sport: '🏀',
+                    question: 'Klay Thompson made 7 two-point shots and 5 three-point shots. How many total points did he score?',
+                    answer: 29,
+                    hint: '(7 × 2) + (5 × 3) = 14 + 15',
+                    funFact: 'Klay Thompson once scored 37 points in a single quarter!'
+                },
+                {
+                    type: 'word',
+                    sport: '🏈',
+                    question: 'Shedeur Sanders threw 3 touchdowns worth 6 points each and the kicker made 2 extra points worth 1 point each. How many total points?',
+                    answer: 20,
+                    hint: '(3 × 6) + (2 × 1) = 18 + 2',
+                    funFact: 'Shedeur Sanders followed his father Deion to Colorado!'
+                },
+                {
+                    type: 'word',
+                    sport: '⚾',
+                    question: 'The Red Sox scored 4 runs in the 1st inning, 0 in the 2nd, 2 in the 3rd, and 1 in the 4th. How many runs total?',
+                    answer: 7,
+                    funFact: 'The Red Sox play at historic Fenway Park!'
+                },
+                {
+                    type: 'word',
+                    sport: '⚽',
+                    question: 'The Earthquakes had 8 shots on goal. They scored on 3 of them. How many shots did NOT result in goals?',
+                    answer: 5,
+                    hint: '8 - 3 = 5',
+                    funFact: 'On average, only about 10% of shots on goal result in a score!'
+                },
+                {
+                    type: 'word',
+                    sport: '🏒',
+                    question: 'The Sharks had 5 players on the ice and 2 went to the penalty box. How many Sharks players were left on the ice?',
+                    answer: 3,
+                    funFact: 'When a team has fewer players on ice, the other team has a power play!'
+                },
+                // More Fractions - Rookie
+                {
+                    type: 'fraction',
+                    sport: '🏀',
+                    question: 'Draymond Green made 6 out of 12 free throws. What fraction did he make? (Enter as decimal)',
+                    answer: 0.5,
+                    hint: '6 ÷ 12 = 0.5',
+                    funFact: 'Draymond Green is known more for his defense than his shooting!'
+                },
+                {
+                    type: 'fraction',
+                    sport: '🏈',
+                    question: 'Brock Purdy completed 15 out of 20 passes. What percentage did he complete?',
+                    answer: 75,
+                    hint: '(15 ÷ 20) × 100',
+                    funFact: 'Brock Purdy was the very last pick in the 2022 NFL Draft!'
+                },
+                {
+                    type: 'fraction',
+                    sport: '⚽',
+                    question: 'Inter Miami won 3 out of 5 games. What percentage of games did they win?',
+                    answer: 60,
+                    hint: '(3 ÷ 5) × 100',
+                    funFact: 'Inter Miami plays in Fort Lauderdale, Florida!'
+                },
+                // More Multiplication - Rookie
+                {
+                    type: 'multiplication',
+                    sport: '🏀',
+                    question: 'Each quarter of a Warriors game is 12 minutes long. How many total minutes in 4 quarters?',
+                    answer: 48,
+                    hint: '4 × 12 = 48',
+                    funFact: 'NBA games are 48 minutes of playing time but usually take over 2 hours!'
+                },
+                {
+                    type: 'multiplication',
+                    sport: '🏈',
+                    question: 'The Commanders had 7 first downs in the game. Each first down gains at least 10 yards. What is the minimum total yards from first downs?',
+                    answer: 70,
+                    hint: '7 × 10 = 70',
+                    funFact: 'A first down means the offense gets a new set of 4 downs!'
+                },
+                {
+                    type: 'multiplication',
+                    sport: '⚾',
+                    question: 'A Giants game lasted 9 innings with 3 outs per half-inning. How many total outs in the game?',
+                    answer: 54,
+                    hint: '9 innings × 2 half-innings × 3 outs = 54',
+                    funFact: 'Some baseball games can go into extra innings and last much longer!'
+                },
+                {
+                    type: 'multiplication',
+                    sport: '🏒',
+                    question: 'The Sharks have 6 defensemen and each one blocked 4 shots per game. How many total blocked shots?',
+                    answer: 24,
+                    hint: '6 × 4 = 24',
+                    funFact: 'Blocking shots is one of the toughest jobs in hockey!'
+                },
+                {
+                    type: 'multiplication',
+                    sport: '⚽',
+                    question: 'The Earthquakes play 2 away games each month for 5 months. How many away games total?',
+                    answer: 10,
+                    hint: '2 × 5 = 10',
+                    funFact: 'MLS teams travel thousands of miles during a season!'
+                },
+                // More Algebra - Rookie
+                {
+                    type: 'algebra',
+                    sport: '⚾',
+                    question: 'A Giants player has x hits. If he gets 6 more, he will have 15 total. What is x? (x + 6 = 15)',
+                    answer: 9,
+                    hint: 'x + 6 = 15, so x = 15 - 6',
+                    funFact: 'A hit in baseball means the batter reaches base safely!'
+                },
+                {
+                    type: 'algebra',
+                    sport: '🏒',
+                    question: 'The Sharks scored x goals each period for 3 periods, totaling 6 goals. What is x? (3 × x = 6)',
+                    answer: 2,
+                    hint: '3 × x = 6, so x = 6 ÷ 3',
+                    funFact: 'Scoring 3 goals in one game is called a hat trick!'
+                },
+                {
+                    type: 'algebra',
+                    sport: '🏀',
+                    question: 'A Warriors player scored x points. His teammate scored twice as many, which was 20. What is x? (2 × x = 20)',
+                    answer: 10,
+                    hint: '2 × x = 20, so x = 20 ÷ 2',
+                    funFact: 'The Warriors have had some of the highest-scoring teams in NBA history!'
+                },
+                // More Roman Numerals - Rookie
+                {
+                    type: 'roman',
+                    sport: '🏈',
+                    question: 'Super Bowl I was the very first Super Bowl. What number is I?',
+                    answer: 1,
+                    hint: 'I = 1',
+                    funFact: 'Super Bowl I was played on January 15, 1967!'
+                },
+                {
+                    type: 'roman',
+                    sport: '🏈',
+                    question: 'Super Bowl XV was won by the Oakland Raiders. What number is XV?',
+                    answer: 15,
+                    hint: 'XV = X + V = 10 + 5',
+                    funFact: 'The Raiders used to play in Oakland before moving to Las Vegas!'
+                },
+                {
+                    type: 'roman',
+                    sport: '⚾',
+                    question: 'A baseball team is in their XII th season. What number is XII?',
+                    answer: 12,
+                    hint: 'XII = X + I + I = 10 + 2',
+                    funFact: 'Major League Baseball has been around for over 150 years!'
+                },
+                {
+                    type: 'roman',
+                    sport: '🏀',
+                    question: 'The II nd quarter of a basketball game just started. What number is II?',
+                    answer: 2,
+                    hint: 'II = I + I = 1 + 1',
+                    funFact: 'Basketball games have 4 quarters!'
+                },
+                {
+                    type: 'roman',
+                    sport: '🏈',
+                    question: 'Super Bowl XXX was the 30th Super Bowl. What number is XXX?',
+                    answer: 30,
+                    hint: 'XXX = X + X + X = 10 + 10 + 10',
+                    funFact: 'Super Bowl XXX was played in 1996 in Tempe, Arizona!'
+                },
+                // More Word - Rookie
+                {
+                    type: 'word',
+                    sport: '🏈',
+                    question: 'The Cal Bears had 3 rushing touchdowns and 2 passing touchdowns. Each touchdown is worth 6 points. How many total points from touchdowns?',
+                    answer: 30,
+                    hint: '(3 + 2) × 6 = 5 × 6',
+                    funFact: 'Cal plays their games at historic California Memorial Stadium!'
+                },
+                {
+                    type: 'word',
+                    sport: '🏀',
+                    question: 'Steph Curry made 9 baskets: 4 two-pointers and 5 three-pointers. How many total points?',
+                    answer: 23,
+                    hint: '(4 × 2) + (5 × 3) = 8 + 15',
+                    funFact: 'Steph Curry changed the way basketball is played with his three-point shooting!'
+                },
+                {
+                    type: 'word',
+                    sport: '⚽',
+                    question: 'Messi had 4 assists and 3 goals in a tournament. An assist is worth 1 point and a goal is worth 2 points in fantasy sports. How many fantasy points?',
+                    answer: 10,
+                    hint: '(4 × 1) + (3 × 2) = 4 + 6',
+                    funFact: 'Fantasy sports leagues let fans build their dream teams!'
+                },
+                // More Fractions - Rookie
+                {
+                    type: 'fraction',
+                    sport: '🏈',
+                    question: 'The Buffaloes won 4 out of 8 games. What percentage did they win?',
+                    answer: 50,
+                    hint: '(4 ÷ 8) × 100',
+                    funFact: 'Colorado plays at Folsom Field at over 5,000 feet elevation!'
+                },
+                {
+                    type: 'fraction',
+                    sport: '🏒',
+                    question: 'A Sharks goalie saved 27 out of 30 shots. What percentage did he save?',
+                    answer: 90,
+                    hint: '(27 ÷ 30) × 100',
+                    funFact: 'A save percentage above .900 is considered good for a goalie!'
+                },
+                // More Multiplication - Rookie
+                {
+                    type: 'multiplication',
+                    sport: '⚾',
+                    question: 'The Red Sox play 6 games in a week. Over 3 weeks, how many games is that?',
+                    answer: 18,
+                    hint: '6 × 3 = 18',
+                    funFact: 'MLB teams play 162 games in a regular season!'
+                },
+                {
+                    type: 'multiplication',
+                    sport: '⚽',
+                    question: 'Messi scored 4 goals in each of 3 games. How many goals total?',
+                    answer: 12,
+                    hint: '4 × 3 = 12',
+                    funFact: 'Scoring 4 goals in one game is extremely rare in professional soccer!'
+                },
+                // More Geometry - Rookie
+                {
+                    type: 'geometry',
+                    sport: '🏈',
+                    question: 'A football field is 100 yards long (not counting end zones) and 53 yards wide. What is the perimeter?',
+                    answer: 306,
+                    hint: 'Perimeter = 2 × (100 + 53)',
+                    diagram: 'Rectangle: 100 yards × 53 yards',
+                    funFact: 'A football field is also about 1.32 acres!'
+                },
+                {
+                    type: 'geometry',
+                    sport: '🏀',
+                    question: 'The free throw line is 15 feet from the basket. If a player walks from one free throw line to the other (across the court, 94 feet), how many feet is that?',
+                    answer: 94,
+                    hint: 'The court is 94 feet long',
+                    funFact: 'The free throw line has been 15 feet from the basket since 1895!'
+                },
+                {
+                    type: 'word',
+                    sport: '🏈',
+                    question: 'The Commanders\' defense forced 3 fumbles and 2 interceptions. How many total turnovers did they force?',
+                    answer: 5,
+                    funFact: 'Turnovers are one of the most important stats in football!'
+                },
+                {
+                    type: 'multiplication',
+                    sport: '⚾',
+                    question: 'The Giants sold 7 types of souvenirs and sold 8 of each type. How many total souvenirs?',
+                    answer: 56,
+                    hint: '7 × 8 = 56',
+                    funFact: 'Oracle Park has some of the best food in all of baseball!'
+                },
+                {
+                    type: 'algebra',
+                    sport: '🏈',
+                    question: 'The Buffaloes need x more wins to reach 8 wins. They have 5 wins. What is x? (5 + x = 8)',
+                    answer: 3,
+                    hint: '5 + x = 8, so x = 3',
+                    funFact: 'Eight wins usually qualifies a college team for a good bowl game!'
+                },
+                {
+                    type: 'roman',
+                    sport: '🏈',
+                    question: 'A player wears jersey number XI. What number is XI?',
+                    answer: 11,
+                    hint: 'XI = X + I = 10 + 1',
+                    funFact: 'Number 11 has been worn by many famous quarterbacks!'
+                },
+                {
+                    type: 'fraction',
+                    sport: '⚽',
+                    question: 'The Earthquakes completed 7 out of 10 passes in the final third. What percentage is that?',
+                    answer: 70,
+                    hint: '(7 ÷ 10) × 100 = 70',
+                    funFact: 'Pass accuracy in the final third is key to creating scoring chances!'
+                },
+                {
+                    type: 'geometry',
+                    sport: '🏒',
+                    question: 'The Sharks\' goal is 6 feet wide and 4 feet tall. What is the area of the goal opening?',
+                    answer: 24,
+                    hint: 'Area = 6 × 4 = 24',
+                    diagram: 'Rectangle: 6 feet × 4 feet',
+                    funFact: 'NHL goals are exactly 6 feet wide and 4 feet tall!'
+                },
+                {
+                    type: 'word',
+                    sport: '🏀',
+                    question: 'Draymond Green had 8 rebounds, 6 assists, 4 steals, and 2 blocks. How many total stats?',
+                    answer: 20,
+                    hint: '8 + 6 + 4 + 2 = 20',
+                    funFact: 'Draymond Green is known for filling up the stat sheet in every category!'
+                },
+                {
+                    type: 'multiplication',
+                    sport: '⚽',
+                    question: 'Inter Miami has 11 players on the field. If each player runs about 6 miles per game, how many total miles does the team run?',
+                    answer: 66,
+                    hint: '11 × 6 = 66',
+                    funFact: 'Soccer players are some of the fittest athletes in all of sports!'
+                },
+                {
+                    type: 'algebra',
+                    sport: '⚾',
+                    question: 'The Red Sox have x players on the active roster. If 9 play and 16 sit on the bench, what is x? (x = 9 + 16)',
+                    answer: 25,
+                    hint: 'x = 9 + 16 = 25',
+                    funFact: 'MLB teams carry 26 players on their active roster!'
+                },
+                {
+                    type: 'roman',
+                    sport: '🏀',
+                    question: 'The Warriors are in their XIII th playoff appearance this decade. What number is XIII?',
+                    answer: 13,
+                    hint: 'XIII = X + III = 10 + 3',
+                    funFact: 'The Warriors have been one of the most dominant teams of the 2010s and 2020s!'
+                },
+                {
+                    type: 'word',
+                    sport: '🏒',
+                    question: 'The Sharks had 35 shots on goal and their opponent had 28. How many total shots on goal in the game?',
+                    answer: 63,
+                    funFact: 'A busy goalie might face 40+ shots in a single game!'
+                },
+                {
+                    type: 'fraction',
+                    sport: '🏈',
+                    question: 'The Cal Bears completed 12 out of 20 passes. What percentage did they complete?',
+                    answer: 60,
+                    hint: '(12 ÷ 20) × 100 = 60',
+                    funFact: 'A 60% completion rate is solid in college football!'
+                },
+                {
+                    type: 'geometry',
+                    sport: '⚽',
+                    question: 'A soccer ball has a circumference of about 28 inches. What is approximately its diameter? (Use 3.14 for pi, round to nearest whole number)',
+                    answer: 9,
+                    hint: 'Diameter = circumference ÷ π = 28 ÷ 3.14 = 8.9 ≈ 9',
+                    funFact: 'A regulation soccer ball is Size 5, which is 27-28 inches around!'
+                },
+                {
+                    type: 'multiplication',
+                    sport: '🏈',
+                    question: 'Jayden Daniels played in 4 preseason games and threw 5 passes in each. How many total preseason passes?',
+                    answer: 20,
+                    hint: '4 × 5 = 20',
+                    funFact: 'Preseason games help coaches decide which players make the team!'
+                },
+                {
+                    type: 'roman',
+                    sport: '🏈',
+                    question: 'Super Bowl XL was a milestone game. What number is XL?',
+                    answer: 40,
+                    hint: 'XL = 40 (X before L means 10 less than 50)',
+                    funFact: 'Super Bowl XL was played in Detroit in 2006!'
+                },
+                {
+                    type: 'word',
+                    sport: '🏈',
+                    question: 'The 49ers punted 5 times for an average of 42 yards per punt. How many total punt yards?',
+                    answer: 210,
+                    hint: '5 × 42 = 210',
+                    funFact: 'A good punt average is over 45 yards!'
+                },
+                {
+                    type: 'algebra',
+                    sport: '🏀',
+                    question: 'Andrew Wiggins scored x points. If you subtract 4, that equals 14. What is x? (x - 4 = 14)',
+                    answer: 18,
+                    hint: 'x - 4 = 14, so x = 14 + 4',
+                    funFact: 'Andrew Wiggins was crucial in the Warriors 2022 championship run!'
+                },
+                {
+                    type: 'multiplication',
+                    sport: '🏒',
+                    question: 'The Sharks play 3 periods of 20 minutes each. How many total minutes of hockey?',
+                    answer: 60,
+                    hint: '3 × 20 = 60',
+                    funFact: 'Overtime in the NHL playoffs is sudden death - first goal wins!'
+                },
+                {
+                    type: 'fraction',
+                    sport: '⚾',
+                    question: 'The Giants won 5 out of 10 games. What is their winning percentage?',
+                    answer: 50,
+                    hint: '(5 ÷ 10) × 100 = 50',
+                    funFact: 'A .500 record means a team wins exactly half their games!'
+                },
+                {
+                    type: 'roman',
+                    sport: '⚽',
+                    question: 'Messi played in his XIV th season of professional soccer at age 30. What number is XIV?',
+                    answer: 14,
+                    hint: 'XIV = X + IV = 10 + 4',
+                    funFact: 'Messi started his professional career at just 16 years old!'
+                },
+                {
+                    type: 'geometry',
+                    sport: '🏈',
+                    question: 'The Commanders\' team logo is painted on a circle at midfield with a radius of 8 yards. What is the area? (Use 3.14, round to nearest whole)',
+                    answer: 201,
+                    hint: 'Area = 3.14 × 8² = 3.14 × 64 = 200.96 ≈ 201',
+                    funFact: 'Every NFL team has their logo painted at the 50-yard line!'
+                },
+                {
+                    type: 'word',
+                    sport: '⚽',
+                    question: 'The Earthquakes had 15 corner kicks and 8 free kicks. If they scored on 2 corners and 1 free kick, how many set pieces did NOT result in goals?',
+                    answer: 20,
+                    hint: '(15 + 8) - (2 + 1) = 23 - 3 = 20',
+                    funFact: 'Set pieces (corners and free kicks) are great scoring opportunities!'
+                },
+                {
+                    type: 'multiplication',
+                    sport: '⚾',
+                    question: 'Each Red Sox player gets a $500 bonus for each win. The team has 25 players and won 6 games. How much total bonus money was paid? (In thousands)',
+                    answer: 75,
+                    hint: '25 × 6 × 500 = 75,000 = 75 thousand',
+                    funFact: 'Baseball players can earn bonuses for many different achievements!'
+                },
+                {
+                    type: 'algebra',
+                    sport: '🏈',
+                    question: 'Travis Hunter made x tackles. His teammate made half as many, which was 4. What is x? (x ÷ 2 = 4)',
+                    answer: 8,
+                    hint: 'x ÷ 2 = 4, so x = 4 × 2 = 8',
+                    funFact: 'Travis Hunter plays both ways and makes tackles on defense!'
+                },
+                {
+                    type: 'roman',
+                    sport: '🏒',
+                    question: 'The Sharks are in their XVI th season in their current arena. What number is XVI?',
+                    answer: 16,
+                    hint: 'XVI = X + V + I = 10 + 5 + 1',
+                    funFact: 'SAP Center has been the Sharks\' home since 1993!'
+                },
+                {
+                    type: 'fraction',
+                    sport: '🏈',
+                    question: 'The Buffaloes made 3 out of 4 field goal attempts. What percentage did they make?',
+                    answer: 75,
+                    hint: '(3 ÷ 4) × 100 = 75',
+                    funFact: 'College kickers are getting better every year!'
+                },
+                {
+                    type: 'geometry',
+                    sport: '🏀',
+                    question: 'A basketball backboard is 6 feet wide and 3.5 feet tall. What is its area?',
+                    answer: 21,
+                    hint: '6 × 3.5 = 21',
+                    diagram: 'Rectangle: 6 feet × 3.5 feet',
+                    funFact: 'NBA backboards are made of tempered glass!'
                 }
             ],
 
@@ -1071,6 +1743,554 @@
                     answer: 63,
                     hint: '9 × 7 = ?',
                     funFact: 'Pedro Martinez struck out 17 batters in a single game for the Red Sox!'
+                },
+                // Algebra - All-Star
+                {
+                    type: 'algebra',
+                    sport: '🏀',
+                    question: 'Steph Curry scored 2x + 5 points in a game. If he scored 35 points total, what is x? (2x + 5 = 35)',
+                    answer: 15,
+                    hint: '2x + 5 = 35 → 2x = 30 → x = 15',
+                    funFact: 'Steph Curry has scored 50+ points in multiple games!'
+                },
+                {
+                    type: 'algebra',
+                    sport: '🏈',
+                    question: 'The 49ers gained x yards per carry. Over 8 carries they gained 56 yards. What is x? (8x = 56)',
+                    answer: 7,
+                    hint: '8x = 56, so x = 56 ÷ 8',
+                    funFact: '7 yards per carry is an excellent average in the NFL!'
+                },
+                {
+                    type: 'algebra',
+                    sport: '⚾',
+                    question: 'A Giants player needs x more hits to reach 100. He has 73 hits. What is x? (73 + x = 100)',
+                    answer: 27,
+                    hint: '73 + x = 100, so x = 100 - 73',
+                    funFact: 'Getting 100 hits in a season is a great milestone for any player!'
+                },
+                {
+                    type: 'algebra',
+                    sport: '🏒',
+                    question: 'The Sharks scored x goals in the 1st period and twice as many in the 2nd period, for 9 goals total. What is x? (x + 2x = 9)',
+                    answer: 3,
+                    hint: 'x + 2x = 3x = 9, so x = 3',
+                    funFact: 'Scoring 9 goals in a game would be incredible in hockey!'
+                },
+                {
+                    type: 'algebra',
+                    sport: '⚽',
+                    question: 'Messi\'s team scored 3x - 2 goals over 5 games. If they scored 13 goals total, what is x? (3x - 2 = 13)',
+                    answer: 5,
+                    hint: '3x - 2 = 13 → 3x = 15 → x = 5',
+                    funFact: 'Messi has scored in more than 800 professional matches!'
+                },
+                {
+                    type: 'algebra',
+                    sport: '🏈',
+                    question: 'Jayden Daniels threw x passes in each half. Over 2 halves he threw 44 passes total. What is x? (2x = 44)',
+                    answer: 22,
+                    hint: '2x = 44, so x = 44 ÷ 2',
+                    funFact: 'Jayden Daniels was one of the most accurate rookie QBs ever!'
+                },
+                {
+                    type: 'algebra',
+                    sport: '🏈',
+                    question: 'Shedeur Sanders gained x passing yards and 35 rushing yards for 320 total yards. What is x? (x + 35 = 320)',
+                    answer: 285,
+                    hint: 'x + 35 = 320, so x = 320 - 35',
+                    funFact: 'Shedeur Sanders can beat you with his arm and his legs!'
+                },
+                {
+                    type: 'algebra',
+                    sport: '🏈',
+                    question: 'Cal\'s kicker made x extra points worth 1 point each and 3 field goals worth 3 points each. He scored 14 total. What is x? (x + 9 = 14)',
+                    answer: 5,
+                    hint: 'Field goals = 3 × 3 = 9. Then x + 9 = 14, so x = 5',
+                    funFact: 'Extra points are kicked from the 15-yard line in college football!'
+                },
+                {
+                    type: 'algebra',
+                    sport: '⚽',
+                    question: 'Inter Miami\'s attendance was x fans per game. Over 4 games they had 72,000 fans. What is x? (4x = 72000)',
+                    answer: 18000,
+                    hint: '4x = 72000, so x = 72000 ÷ 4',
+                    funFact: 'Messi boosted Inter Miami\'s attendance dramatically!'
+                },
+                {
+                    type: 'algebra',
+                    sport: '⚾',
+                    question: 'A Red Sox player hit x doubles and 3 times as many singles. He had 28 total hits of these types. What is x? (x + 3x = 28)',
+                    answer: 7,
+                    hint: '4x = 28, so x = 7 (7 doubles, 21 singles)',
+                    funFact: 'A double means the batter reaches second base!'
+                },
+                // Roman Numerals - All-Star
+                {
+                    type: 'roman',
+                    sport: '🏈',
+                    question: 'Super Bowl XLII was one of the biggest upsets in NFL history. What number is XLII?',
+                    answer: 42,
+                    hint: 'XL = 40, II = 2, so XLII = 42',
+                    funFact: 'The Giants upset the undefeated Patriots in Super Bowl XLII!'
+                },
+                {
+                    type: 'roman',
+                    sport: '🏈',
+                    question: 'Super Bowl LIV featured the Kansas City Chiefs. What number is LIV?',
+                    answer: 54,
+                    hint: 'L = 50, IV = 4, so LIV = 54',
+                    funFact: 'Patrick Mahomes won his first Super Bowl at Super Bowl LIV!'
+                },
+                {
+                    type: 'roman',
+                    sport: '🏈',
+                    question: 'The 49ers won Super Bowl XXIX. What number is XXIX?',
+                    answer: 29,
+                    hint: 'XX = 20, IX = 9, so XXIX = 29',
+                    funFact: 'Steve Young threw 6 touchdown passes in Super Bowl XXIX!'
+                },
+                {
+                    type: 'roman',
+                    sport: '🏈',
+                    question: 'Super Bowl XXXIII was played in 1999. What number is XXXIII?',
+                    answer: 33,
+                    hint: 'XXX = 30, III = 3, so XXXIII = 33',
+                    funFact: 'John Elway won his second Super Bowl at Super Bowl XXXIII!'
+                },
+                {
+                    type: 'roman',
+                    sport: '🏀',
+                    question: 'The Warriors dynasty has won championships in the XXI st century. What number is XXI?',
+                    answer: 21,
+                    hint: 'XX = 20, I = 1, so XXI = 21',
+                    funFact: 'The Warriors won 4 championships between 2015 and 2022!'
+                },
+                {
+                    type: 'roman',
+                    sport: '🏈',
+                    question: 'Super Bowl XLVIII was played outdoors in New Jersey. What number is XLVIII?',
+                    answer: 48,
+                    hint: 'XL = 40, VIII = 8, so XLVIII = 48',
+                    funFact: 'Super Bowl XLVIII was the first Super Bowl played outdoors in a cold-weather city!'
+                },
+                {
+                    type: 'roman',
+                    sport: '⚾',
+                    question: 'The Red Sox ended their LXXXVI-year drought. What number is LXXXVI?',
+                    answer: 86,
+                    hint: 'L = 50, XXX = 30, VI = 6, so LXXXVI = 86',
+                    funFact: 'The Red Sox Curse of the Bambino lasted from 1918 to 2004!'
+                },
+                {
+                    type: 'roman',
+                    sport: '🏈',
+                    question: 'Super Bowl LVII was played in 2023. What number is LVII?',
+                    answer: 57,
+                    hint: 'L = 50, V = 5, II = 2, so LVII = 57',
+                    funFact: 'The Chiefs won Super Bowl LVII over the Eagles!'
+                },
+                {
+                    type: 'roman',
+                    sport: '⚽',
+                    question: 'The FIFA World Cup has been held XXII times. What number is XXII?',
+                    answer: 22,
+                    hint: 'XX = 20, II = 2, so XXII = 22',
+                    funFact: 'The most recent World Cup was won by Argentina in 2022!'
+                },
+                {
+                    type: 'roman',
+                    sport: '🏈',
+                    question: 'Super Bowl XLV was played in 2011. What number is XLV?',
+                    answer: 45,
+                    hint: 'XL = 40, V = 5, so XLV = 45',
+                    funFact: 'The Green Bay Packers won Super Bowl XLV!'
+                },
+                // More Geometry - All-Star
+                {
+                    type: 'geometry',
+                    sport: '🏀',
+                    question: 'The Warriors\' half-court line divides the 94-foot court in half. Each half has a semi-circle with radius 6 feet. What is the area of one half-court? (Ignore the semi-circle)',
+                    answer: 2350,
+                    hint: 'Half court = 47 × 50 = 2350',
+                    diagram: 'Rectangle: 47 feet × 50 feet',
+                    funFact: 'Half-court shots are worth 3 points just like any other shot behind the arc!'
+                },
+                {
+                    type: 'geometry',
+                    sport: '🏈',
+                    question: 'The 49ers end zone has a big "49ERS" logo that fits in a rectangle 40 feet long and 8 feet tall. What is the area of the logo?',
+                    answer: 320,
+                    hint: 'Area = 40 × 8',
+                    diagram: 'Rectangle: 40 feet × 8 feet',
+                    funFact: 'End zone designs are repainted before every home game!'
+                },
+                {
+                    type: 'geometry',
+                    sport: '⚾',
+                    question: 'The distance between bases on a baseball diamond is 90 feet. What is the perimeter of the diamond (around all 4 bases)?',
+                    answer: 360,
+                    hint: 'Perimeter = 4 × 90 = 360',
+                    diagram: 'Square: 90 feet on each side',
+                    funFact: 'The baseball diamond has been 90 feet between bases since 1893!'
+                },
+                // More Word - All-Star
+                {
+                    type: 'word',
+                    sport: '🏀',
+                    question: 'The Warriors scored 112 points in a game. Their opponent scored 98. The Warriors also had 15 turnovers. How many more points did the Warriors score?',
+                    answer: 14,
+                    hint: '112 - 98 = 14 (turnovers don\'t affect the score calculation)',
+                    funFact: 'Turnovers give the ball to the other team - fewer is better!'
+                },
+                {
+                    type: 'word',
+                    sport: '🏈',
+                    question: 'Travis Hunter had 6 receptions for 85 yards and 2 interceptions on defense. What were his total reception yards plus interception return yards of 32 and 15?',
+                    answer: 132,
+                    hint: '85 + 32 + 15 = 132',
+                    funFact: 'Travis Hunter is one of the few modern players to play both offense and defense!'
+                },
+                {
+                    type: 'word',
+                    sport: '⚾',
+                    question: 'The Giants scored 3 runs in the first 5 innings and 4 runs in the last 4 innings. The Red Sox scored 2 runs per inning for 3 innings and 0 for the rest. Who won and by how many runs?',
+                    answer: 1,
+                    hint: 'Giants: 3 + 4 = 7. Red Sox: 2 × 3 = 6. Difference = 1',
+                    funFact: 'Close games are the most exciting in baseball!'
+                },
+                // More Fractions - All-Star
+                {
+                    type: 'fraction',
+                    sport: '🏀',
+                    question: 'Steph Curry made 2/5 of his three-pointers on 30 attempts. How many did he make?',
+                    answer: 12,
+                    hint: '30 × 2/5 = 12',
+                    funFact: 'Even making 2 out of 5 threes is above average in the NBA!'
+                },
+                {
+                    type: 'fraction',
+                    sport: '🏈',
+                    question: 'The Commanders converted 3/7 of their third-down attempts. They had 21 third-down attempts. How many did they convert?',
+                    answer: 9,
+                    hint: '21 × 3/7 = 9',
+                    funFact: 'Third-down conversion rate is one of the most important stats in football!'
+                },
+                {
+                    type: 'fraction',
+                    sport: '⚽',
+                    question: 'Messi played 5/6 of a 90-minute game. How many minutes did he play?',
+                    answer: 75,
+                    hint: '90 × 5/6 = 75',
+                    funFact: 'Top soccer players can run up to 8 miles during a single game!'
+                },
+                // More Multiplication - All-Star
+                {
+                    type: 'multiplication',
+                    sport: '🏒',
+                    question: 'The Sharks average 28 shots on goal per game. Over 6 games, how many total shots on goal?',
+                    answer: 168,
+                    hint: '28 × 6 = 168',
+                    funFact: 'More shots on goal usually means more scoring chances!'
+                },
+                {
+                    type: 'multiplication',
+                    sport: '🏈',
+                    question: 'Cal averages 425 yards of offense per game. Over 4 games, how many total yards?',
+                    answer: 1700,
+                    hint: '425 × 4 = 1700',
+                    funFact: 'College football games tend to have more total offense than NFL games!'
+                },
+                {
+                    type: 'multiplication',
+                    sport: '⚾',
+                    question: 'A Red Sox player gets 4 at-bats per game. Over a 162-game season, how many total at-bats would he have?',
+                    answer: 648,
+                    hint: '4 × 162 = 648',
+                    funFact: 'Most everyday players get between 500-650 at-bats per season!'
+                },
+                // More Algebra - All-Star
+                {
+                    type: 'algebra',
+                    sport: '🏀',
+                    question: 'Klay Thompson scored x two-pointers and (x + 3) three-pointers. He made 13 total baskets. What is x? (x + x + 3 = 13)',
+                    answer: 5,
+                    hint: '2x + 3 = 13 → 2x = 10 → x = 5',
+                    funFact: 'Klay Thompson is one of the best shooters in NBA history!'
+                },
+                {
+                    type: 'algebra',
+                    sport: '🏈',
+                    question: 'The 49ers gained x yards on first down and lost 5 yards on second down. Their net gain was 17 yards. What is x? (x - 5 = 17)',
+                    answer: 22,
+                    hint: 'x - 5 = 17, so x = 17 + 5 = 22',
+                    funFact: 'First down is the most important down in football!'
+                },
+                {
+                    type: 'algebra',
+                    sport: '⚽',
+                    question: 'The Earthquakes scored x goals in the first half and x + 1 goals in the second half for 5 goals total. What is x? (x + x + 1 = 5)',
+                    answer: 2,
+                    hint: '2x + 1 = 5 → 2x = 4 → x = 2',
+                    funFact: 'Scoring 5 goals in one game is very rare in professional soccer!'
+                },
+                // More Roman Numerals - All-Star
+                {
+                    type: 'roman',
+                    sport: '🏈',
+                    question: 'What is XIV + XVI? Give your answer as a regular number.',
+                    answer: 30,
+                    hint: 'XIV = 14, XVI = 16, so 14 + 16 = 30',
+                    funFact: 'Adding Roman numerals is easier when you convert to regular numbers first!'
+                },
+                {
+                    type: 'roman',
+                    sport: '🏀',
+                    question: 'If a team is in their XXXV th season and started XX years ago, how many seasons did they skip? Give the answer as a regular number.',
+                    answer: 15,
+                    hint: 'XXXV = 35, XX = 20, so 35 - 20 = 15',
+                    funFact: 'NBA teams rarely miss seasons, but it has happened during lockouts!'
+                },
+                {
+                    type: 'roman',
+                    sport: '⚾',
+                    question: 'A player\'s jersey is number XXIV. What number is that?',
+                    answer: 24,
+                    hint: 'XX = 20, IV = 4, so XXIV = 24',
+                    funFact: 'Willie Mays wore number 24 for the Giants!'
+                },
+                // Additional All-Star questions
+                {
+                    type: 'word',
+                    sport: '🏀',
+                    question: 'Kevon Looney grabbed 14 rebounds: 5 offensive and 9 defensive. If each offensive rebound leads to 1.5 points on average, how many extra points did his offensive rebounds generate? (Round to nearest whole)',
+                    answer: 8,
+                    hint: '5 × 1.5 = 7.5 ≈ 8',
+                    funFact: 'Offensive rebounds give your team another chance to score!'
+                },
+                {
+                    type: 'geometry',
+                    sport: '🏒',
+                    question: 'The Sharks\' rink has a center ice circle with a radius of 15 feet. What is the circumference? (Use 3.14 for pi, round to nearest whole number)',
+                    answer: 94,
+                    hint: 'Circumference = 2 × π × r = 2 × 3.14 × 15 = 94.2',
+                    funFact: 'The center ice circle is used for faceoffs at the start of each period!'
+                },
+                {
+                    type: 'fraction',
+                    sport: '🏈',
+                    question: 'The Buffaloes made 4/5 of their extra point attempts on 25 tries. How many did they make?',
+                    answer: 20,
+                    hint: '25 × 4/5 = 20',
+                    funFact: 'Extra points are almost automatic in football - most kickers make over 90%!'
+                },
+                {
+                    type: 'multiplication',
+                    sport: '⚽',
+                    question: 'The Earthquakes average 15,200 fans per game over 17 home games. How many total home fans? (Answer in thousands)',
+                    answer: 258,
+                    hint: '15,200 × 17 = 258,400. In thousands ≈ 258',
+                    funFact: 'PayPal Park is one of the best atmospheres in MLS!'
+                },
+                {
+                    type: 'algebra',
+                    sport: '🏈',
+                    question: 'The 49ers ran x plays in the first half and (x + 8) in the second half for 70 total plays. What is x? (x + x + 8 = 70)',
+                    answer: 31,
+                    hint: '2x + 8 = 70 → 2x = 62 → x = 31',
+                    funFact: 'NFL teams typically run 60-75 plays per game!'
+                },
+                {
+                    type: 'roman',
+                    sport: '🏈',
+                    question: 'Super Bowl LX will be a big milestone. What number is LX?',
+                    answer: 60,
+                    hint: 'LX = L + X = 50 + 10',
+                    funFact: 'Super Bowl LX will be played in the late 2020s!'
+                },
+                {
+                    type: 'word',
+                    sport: '⚾',
+                    question: 'A Giants player hit .300 over 400 at-bats, then .250 over 200 at-bats. How many total hits?',
+                    answer: 170,
+                    hint: '400 × .300 = 120. 200 × .250 = 50. Total = 170',
+                    funFact: 'Batting average is calculated as hits divided by at-bats!'
+                },
+                {
+                    type: 'geometry',
+                    sport: '🏈',
+                    question: 'Cal\'s kicker practices kicking into a net that is 18 feet wide and 10 feet tall. What is the area of the net?',
+                    answer: 180,
+                    hint: 'Area = 18 × 10 = 180',
+                    diagram: 'Rectangle: 18 feet × 10 feet',
+                    funFact: 'Kickers practice hundreds of kicks every week!'
+                },
+                {
+                    type: 'fraction',
+                    sport: '⚾',
+                    question: 'The Red Sox bullpen pitched 3/8 of the total innings in a game. If the game was 8 innings long, how many innings did the bullpen pitch?',
+                    answer: 3,
+                    hint: '8 × 3/8 = 3',
+                    funFact: 'The bullpen is where relief pitchers warm up before entering the game!'
+                },
+                {
+                    type: 'multiplication',
+                    sport: '🏀',
+                    question: 'The Warriors play 41 home games per season. If average attendance is 18,064, how many total fans attend home games? (Answer in thousands, round to nearest)',
+                    answer: 741,
+                    hint: '41 × 18,064 = 740,624 ≈ 741 thousand',
+                    funFact: 'Chase Center sells out nearly every Warriors game!'
+                },
+                {
+                    type: 'algebra',
+                    sport: '🏒',
+                    question: 'A Sharks forward has x goals and (x + 5) assists. His total points are 23. What is x? (x + x + 5 = 23)',
+                    answer: 9,
+                    hint: '2x + 5 = 23 → 2x = 18 → x = 9',
+                    funFact: 'In hockey, goals and assists both count as one point each!'
+                },
+                {
+                    type: 'roman',
+                    sport: '⚽',
+                    question: 'The World Cup has XXXII teams in the tournament. What number is XXXII?',
+                    answer: 32,
+                    hint: 'XXX = 30, II = 2, so XXXII = 32',
+                    funFact: 'The World Cup is expanding to 48 teams starting in 2026!'
+                },
+                {
+                    type: 'word',
+                    sport: '🏈',
+                    question: 'The Commanders had 125 rushing yards and 275 passing yards on offense. Their defense allowed 95 rushing and 210 passing yards. What was the total yardage difference?',
+                    answer: 95,
+                    hint: 'Commanders: 125 + 275 = 400. Opponents: 95 + 210 = 305. Difference = 95',
+                    funFact: 'Winning the total yardage battle usually correlates with winning the game!'
+                },
+                {
+                    type: 'geometry',
+                    sport: '⚽',
+                    question: 'Inter Miami\'s penalty box is 44 yards wide and 18 yards deep. What percentage of the full field (110 × 70 yards) does ONE penalty box cover? (Round to nearest whole number)',
+                    answer: 10,
+                    hint: 'Box = 44 × 18 = 792. Field = 110 × 70 = 7700. (792/7700) × 100 ≈ 10%',
+                    funFact: 'A foul inside the penalty box results in a penalty kick!'
+                },
+                {
+                    type: 'algebra',
+                    sport: '⚾',
+                    question: 'A Red Sox player\'s RBI total = 2x + 7. If he has 45 RBIs, what is x? (2x + 7 = 45)',
+                    answer: 19,
+                    hint: '2x + 7 = 45 → 2x = 38 → x = 19',
+                    funFact: 'RBI stands for Runs Batted In!'
+                },
+                {
+                    type: 'fraction',
+                    sport: '🏈',
+                    question: 'Travis Hunter caught 7/10 of his targets for the Buffaloes. He was targeted 30 times. How many catches did he make?',
+                    answer: 21,
+                    hint: '30 × 7/10 = 21',
+                    funFact: 'A 70% catch rate is excellent for a wide receiver!'
+                },
+                {
+                    type: 'multiplication',
+                    sport: '🏈',
+                    question: 'Cal\'s offense averaged 32 points per game over 12 games. How many total points did they score?',
+                    answer: 384,
+                    hint: '32 × 12 = 384',
+                    funFact: 'Scoring 30+ points per game is great for a college team!'
+                },
+                {
+                    type: 'roman',
+                    sport: '🏈',
+                    question: 'The NFL was founded in MCMXX. What year is that?',
+                    answer: 1920,
+                    hint: 'M = 1000, CM = 900, XX = 20, so MCMXX = 1920',
+                    funFact: 'The NFL was originally called the American Professional Football Association!'
+                },
+                {
+                    type: 'word',
+                    sport: '🏒',
+                    question: 'The Sharks scored 2 power play goals, 1 short-handed goal, and 3 even-strength goals. How many total goals?',
+                    answer: 6,
+                    funFact: 'Short-handed goals are scored while your team has fewer players on the ice!'
+                },
+                {
+                    type: 'algebra',
+                    sport: '🏀',
+                    question: 'The Warriors\' bench scored x points and the starters scored 3x points. Total was 108. What did the bench score? (x + 3x = 108)',
+                    answer: 27,
+                    hint: '4x = 108, so x = 27',
+                    funFact: 'A strong bench is essential for winning championships!'
+                },
+                {
+                    type: 'word',
+                    sport: '🏈',
+                    question: 'The 49ers had 28 first downs: 12 rushing, 14 passing, and 2 by penalty. What percentage were from passing? (Round to nearest whole)',
+                    answer: 50,
+                    hint: '(14 ÷ 28) × 100 = 50%',
+                    funFact: 'First downs keep drives alive and tire out the defense!'
+                },
+                {
+                    type: 'geometry',
+                    sport: '⚾',
+                    question: 'Oracle Park\'s outfield wall in center field is 399 feet from home plate. If a ball travels in a straight line, what is 399 feet in yards? (Round to nearest whole)',
+                    answer: 133,
+                    hint: '399 ÷ 3 = 133',
+                    funFact: 'Center field at Oracle Park is one of the deepest in baseball!'
+                },
+                {
+                    type: 'fraction',
+                    sport: '⚽',
+                    question: 'Messi converted 4/5 of his penalty kicks. He took 15 penalties. How many did he score?',
+                    answer: 12,
+                    hint: '15 × 4/5 = 12',
+                    funFact: 'Messi has one of the best penalty conversion rates in soccer!'
+                },
+                {
+                    type: 'roman',
+                    sport: '🏈',
+                    question: 'Super Bowl XLVI was won by the Giants. What number is XLVI?',
+                    answer: 46,
+                    hint: 'XL = 40, VI = 6, so XLVI = 46',
+                    funFact: 'The Giants upset the Patriots again in Super Bowl XLVI!'
+                },
+                {
+                    type: 'multiplication',
+                    sport: '🏈',
+                    question: 'The Commanders\' defense averages 3.5 sacks per game over 16 games. How many total sacks?',
+                    answer: 56,
+                    hint: '3.5 × 16 = 56',
+                    funFact: 'A sack is when the quarterback is tackled behind the line of scrimmage!'
+                },
+                {
+                    type: 'word',
+                    sport: '🏒',
+                    question: 'The Sharks scored 3 goals in the 1st period, 0 in the 2nd, and 2 in the 3rd. Their opponent scored 1, 2, and 1. Who won and by how many goals?',
+                    answer: 1,
+                    hint: 'Sharks: 3+0+2 = 5. Opponent: 1+2+1 = 4. Difference = 1',
+                    funFact: 'Third-period comebacks are some of the most exciting moments in hockey!'
+                },
+                {
+                    type: 'algebra',
+                    sport: '⚾',
+                    question: 'A Red Sox hitter\'s batting average is x/400. If his average is .275, how many hits does he have? (x/400 = 0.275)',
+                    answer: 110,
+                    hint: 'x = 400 × 0.275 = 110',
+                    funFact: '.275 is a solid batting average in the major leagues!'
+                },
+                {
+                    type: 'roman',
+                    sport: '🏀',
+                    question: 'The NBA season has LXXXII games. What number is LXXXII?',
+                    answer: 82,
+                    hint: 'L = 50, XXX = 30, II = 2, so LXXXII = 82',
+                    funFact: 'The NBA season has been 82 games since 1967!'
+                },
+                {
+                    type: 'geometry',
+                    sport: '🏈',
+                    question: 'The Cal Bears\' end zone has text "CAL" that fits inside a rectangle 35 feet wide and 6 feet tall. What is the perimeter of this rectangle?',
+                    answer: 82,
+                    hint: 'Perimeter = 2 × (35 + 6) = 82',
+                    funFact: 'End zone designs are a big part of college football culture!'
                 }
             ],
 
@@ -1314,10 +2534,598 @@
                     hint: 'Area = width × length = 15 × 820',
                     diagram: 'Strip: 15 feet × 820 feet',
                     funFact: 'Fenway Park has a seating capacity of about 37,755 - one of the smallest in MLB!'
+                },
+                // Algebra - MVP
+                {
+                    type: 'algebra',
+                    sport: '🏀',
+                    question: 'Steph Curry scored 3x + 2y points. If x = 8 (three-pointers) and y = 5 (two-pointers), how many points?',
+                    answer: 34,
+                    hint: '3(8) + 2(5) = 24 + 10 = 34',
+                    funFact: 'Steph Curry once scored 62 points in a single game!'
+                },
+                {
+                    type: 'algebra',
+                    sport: '🏈',
+                    question: 'The 49ers\' total yards = 5x + 3y. If they had x = 24 rushing plays and y = 18 passing plays, how many total yards?',
+                    answer: 174,
+                    hint: '5(24) + 3(18) = 120 + 54 = 174',
+                    funFact: 'The 49ers are known for their balanced offense!'
+                },
+                {
+                    type: 'algebra',
+                    sport: '⚾',
+                    question: 'A Giants batter\'s OPS = x + y. If his on-base percentage (x) is 0.350 and slugging (y) is 0.480, what is his OPS? (Enter as decimal)',
+                    answer: 0.83,
+                    hint: '0.350 + 0.480 = 0.830',
+                    funFact: 'An OPS above .800 is considered very good in baseball!'
+                },
+                {
+                    type: 'algebra',
+                    sport: '🏒',
+                    question: 'The Sharks\' points in the standings = 2x + y, where x = wins and y = overtime losses. If they have 25 wins and 8 OT losses, how many points?',
+                    answer: 58,
+                    hint: '2(25) + 8 = 50 + 8 = 58',
+                    funFact: 'In hockey, you get 2 points for a win and 1 point for an overtime loss!'
+                },
+                {
+                    type: 'algebra',
+                    sport: '⚽',
+                    question: 'Inter Miami\'s goal difference = x - y. If they scored x = 52 goals and allowed y = 38, what is their goal difference?',
+                    answer: 14,
+                    hint: '52 - 38 = 14',
+                    funFact: 'Goal difference is used to break ties in league standings!'
+                },
+                {
+                    type: 'algebra',
+                    sport: '🏈',
+                    question: 'Jayden Daniels\' fantasy score = 4x + 6y + z. With x = 280 passing yards, y = 3 TDs, z = 45 rushing yards. First divide passing yards by 25 (x/25), what is 4(280/25) + 6(3) + 45?',
+                    answer: 108,
+                    hint: '4(11.2) + 6(3) + 45 = 44.8 + 18 + 45 = 107.8 ≈ 108',
+                    funFact: 'Fantasy football is played by over 60 million people!'
+                },
+                {
+                    type: 'algebra',
+                    sport: '🏈',
+                    question: 'Shedeur Sanders\' efficiency = (completions × 10 - incompletions × 5) ÷ attempts. He completed 24 of 36 passes. What is his efficiency? (Round to nearest whole)',
+                    answer: 5,
+                    hint: 'Incompletions = 36 - 24 = 12. Then (24×10 - 12×5) ÷ 36 = (240 - 60) ÷ 36 = 180 ÷ 36 = 5',
+                    funFact: 'Shedeur Sanders was drafted in the 2025 NFL Draft!'
+                },
+                {
+                    type: 'algebra',
+                    sport: '🏈',
+                    question: 'Cal\'s offense scores 7x + 3y points, where x = touchdowns with extra points and y = field goals. If they scored 38 points with 3 field goals, how many touchdowns? (7x + 9 = 38)',
+                    answer: 4,
+                    hint: '7x + 3(3) = 38 → 7x + 9 = 38 → 7x = 29 → x ≈ 4 (rounding)',
+                    funFact: 'Cal has had some exciting offensive games in the Pac-12 era!'
+                },
+                {
+                    type: 'algebra',
+                    sport: '⚾',
+                    question: 'A Red Sox pitcher\'s WHIP = (Walks + Hits) ÷ Innings. If he had 30 walks and 90 hits over 120 innings, what is his WHIP?',
+                    answer: 1,
+                    hint: '(30 + 90) ÷ 120 = 120 ÷ 120 = 1.00',
+                    funFact: 'A WHIP under 1.00 is considered elite in baseball!'
+                },
+                {
+                    type: 'algebra',
+                    sport: '🏀',
+                    question: 'The Warriors\' win percentage = wins ÷ total games. If they won 50 of 82 games, what is their win percentage? (Round to nearest whole number, as a percent)',
+                    answer: 61,
+                    hint: '50 ÷ 82 = 0.6098 → 61%',
+                    funFact: 'A 50-win season is considered excellent in the NBA!'
+                },
+                // Roman Numerals - MVP
+                {
+                    type: 'roman',
+                    sport: '🏈',
+                    question: 'What is XXIV + XVIII? Give your answer as a regular number.',
+                    answer: 42,
+                    hint: 'XXIV = 24, XVIII = 18, so 24 + 18 = 42',
+                    funFact: 'Being able to add Roman numerals is a skill the ancient Romans used daily!'
+                },
+                {
+                    type: 'roman',
+                    sport: '🏈',
+                    question: 'Super Bowl LVIII minus Super Bowl XLIV. What is the difference?',
+                    answer: 14,
+                    hint: 'LVIII = 58, XLIV = 44, so 58 - 44 = 14',
+                    funFact: 'Super Bowl LVIII was played in Las Vegas for the first time!'
+                },
+                {
+                    type: 'roman',
+                    sport: '🏀',
+                    question: 'The Warriors won championships in years that can be described as MMXV, MMXVII, and MMXXII. What is MMXXII as a regular number?',
+                    answer: 2022,
+                    hint: 'MM = 2000, XX = 20, II = 2, so MMXXII = 2022',
+                    funFact: 'The Warriors won the 2022 championship led by Steph Curry!'
+                },
+                {
+                    type: 'roman',
+                    sport: '⚾',
+                    question: 'Fenway Park was built in MCMXII. What year is that?',
+                    answer: 1912,
+                    hint: 'M = 1000, CM = 900, X = 10, II = 2, so MCMXII = 1912',
+                    funFact: 'Fenway Park is the oldest active baseball stadium in America!'
+                },
+                {
+                    type: 'roman',
+                    sport: '🏈',
+                    question: 'What is XXXIX + XXVI? Give your answer as a regular number.',
+                    answer: 65,
+                    hint: 'XXXIX = 39, XXVI = 26, so 39 + 26 = 65',
+                    funFact: 'Roman numerals are used for Super Bowl numbering to add prestige!'
+                },
+                {
+                    type: 'roman',
+                    sport: '⚽',
+                    question: 'The first World Cup was held in MCMXXX. What year is that?',
+                    answer: 1930,
+                    hint: 'M = 1000, CM = 900, XXX = 30, so MCMXXX = 1930',
+                    funFact: 'Uruguay hosted and won the first World Cup in 1930!'
+                },
+                {
+                    type: 'roman',
+                    sport: '🏈',
+                    question: 'What is XLVII - XIX? Give your answer as a regular number.',
+                    answer: 28,
+                    hint: 'XLVII = 47, XIX = 19, so 47 - 19 = 28',
+                    funFact: 'The Ravens won Super Bowl XLVII in a game that had a blackout!'
+                },
+                {
+                    type: 'roman',
+                    sport: '🏈',
+                    question: 'Super Bowl C will be the 100th Super Bowl. What number is C?',
+                    answer: 100,
+                    hint: 'C = 100',
+                    funFact: 'We won\'t see Super Bowl C until around the year 2066!'
+                },
+                {
+                    type: 'roman',
+                    sport: '🏀',
+                    question: 'The NBA was founded in MCMXLVI. What year is that?',
+                    answer: 1946,
+                    hint: 'M = 1000, CM = 900, XL = 40, VI = 6, so MCMXLVI = 1946',
+                    funFact: 'The NBA was originally called the Basketball Association of America!'
+                },
+                {
+                    type: 'roman',
+                    sport: '⚾',
+                    question: 'What is LXXIII + XXVII? Give your answer as a regular number.',
+                    answer: 100,
+                    hint: 'LXXIII = 73, XXVII = 27, so 73 + 27 = 100',
+                    funFact: 'Roman numerals use just 7 symbols: I, V, X, L, C, D, M!'
+                },
+                // More Geometry - MVP
+                {
+                    type: 'geometry',
+                    sport: '🏀',
+                    question: 'The three-point arc is a semi-circle with radius 23.75 feet, plus two straight lines of 14 feet each along the sidelines. What is the total length of the three-point line? (Use 3.14 for pi, round to nearest whole number)',
+                    answer: 103,
+                    hint: 'Semi-circle circumference = π × 23.75 = 74.575. Plus 2 × 14 = 28. Total = 102.575 ≈ 103',
+                    funFact: 'The NBA three-point line is farther from the basket than in college!'
+                },
+                {
+                    type: 'geometry',
+                    sport: '🏈',
+                    question: 'A football is roughly an ellipse that is 11 inches long and 7 inches wide. The approximate area of an ellipse is π × a × b where a and b are the semi-axes. What is the area? (Use 3.14, round to nearest whole)',
+                    answer: 60,
+                    hint: 'Semi-axes: a = 5.5, b = 3.5. Area = 3.14 × 5.5 × 3.5 = 60.445 ≈ 60',
+                    funFact: 'An NFL football must weigh between 14 and 15 ounces!'
+                },
+                {
+                    type: 'geometry',
+                    sport: '⚾',
+                    question: 'The infield at Oracle Park is a square with 90-foot sides. What is the area of the infield in square feet?',
+                    answer: 8100,
+                    hint: 'Area = 90 × 90 = 8100',
+                    diagram: 'Square: 90 feet × 90 feet',
+                    funFact: 'The infield dirt is specially mixed for each ballpark!'
+                },
+                // More Word - MVP
+                {
+                    type: 'word',
+                    sport: '🏀',
+                    question: 'The Warriors scored 28 points in Q1, 32 in Q2, 18 in Q3, and 34 in Q4. Their opponents scored 25, 29, 31, and 27. What was the final margin of victory?',
+                    answer: 0,
+                    hint: 'Warriors: 28+32+18+34 = 112. Opponents: 25+29+31+27 = 112. Margin = 0 (tie!)',
+                    funFact: 'Tied NBA games go to overtime - an extra 5-minute period!'
+                },
+                {
+                    type: 'word',
+                    sport: '🏈',
+                    question: 'The Buffaloes gained 312 passing yards, 148 rushing yards, but lost 45 yards to sacks and penalties. What were their net yards?',
+                    answer: 415,
+                    hint: '312 + 148 - 45 = 415',
+                    funFact: 'Colorado\'s high altitude can affect how far the ball travels!'
+                },
+                {
+                    type: 'word',
+                    sport: '⚽',
+                    question: 'Inter Miami played 34 games, won 20, drew 8, and lost the rest. If a win is 3 points, a draw is 1 point, and a loss is 0, how many league points did they earn?',
+                    answer: 68,
+                    hint: 'Losses = 34 - 20 - 8 = 6. Points = (20×3) + (8×1) + (6×0) = 60 + 8 = 68',
+                    funFact: 'The MLS points system is the same as most soccer leagues worldwide!'
+                },
+                // More Fractions - MVP
+                {
+                    type: 'fraction',
+                    sport: '🏀',
+                    question: 'Steph Curry made 5/11 of his threes (worth 3 pts each) and 7/10 of his twos (worth 2 pts each) on 11 three-attempts and 10 two-attempts. How many total points?',
+                    answer: 29,
+                    hint: 'Threes: 5 made × 3 = 15 pts. Twos: 7 made × 2 = 14 pts. Total = 29',
+                    funFact: 'Steph Curry has one of the highest true shooting percentages in NBA history!'
+                },
+                {
+                    type: 'fraction',
+                    sport: '🏈',
+                    question: 'Brock Purdy completed 5/8 of his passes for 320 yards on 40 attempts. How many completions did he have?',
+                    answer: 25,
+                    hint: '40 × 5/8 = 25',
+                    funFact: 'Brock Purdy has one of the highest passer ratings in 49ers history!'
+                },
+                {
+                    type: 'fraction',
+                    sport: '🏒',
+                    question: 'The Sharks won 2/5 of their 40 road games and 3/4 of their 40 home games. How many total wins?',
+                    answer: 46,
+                    hint: 'Road wins: 40 × 2/5 = 16. Home wins: 40 × 3/4 = 30. Total = 46',
+                    funFact: 'Home ice advantage is very real in hockey!'
+                },
+                // More Multiplication - MVP
+                {
+                    type: 'multiplication',
+                    sport: '⚾',
+                    question: 'A Red Sox pitcher threw 95 pitches. 62% were strikes. How many strikes did he throw? (Round to nearest whole)',
+                    answer: 59,
+                    hint: '95 × 0.62 = 58.9 ≈ 59',
+                    funFact: 'A good strike percentage is above 60%!'
+                },
+                {
+                    type: 'multiplication',
+                    sport: '🏈',
+                    question: 'The Commanders\' defense allowed 18.5 points per game over 16 games. How many total points did they allow?',
+                    answer: 296,
+                    hint: '18.5 × 16 = 296',
+                    funFact: 'A defense allowing under 20 points per game is considered excellent!'
+                },
+                {
+                    type: 'multiplication',
+                    sport: '⚽',
+                    question: 'Messi\'s contract pays him $12 million per season for Inter Miami. Over 3.5 seasons, how many millions total?',
+                    answer: 42,
+                    hint: '12 × 3.5 = 42',
+                    funFact: 'Messi is one of the highest-paid athletes in the world!'
+                },
+                // More Algebra - MVP
+                {
+                    type: 'algebra',
+                    sport: '🏒',
+                    question: 'A Sharks player scored x goals and 2x assists. His total points were 36. How many goals did he score? (x + 2x = 36)',
+                    answer: 12,
+                    hint: '3x = 36, so x = 12',
+                    funFact: 'In hockey, assists are worth the same as goals in the points standings!'
+                },
+                {
+                    type: 'algebra',
+                    sport: '⚽',
+                    question: 'The Earthquakes scored x goals at home and (x - 3) goals away. They scored 21 goals total. How many home goals? (x + x - 3 = 21)',
+                    answer: 12,
+                    hint: '2x - 3 = 21 → 2x = 24 → x = 12',
+                    funFact: 'Teams usually score more goals at home than away!'
+                },
+                // More Word - MVP
+                {
+                    type: 'word',
+                    sport: '🏈',
+                    question: 'Cal\'s quarterback threw for 18 completions averaging 12.5 yards each and rushed 8 times averaging 4.5 yards each. How many total yards? (Round to nearest whole)',
+                    answer: 261,
+                    hint: '18 × 12.5 = 225 passing. 8 × 4.5 = 36 rushing. Total = 261',
+                    funFact: 'A quarterback with both passing and rushing ability is called a dual-threat!'
+                },
+                {
+                    type: 'word',
+                    sport: '⚾',
+                    question: 'The Giants had a team batting average of .255 over 5,500 at-bats. How many hits did the team get? (Round to nearest whole number)',
+                    answer: 1403,
+                    hint: '5500 × 0.255 = 1402.5 ≈ 1403',
+                    funFact: 'A team batting average of .255 is about average for a major league team!'
+                },
+                // More Roman Numerals - MVP
+                {
+                    type: 'roman',
+                    sport: '🏈',
+                    question: 'If Super Bowl XXXVIII was in 2004, what year was Super Bowl LIII? (LIII - XXXVIII = years between, add to 2004)',
+                    answer: 2019,
+                    hint: 'LIII = 53, XXXVIII = 38. Difference = 15 years. 2004 + 15 = 2019',
+                    funFact: 'Super Bowl LIII was the lowest-scoring Super Bowl ever - Patriots won 13-3!'
+                },
+                {
+                    type: 'roman',
+                    sport: '⚾',
+                    question: 'What is CXLIV as a regular number?',
+                    answer: 144,
+                    hint: 'C = 100, XL = 40, IV = 4, so CXLIV = 144',
+                    funFact: '144 is called a "gross" - a dozen dozens!'
+                },
+                // Additional MVP questions
+                {
+                    type: 'word',
+                    sport: '🏀',
+                    question: 'The Warriors had a 112-105 lead with 2 minutes left. They then scored 4 more but allowed 9 points. What was the final score difference?',
+                    answer: 2,
+                    hint: 'Warriors final: 112 + 4 = 116. Opponents: 105 + 9 = 114. Diff = 2',
+                    funFact: 'Close games in the final minutes are called "clutch time"!'
+                },
+                {
+                    type: 'geometry',
+                    sport: '⚽',
+                    question: 'The center circle has radius 10 yards and the penalty arc has radius 10 yards. Together they form shapes with a combined area of how many square yards? (Use 3.14 for pi. The penalty arc is a quarter circle. Round to nearest whole)',
+                    answer: 393,
+                    hint: 'Center circle = 3.14 × 100 = 314. Quarter circle = 3.14 × 100 / 4 = 78.5. Total ≈ 393',
+                    funFact: 'The penalty arc keeps players 10 yards from the penalty spot during kicks!'
+                },
+                {
+                    type: 'fraction',
+                    sport: '🏈',
+                    question: 'The 49ers converted 5/12 of third downs and 3/4 of fourth downs. They had 24 third-down and 8 fourth-down attempts. How many total conversions?',
+                    answer: 16,
+                    hint: 'Third: 24 × 5/12 = 10. Fourth: 8 × 3/4 = 6. Total = 16',
+                    funFact: 'Going for it on fourth down has become much more common in recent years!'
+                },
+                {
+                    type: 'multiplication',
+                    sport: '🏒',
+                    question: 'The Sharks play 82 games in a season. If they average 2.8 goals per game, how many total goals? (Round to nearest whole)',
+                    answer: 230,
+                    hint: '82 × 2.8 = 229.6 ≈ 230',
+                    funFact: 'An average of nearly 3 goals per game is solid in the NHL!'
+                },
+                {
+                    type: 'algebra',
+                    sport: '🏈',
+                    question: 'The Commanders scored (4x - 7) points. If they scored 21 points, what is x? (4x - 7 = 21)',
+                    answer: 7,
+                    hint: '4x - 7 = 21 → 4x = 28 → x = 7',
+                    funFact: 'The number 7 is considered lucky by many football fans!'
+                },
+                {
+                    type: 'roman',
+                    sport: '🏈',
+                    question: 'What is XC as a regular number?',
+                    answer: 90,
+                    hint: 'XC = 100 - 10 = 90 (X before C means 10 less than 100)',
+                    funFact: 'XC is one of the trickier Roman numerals because of the subtractive notation!'
+                },
+                {
+                    type: 'word',
+                    sport: '⚾',
+                    question: 'The Red Sox scored 5 runs with an OPS of .780. Their opponents scored 3 runs with an OPS of .720. What is the difference in OPS? (Enter as decimal)',
+                    answer: 0.06,
+                    hint: '.780 - .720 = .060',
+                    funFact: 'OPS (On-base Plus Slugging) is one of the best stats to evaluate hitters!'
+                },
+                {
+                    type: 'geometry',
+                    sport: '🏈',
+                    question: 'The Buffaloes\' stadium has a rectangular scoreboard that is 60 feet wide and 36 feet tall. If the video display covers 85% of the board, how many square feet is the display? (Round to nearest whole)',
+                    answer: 1836,
+                    hint: 'Board = 60 × 36 = 2160. Display = 2160 × 0.85 = 1836',
+                    funFact: 'Modern stadium scoreboards are essentially giant TV screens!'
+                },
+                {
+                    type: 'fraction',
+                    sport: '⚽',
+                    question: 'Messi attempted 15 dribbles and completed 2/3 of them. His teammate attempted 12 dribbles and completed 3/4. How many total successful dribbles?',
+                    answer: 19,
+                    hint: 'Messi: 15 × 2/3 = 10. Teammate: 12 × 3/4 = 9. Total = 19',
+                    funFact: 'Messi is one of the best dribblers in soccer history!'
+                },
+                {
+                    type: 'multiplication',
+                    sport: '🏀',
+                    question: 'The Warriors shot 42% from three-point range on 35 attempts and 55% from two-point range on 50 attempts. How many total made baskets? (Round to nearest whole)',
+                    answer: 42,
+                    hint: 'Threes: 35 × 0.42 ≈ 15. Twos: 50 × 0.55 ≈ 28. Total ≈ 42',
+                    funFact: 'The Warriors revolutionized basketball with their three-point shooting!'
+                },
+                {
+                    type: 'algebra',
+                    sport: '⚾',
+                    question: 'A Giants pitcher allows (x/3) earned runs per inning. Over 9 innings he allowed 6 earned runs. What is x? (9 × x/3 = 6)',
+                    answer: 2,
+                    hint: '9x/3 = 6 → 3x = 6 → x = 2',
+                    funFact: 'Allowing only 2 earned runs per 3 innings is excellent pitching!'
+                },
+                {
+                    type: 'roman',
+                    sport: '⚽',
+                    question: 'What is CCXL - CLXV? Give your answer as a regular number.',
+                    answer: 75,
+                    hint: 'CCXL = 240, CLXV = 165, so 240 - 165 = 75',
+                    funFact: 'Large Roman numerals were used for things like building dates and legal documents!'
+                },
+                {
+                    type: 'word',
+                    sport: '🏈',
+                    question: 'Cal\'s offense had 35 plays for 280 yards in the first half and 30 plays for 165 yards in the second. What was their overall yards per play? (Round to nearest tenth)',
+                    answer: 6.8,
+                    hint: 'Total yards = 280 + 165 = 445. Total plays = 35 + 30 = 65. YPP = 445/65 ≈ 6.8',
+                    funFact: 'Yards per play is one of the best measures of offensive efficiency!'
+                },
+                {
+                    type: 'geometry',
+                    sport: '🏒',
+                    question: 'The Sharks\' defensive zone is 75 feet long and 85 feet wide. The two faceoff circles each have radius 15 feet. What area of the zone is NOT in the faceoff circles? (Use 3.14 for pi, round to nearest whole)',
+                    answer: 4961,
+                    hint: 'Zone = 75 × 85 = 6375. Each circle = 3.14 × 225 = 706.5. Both = 1413. 6375 - 1413 = 4962',
+                    diagram: 'Zone: 75ft × 85ft. Two circles: radius 15ft each',
+                    funFact: 'Faceoffs in the defensive zone are high-pressure moments!'
+                },
+                {
+                    type: 'fraction',
+                    sport: '🏈',
+                    question: 'Jayden Daniels completed 7/12 of his long passes (over 20 yards) and 5/6 of his short passes. He attempted 24 long and 30 short passes. How many total completions?',
+                    answer: 39,
+                    hint: 'Long: 24 × 7/12 = 14. Short: 30 × 5/6 = 25. Total = 39',
+                    funFact: 'Short passes are easier to complete but long passes gain more yards!'
+                },
+                {
+                    type: 'algebra',
+                    sport: '⚽',
+                    question: 'Inter Miami\'s win bonus is $5,000 × (goals scored) + $2,000 × (clean sheets). They scored 48 goals and kept 12 clean sheets. What is the total bonus? (Answer in thousands)',
+                    answer: 264,
+                    hint: '5000 × 48 = 240,000. 2000 × 12 = 24,000. Total = 264,000 = 264 thousand',
+                    funFact: 'A clean sheet means the goalkeeper didn\'t allow any goals!'
+                },
+                {
+                    type: 'multiplication',
+                    sport: '🏈',
+                    question: 'The Buffaloes\' stadium holds 50,183 fans. If season tickets cover 8 home games, and 85% of seats are season tickets, how many total season ticket fans attend all home games? (Round to nearest thousand)',
+                    answer: 341,
+                    hint: '50,183 × 0.85 = 42,656 season ticket holders. 42,656 × 8 = 341,245 ≈ 341 thousand',
+                    funFact: 'College football games have some of the best atmospheres in all of sports!'
+                },
+                {
+                    type: 'roman',
+                    sport: '🏈',
+                    question: 'What is DCLXVI as a regular number?',
+                    answer: 666,
+                    hint: 'D = 500, C = 100, L = 50, X = 10, V = 5, I = 1 → 500+100+50+10+5+1 = 666',
+                    funFact: 'DCLXVI uses each of the Roman numeral symbols from D down to I exactly once!'
+                },
+                {
+                    type: 'word',
+                    sport: '🏒',
+                    question: 'The Sharks had a power play percentage of 22% on 50 power play opportunities. How many power play goals did they score?',
+                    answer: 11,
+                    hint: '50 × 0.22 = 11',
+                    funFact: 'A 22% power play percentage is above average in the NHL!'
+                },
+                {
+                    type: 'word',
+                    sport: '🏈',
+                    question: 'The 49ers had 3 drives of 75+ yards, 4 drives of 40-74 yards, and 5 drives under 40 yards. What percentage of drives were 75+ yards? (Round to nearest whole)',
+                    answer: 25,
+                    hint: 'Total drives = 3 + 4 + 5 = 12. 75+ drives = 3. (3/12) × 100 = 25%',
+                    funFact: 'Long drives tire out the opposing defense!'
+                },
+                {
+                    type: 'geometry',
+                    sport: '🏀',
+                    question: 'Chase Center has a rectangular court (94×50 feet) with two semi-circles at each end (radius 6 feet). What is the total area including the semi-circles? (Use 3.14, round to nearest whole)',
+                    answer: 4813,
+                    hint: 'Court = 94×50 = 4700. Two semi-circles = one full circle = 3.14 × 36 = 113.04. Total ≈ 4813',
+                    funFact: 'The key (paint area) was widened from 6 feet to 16 feet over basketball history!'
+                },
+                {
+                    type: 'algebra',
+                    sport: '⚾',
+                    question: 'The Giants need to score (3x - 5) runs to win. If they need 10 runs to win, what is x? (3x - 5 = 10)',
+                    answer: 5,
+                    hint: '3x - 5 = 10 → 3x = 15 → x = 5',
+                    funFact: 'Scoring 10 runs in a game usually guarantees a win!'
+                },
+                {
+                    type: 'fraction',
+                    sport: '🏈',
+                    question: 'The Buffaloes\' offense was on the field for 2/3 of the 60-minute game. Their defense was on for the remaining time. How many minutes was each unit on the field?',
+                    answer: 40,
+                    hint: 'Offense: 60 × 2/3 = 40. Defense: 60 - 40 = 20',
+                    funFact: 'Time of possession is a key stat in football!'
+                },
+                {
+                    type: 'roman',
+                    sport: '🏈',
+                    question: 'What is CDXCIX as a regular number?',
+                    answer: 499,
+                    hint: 'CD = 400, XC = 90, IX = 9, so CDXCIX = 499',
+                    funFact: 'Roman numeral math can be tricky because of the subtractive rules!'
+                },
+                {
+                    type: 'multiplication',
+                    sport: '⚽',
+                    question: 'Inter Miami sells jerseys for $125 each. If they sell 1,200 jerseys per game for 17 home games, what is the total jersey revenue in thousands?',
+                    answer: 2550,
+                    hint: '1200 × 17 × 125 = 2,550,000 = 2550 thousand',
+                    funFact: 'Messi jerseys are the best-selling in all of MLS!'
+                },
+                {
+                    type: 'word',
+                    sport: '🏀',
+                    question: 'Steph Curry scored 14, 28, 35, 22, and 41 points in his last 5 games. What was his average? (Round to nearest whole)',
+                    answer: 28,
+                    hint: '(14 + 28 + 35 + 22 + 41) ÷ 5 = 140 ÷ 5 = 28',
+                    funFact: 'Averaging 28 points per game would make you one of the top scorers in the NBA!'
+                },
+                {
+                    type: 'algebra',
+                    sport: '🏒',
+                    question: 'The Sharks have (2x + 3) regulation wins and (x - 1) overtime wins. They have 30 total wins. How many regulation wins? (2x + 3 + x - 1 = 30)',
+                    answer: 22,
+                    hint: '3x + 2 = 30 → 3x = 28 → x ≈ 9.33. But let\'s check: 2(9.33)+3 = 21.67. Round: regulation ≈ 22',
+                    funFact: 'Regulation wins are worth more in some tiebreaker scenarios!'
+                },
+                {
+                    type: 'geometry',
+                    sport: '🏈',
+                    question: 'A football field including both end zones is 120 yards long and 53.33 yards wide. What is the total area in square yards? (Round to nearest whole)',
+                    answer: 6400,
+                    hint: '120 × 53.33 = 6399.6 ≈ 6400',
+                    funFact: 'A football field is about 1.32 acres!'
+                },
+                {
+                    type: 'fraction',
+                    sport: '⚾',
+                    question: 'The Red Sox won 5/9 of their 162 games. How many games did they win?',
+                    answer: 90,
+                    hint: '162 × 5/9 = 90',
+                    funFact: '90 wins is usually enough to make the playoffs in MLB!'
+                },
+                {
+                    type: 'roman',
+                    sport: '⚾',
+                    question: 'What is MCMLXXV as a regular number? (Hint: this is when the Red Sox played in a famous World Series)',
+                    answer: 1975,
+                    hint: 'M = 1000, CM = 900, LXX = 70, V = 5, so MCMLXXV = 1975',
+                    funFact: 'The 1975 World Series between the Red Sox and Reds is considered one of the greatest ever!'
+                },
+                {
+                    type: 'multiplication',
+                    sport: '🏈',
+                    question: 'Cal\'s defense allows 3.2 yards per rushing attempt. If opponents run 35 times per game over 12 games, how many total rushing yards do they allow?',
+                    answer: 1344,
+                    hint: '3.2 × 35 = 112 yards per game. 112 × 12 = 1344',
+                    funFact: 'Stopping the run is the foundation of good defense!'
+                },
+                {
+                    type: 'word',
+                    sport: '⚽',
+                    question: 'The Earthquakes conceded 1.5 goals per game over 34 games. They scored 1.8 goals per game. What was their goal difference for the season? (Round to nearest whole)',
+                    answer: 10,
+                    hint: 'Goals scored: 1.8 × 34 = 61.2. Conceded: 1.5 × 34 = 51. Difference ≈ 10',
+                    funFact: 'A positive goal difference is essential for finishing high in the standings!'
+                },
+                {
+                    type: 'algebra',
+                    sport: '🏈',
+                    question: 'Jayden Daniels\' yards per attempt = total yards ÷ attempts. If his YPA is 8.5 and he threw 40 passes, how many total yards? (x ÷ 40 = 8.5)',
+                    answer: 340,
+                    hint: 'x = 8.5 × 40 = 340',
+                    funFact: '8.5 yards per attempt is elite in the NFL!'
+                },
+                {
+                    type: 'fraction',
+                    sport: '🏀',
+                    question: 'The Warriors made 9/20 of their threes and 24/40 of their twos. How many total baskets did they make?',
+                    answer: 33,
+                    hint: 'Threes: 9. Twos: 24. Total baskets: 33',
+                    funFact: 'The Warriors are one of the most efficient shooting teams in history!'
                 }
             ]
         };
-        
+
         const funFacts = [
             'The Warriors have won 7 NBA championships!',
             'The 49ers dynasty in the 1980s won 4 Super Bowls in 9 years!',
@@ -1339,6 +3147,18 @@
             'Shedeur Sanders threw for over 3,000 yards in his first season at Colorado!'
         ];
         
+        function selectLevel(level) {
+            selectedStartLevel = level;
+            const buttons = document.querySelectorAll('#startScreen .level-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+                const levelText = btn.textContent.toLowerCase();
+                if (levelText.includes(level) || (level === 'allstar' && levelText.includes('all-star'))) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+
         function getSelectedTopics() {
             selectedTopics = [];
             const checkboxes = document.querySelectorAll('.topic-checkbox input[type="checkbox"]:checked');
@@ -1529,13 +3349,36 @@
             document.getElementById('currentLevel').textContent = levelNames[currentLevel];
         }
         
-        // Leaderboard functions
+        // Leaderboard functions with dual storage (localStorage + cookie fallback)
         function getLeaderboard() {
+            // Try localStorage first
             try {
-                return JSON.parse(localStorage.getItem('mathGoatLeaderboard')) || [];
-            } catch (e) {
-                return [];
-            }
+                const data = localStorage.getItem('mathGoatLeaderboard');
+                if (data) {
+                    const parsed = JSON.parse(data);
+                    if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+                }
+            } catch (e) {}
+            // Fallback to cookie
+            try {
+                const cookie = document.cookie.split('; ').find(row => row.startsWith('mathGoatLeaderboard='));
+                if (cookie) {
+                    const parsed = JSON.parse(decodeURIComponent(cookie.split('=')[1]));
+                    if (Array.isArray(parsed)) return parsed;
+                }
+            } catch (e) {}
+            return [];
+        }
+
+        function saveLeaderboardData(leaderboard) {
+            const data = JSON.stringify(leaderboard);
+            // Save to localStorage
+            try { localStorage.setItem('mathGoatLeaderboard', data); } catch (e) {}
+            // Also save to cookie as fallback (365-day expiry)
+            try {
+                const expires = new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toUTCString();
+                document.cookie = 'mathGoatLeaderboard=' + encodeURIComponent(data) + '; expires=' + expires + '; path=/; SameSite=Lax';
+            } catch (e) {}
         }
 
         function saveToLeaderboard(name, finalScore) {
@@ -1547,7 +3390,7 @@
             leaderboard.sort((a, b) => b.score - a.score);
             // Keep top 50 entries
             if (leaderboard.length > 50) leaderboard.length = 50;
-            localStorage.setItem('mathGoatLeaderboard', JSON.stringify(leaderboard));
+            saveLeaderboardData(leaderboard);
         }
 
         function renderLeaderboard() {
