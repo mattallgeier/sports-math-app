@@ -3349,9 +3349,13 @@
             document.getElementById('currentLevel').textContent = levelNames[currentLevel];
         }
         
-        // Leaderboard functions with dual storage (localStorage + cookie fallback)
-        function getLeaderboard() {
-            // Try localStorage first
+        // Firebase Realtime Database URL
+        const FIREBASE_DB_URL = 'https://reids-math-goat-default-rtdb.firebaseio.com';
+
+        // Leaderboard functions with Firebase cloud sync + localStorage cache
+        let cachedLeaderboard = [];
+
+        function getLocalLeaderboard() {
             try {
                 const data = localStorage.getItem('mathGoatLeaderboard');
                 if (data) {
@@ -3359,44 +3363,76 @@
                     if (Array.isArray(parsed) && parsed.length > 0) return parsed;
                 }
             } catch (e) {}
-            // Fallback to cookie
-            try {
-                const cookie = document.cookie.split('; ').find(row => row.startsWith('mathGoatLeaderboard='));
-                if (cookie) {
-                    const parsed = JSON.parse(decodeURIComponent(cookie.split('=')[1]));
-                    if (Array.isArray(parsed)) return parsed;
-                }
-            } catch (e) {}
             return [];
         }
 
-        function saveLeaderboardData(leaderboard) {
-            const data = JSON.stringify(leaderboard);
-            // Save to localStorage
-            try { localStorage.setItem('mathGoatLeaderboard', data); } catch (e) {}
-            // Also save to cookie as fallback (365-day expiry)
-            try {
-                const expires = new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toUTCString();
-                document.cookie = 'mathGoatLeaderboard=' + encodeURIComponent(data) + '; expires=' + expires + '; path=/; SameSite=Lax';
-            } catch (e) {}
+        function saveLocalLeaderboard(leaderboard) {
+            try { localStorage.setItem('mathGoatLeaderboard', JSON.stringify(leaderboard)); } catch (e) {}
         }
 
-        function saveToLeaderboard(name, finalScore) {
+        async function fetchLeaderboardFromFirebase() {
+            try {
+                const response = await fetch(FIREBASE_DB_URL + '/leaderboard.json');
+                if (!response.ok) throw new Error('Firebase fetch failed');
+                const data = await response.json();
+                if (!data) return [];
+                // Firebase stores as an object with push keys, convert to array
+                const entries = Object.values(data);
+                entries.sort((a, b) => b.score - a.score);
+                return entries.slice(0, 50);
+            } catch (e) {
+                console.log('Firebase read failed, using local cache:', e.message);
+                return null; // null means Firebase failed
+            }
+        }
+
+        async function saveScoreToFirebase(name, finalScore, dateStr) {
+            try {
+                const response = await fetch(FIREBASE_DB_URL + '/leaderboard.json', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name: name, score: finalScore, date: dateStr })
+                });
+                if (!response.ok) throw new Error('Firebase write failed');
+                return true;
+            } catch (e) {
+                console.log('Firebase write failed:', e.message);
+                return false;
+            }
+        }
+
+        async function loadLeaderboard() {
+            // Show local cache immediately for fast display
+            cachedLeaderboard = getLocalLeaderboard();
+            renderLeaderboardFromData(cachedLeaderboard);
+
+            // Then fetch from Firebase and update
+            const firebaseData = await fetchLeaderboardFromFirebase();
+            if (firebaseData !== null) {
+                cachedLeaderboard = firebaseData;
+                saveLocalLeaderboard(cachedLeaderboard);
+                renderLeaderboardFromData(cachedLeaderboard);
+            }
+        }
+
+        async function saveToLeaderboard(name, finalScore) {
             if (finalScore <= 0) return;
-            const leaderboard = getLeaderboard();
             const today = new Date();
             const dateStr = (today.getMonth() + 1) + '/' + today.getDate() + '/' + today.getFullYear();
-            leaderboard.push({ name: name, score: finalScore, date: dateStr });
-            leaderboard.sort((a, b) => b.score - a.score);
-            // Keep top 50 entries
-            if (leaderboard.length > 50) leaderboard.length = 50;
-            saveLeaderboardData(leaderboard);
+
+            // Save to Firebase (cloud - visible to all users)
+            await saveScoreToFirebase(name, finalScore, dateStr);
+
+            // Also save locally as cache
+            cachedLeaderboard.push({ name: name, score: finalScore, date: dateStr });
+            cachedLeaderboard.sort((a, b) => b.score - a.score);
+            if (cachedLeaderboard.length > 50) cachedLeaderboard.length = 50;
+            saveLocalLeaderboard(cachedLeaderboard);
         }
 
-        function renderLeaderboard() {
-            const leaderboard = getLeaderboard();
+        function renderLeaderboardFromData(leaderboard) {
             const container = document.getElementById('leaderboardContent');
-            if (leaderboard.length === 0) {
+            if (!leaderboard || leaderboard.length === 0) {
                 container.innerHTML = '<div class="leaderboard-empty">No scores yet. Be the first GOAT!</div>';
                 return;
             }
@@ -3410,17 +3446,18 @@
             container.innerHTML = html;
         }
 
-        function endGame() {
+        async function endGame() {
             if (score > 0) {
-                saveToLeaderboard(playerName, score);
+                await saveToLeaderboard(playerName, score);
             }
             document.getElementById('questionScreen').classList.add('hidden');
             document.getElementById('startScreen').classList.remove('hidden');
-            renderLeaderboard();
+            // Refresh from Firebase to show latest scores from all users
+            await loadLeaderboard();
         }
 
-        // Render leaderboard on page load
-        renderLeaderboard();
+        // Load leaderboard on page load (shows local cache instantly, then syncs from Firebase)
+        loadLeaderboard();
 
         // Allow Enter key to submit
         document.getElementById('answerInput').addEventListener('keypress', function(e) {
