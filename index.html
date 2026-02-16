@@ -385,6 +385,7 @@
             border-radius: 20px;
             padding: 25px;
             margin: 30px 0;
+            overflow-x: auto;
         }
 
         .leaderboard-section h3 {
@@ -398,6 +399,7 @@
             width: 100%;
             border-collapse: collapse;
             font-size: 1.05em;
+            table-layout: fixed;
         }
 
         .leaderboard-table th {
@@ -449,25 +451,70 @@
             h1 {
                 font-size: 2em;
             }
-            
+
             .stat-value {
                 font-size: 1.5em;
             }
-            
+
             .button-group {
                 flex-direction: column;
             }
-            
+
             .btn {
                 width: 100%;
             }
-            
+
             .team-logo {
                 font-size: 2em;
             }
-            
+
             .topic-checkboxes {
                 grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+            .leaderboard-section {
+                padding: 12px;
+                margin: 15px 0;
+            }
+
+            .leaderboard-section h3 {
+                font-size: 1.2em;
+            }
+
+            .leaderboard-table {
+                font-size: 0.85em;
+            }
+
+            .leaderboard-table th,
+            .leaderboard-table td {
+                padding: 6px 6px;
+            }
+
+            .leaderboard-table th:first-child,
+            .leaderboard-table td:first-child {
+                width: 15%;
+            }
+
+            .leaderboard-table th:nth-child(2),
+            .leaderboard-table td:nth-child(2) {
+                width: 35%;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            .leaderboard-table th:nth-child(3),
+            .leaderboard-table td:nth-child(3) {
+                width: 22%;
+            }
+
+            .leaderboard-table th:last-child,
+            .leaderboard-table td:last-child {
+                width: 28%;
             }
         }
     </style>
