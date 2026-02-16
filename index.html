@@ -13,18 +13,37 @@
         
         body {
             font-family: 'Comic Sans MS', 'Arial Rounded MT Bold', sans-serif;
-            background: linear-gradient(135deg, #FDB927 0%, #006BB6 100%);
+            background: linear-gradient(180deg, #1a1a2e 0%, #16213e 30%, #0f3460 50%, #1b4332 85%, #2d6a4f 100%);
             min-height: 100vh;
             padding: 20px;
+            position: relative;
         }
-        
+
+        body::before,
+        body::after {
+            content: '';
+            position: fixed;
+            top: -50px;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,255,200,0.3) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        body::before { left: 10%; }
+        body::after { right: 10%; }
+
         .container {
             max-width: 1000px;
             margin: 0 auto;
-            background: white;
+            background: rgba(255, 255, 255, 0.97);
             border-radius: 25px;
             padding: 30px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4), inset 0 0 30px rgba(0,107,182,0.05);
+            border: 3px solid rgba(253,185,39,0.4);
+            position: relative;
+            z-index: 1;
         }
         
         .header {
@@ -62,27 +81,35 @@
         .stats-bar {
             display: flex;
             justify-content: space-around;
-            background: linear-gradient(135deg, #FDB927 0%, #006BB6 100%);
-            color: white;
+            align-items: center;
+            background: linear-gradient(180deg, #1a1a2e 0%, #0d1b2a 100%);
+            color: #FDB927;
             padding: 20px;
-            border-radius: 15px;
+            border-radius: 12px;
             margin-bottom: 30px;
             flex-wrap: wrap;
             gap: 15px;
+            border: 2px solid #333;
+            box-shadow: inset 0 2px 8px rgba(0,0,0,0.5), 0 0 15px rgba(253,185,39,0.1);
         }
-        
+
         .stat {
             text-align: center;
         }
-        
+
         .stat-label {
-            font-size: 0.9em;
-            opacity: 0.9;
+            font-size: 0.85em;
+            color: #aaa;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
-        
+
         .stat-value {
             font-size: 2em;
             font-weight: bold;
+            font-family: 'Courier New', 'Lucida Console', monospace;
+            text-shadow: 0 0 8px rgba(253,185,39,0.5);
+            color: #FFD700;
         }
         
         .level-selector {
@@ -94,32 +121,43 @@
         }
         
         .level-btn {
-            padding: 15px 30px;
+            padding: 16px 32px;
             border: 3px solid #006BB6;
-            background: white;
+            background: linear-gradient(180deg, #ffffff 0%, #f0f4ff 100%);
             color: #006BB6;
             border-radius: 15px;
             font-size: 1.2em;
             font-weight: bold;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.15s ease;
+            min-height: 52px;
+            box-shadow: 0 3px 0 #b0c4de, 0 4px 8px rgba(0,107,182,0.15);
         }
-        
+
         .level-btn:hover {
-            transform: scale(1.05);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 0 #b0c4de, 0 6px 12px rgba(0,107,182,0.25);
         }
-        
+
+        .level-btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 1px 0 #b0c4de;
+        }
+
         .level-btn.active {
-            background: #006BB6;
+            background: linear-gradient(180deg, #1e88e5 0%, #006BB6 100%);
             color: white;
+            border-color: #004a7c;
+            box-shadow: 0 3px 0 #004a7c, 0 4px 8px rgba(0,107,182,0.3);
         }
         
         .question-card {
-            background: #f8f9ff;
+            background: linear-gradient(135deg, #f0f4ff 0%, #e8f5e9 100%);
             border: 3px solid #006BB6;
             border-radius: 20px;
             padding: 30px;
             margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,107,182,0.15), inset 0 0 40px rgba(255,255,255,0.8);
         }
         
         .sport-icon {
@@ -169,54 +207,84 @@
         
         .btn {
             flex: 1;
-            padding: 15px 30px;
-            font-size: 1.2em;
+            padding: 18px 32px;
+            font-size: 1.3em;
             font-weight: bold;
             border: none;
             border-radius: 15px;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.15s ease;
             min-width: 150px;
+            min-height: 56px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+            position: relative;
         }
-        
+
         .btn-submit {
-            background: #10b981;
+            background: linear-gradient(180deg, #34d399 0%, #10b981 100%);
             color: white;
+            box-shadow: 0 4px 0 #059669, 0 6px 12px rgba(16,185,129,0.3);
         }
-        
+
         .btn-submit:hover {
-            background: #059669;
-            transform: scale(1.05);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 0 #047857, 0 8px 16px rgba(16,185,129,0.4);
         }
-        
+
+        .btn-submit:active {
+            transform: translateY(2px);
+            box-shadow: 0 1px 0 #059669, 0 2px 4px rgba(16,185,129,0.3);
+        }
+
         .btn-skip {
-            background: #f59e0b;
+            background: linear-gradient(180deg, #fbbf24 0%, #f59e0b 100%);
             color: white;
+            box-shadow: 0 4px 0 #d97706, 0 6px 12px rgba(245,158,11,0.3);
         }
-        
+
         .btn-skip:hover {
-            background: #d97706;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 0 #b45309, 0 8px 16px rgba(245,158,11,0.4);
         }
-        
+
+        .btn-skip:active {
+            transform: translateY(2px);
+            box-shadow: 0 1px 0 #d97706, 0 2px 4px rgba(245,158,11,0.3);
+        }
+
         .btn-next {
-            background: #006BB6;
+            background: linear-gradient(180deg, #3b82f6 0%, #006BB6 100%);
             color: white;
+            box-shadow: 0 4px 0 #005a94, 0 6px 12px rgba(0,107,182,0.3);
         }
-        
+
         .btn-next:hover {
-            background: #005a94;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 0 #004a7c, 0 8px 16px rgba(0,107,182,0.4);
         }
-        
+
+        .btn-next:active {
+            transform: translateY(2px);
+            box-shadow: 0 1px 0 #005a94, 0 2px 4px rgba(0,107,182,0.3);
+        }
+
         .btn-start {
-            background: #FDB927;
+            background: linear-gradient(180deg, #FFD700 0%, #FDB927 100%);
             color: #006BB6;
             font-size: 1.5em;
-            padding: 20px 40px;
+            padding: 22px 44px;
             margin-top: 20px;
+            box-shadow: 0 5px 0 #c4911e, 0 8px 16px rgba(253,185,39,0.4);
         }
-        
+
         .btn-start:hover {
-            background: #FFD700;
+            transform: translateY(-2px);
+            box-shadow: 0 7px 0 #c4911e, 0 10px 20px rgba(253,185,39,0.5);
+        }
+
+        .btn-start:active {
+            transform: translateY(3px);
+            box-shadow: 0 1px 0 #c4911e, 0 2px 4px rgba(253,185,39,0.3);
         }
         
         .feedback {
@@ -439,12 +507,106 @@
         }
 
         .btn-end {
-            background: #ef4444;
+            background: linear-gradient(180deg, #f87171 0%, #ef4444 100%);
             color: white;
+            box-shadow: 0 4px 0 #dc2626, 0 6px 12px rgba(239,68,68,0.3);
         }
 
         .btn-end:hover {
-            background: #dc2626;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 0 #b91c1c, 0 8px 16px rgba(239,68,68,0.4);
+        }
+
+        .btn-end:active {
+            transform: translateY(2px);
+            box-shadow: 0 1px 0 #dc2626, 0 2px 4px rgba(239,68,68,0.3);
+        }
+
+        /* Baseball Diamond Progress Bar */
+        .diamond-container {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 4px 0;
+        }
+
+        .baseball-diamond {
+            position: relative;
+            width: 70px;
+            height: 70px;
+        }
+
+        .diamond-field {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 40px;
+            height: 40px;
+            border: 2px solid rgba(255,255,255,0.3);
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
+
+        .base {
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            border: 2px solid rgba(255,255,255,0.4);
+            transition: all 0.3s ease;
+            z-index: 2;
+        }
+
+        .base-home {
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 3px;
+            width: 13px;
+            height: 13px;
+        }
+
+        .base-1st {
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .base-2nd {
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .base-3rd {
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .base.active {
+            background: #FFD700;
+            border-color: #FDB927;
+            box-shadow: 0 0 10px rgba(253,185,39,0.8), 0 0 20px rgba(253,185,39,0.4);
+        }
+
+        .runs-counter {
+            text-align: center;
+        }
+
+        .runs-label {
+            font-size: 0.75em;
+            color: #aaa;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .runs-value {
+            font-size: 1.8em;
+            font-weight: bold;
+            font-family: 'Courier New', 'Lucida Console', monospace;
+            color: #FFD700;
+            text-shadow: 0 0 8px rgba(253,185,39,0.5);
         }
 
         @media (max-width: 768px) {
@@ -470,6 +632,43 @@
 
             .topic-checkboxes {
                 grid-template-columns: 1fr;
+            }
+
+            .btn {
+                min-height: 56px;
+                font-size: 1.2em;
+                padding: 16px 24px;
+            }
+
+            .level-btn {
+                padding: 14px 24px;
+                font-size: 1.1em;
+                min-height: 52px;
+            }
+
+            .btn-start {
+                font-size: 1.3em;
+                padding: 18px 36px;
+            }
+
+            .baseball-diamond {
+                width: 60px;
+                height: 60px;
+            }
+
+            .diamond-field {
+                width: 34px;
+                height: 34px;
+            }
+
+            .base {
+                width: 12px;
+                height: 12px;
+            }
+
+            .base-home {
+                width: 11px;
+                height: 11px;
             }
 
             .container {
@@ -548,9 +747,18 @@
                 <div class="stat-label">Level</div>
                 <div class="stat-value" id="currentLevel">Rookie</div>
             </div>
-            <div class="stat">
-                <div class="stat-label">Questions</div>
-                <div class="stat-value"><span id="questionsAnswered">0</span>/<span id="totalQuestions">0</span></div>
+            <div class="diamond-container">
+                <div class="baseball-diamond">
+                    <div class="diamond-field"></div>
+                    <div class="base base-home active" id="baseHome"></div>
+                    <div class="base base-1st" id="base1st"></div>
+                    <div class="base base-2nd" id="base2nd"></div>
+                    <div class="base base-3rd" id="base3rd"></div>
+                </div>
+                <div class="runs-counter">
+                    <div class="runs-label">Runs</div>
+                    <div class="runs-value" id="runsScored">0</div>
+                </div>
             </div>
         </div>
         
@@ -656,6 +864,8 @@
         let playerName = '';
         let usedQuestions = { rookie: [], allstar: [], mvp: [] };
         let questionAnswered = false;
+        let correctInRun = 0;
+        let runsScored = 0;
         
         // Question Bank with Bay Area Teams
         const questions = {
@@ -3435,6 +3645,8 @@
             score = 0;
             streak = 0;
             questionsAnswered = 0;
+            correctInRun = 0;
+            runsScored = 0;
             usedQuestions = { rookie: [], allstar: [], mvp: [] };
             currentLevel = level;
             document.getElementById('startScreen').classList.add('hidden');
@@ -3442,6 +3654,7 @@
             updateLevelButtons();
             loadQuestion();
             updateStats();
+            updateDiamond();
         }
         
         function changeLevel(level) {
@@ -3529,7 +3742,15 @@
             if (isCorrect) {
                 score += getLevelPoints();
                 streak++;
-                
+
+                // Advance the runner around the bases
+                correctInRun++;
+                if (correctInRun >= 4) {
+                    correctInRun = 0;
+                    runsScored++;
+                }
+                updateDiamond();
+
                 feedback.className = 'feedback correct';
                 feedback.innerHTML = `
                     <div class="celebration">🎉</div>
@@ -3590,15 +3811,32 @@
         function updateStats() {
             document.getElementById('score').textContent = score;
             document.getElementById('streak').textContent = streak;
-            document.getElementById('questionsAnswered').textContent = questionsAnswered;
-            document.getElementById('totalQuestions').textContent = questionsAnswered;
-            
+
             const levelNames = {
                 'rookie': '🌟 Rookie',
                 'allstar': '⭐ All-Star',
                 'mvp': '🏆 MVP'
             };
             document.getElementById('currentLevel').textContent = levelNames[currentLevel];
+        }
+
+        function updateDiamond() {
+            document.getElementById('baseHome').classList.remove('active');
+            document.getElementById('base1st').classList.remove('active');
+            document.getElementById('base2nd').classList.remove('active');
+            document.getElementById('base3rd').classList.remove('active');
+
+            if (correctInRun === 0) {
+                document.getElementById('baseHome').classList.add('active');
+            } else if (correctInRun === 1) {
+                document.getElementById('base1st').classList.add('active');
+            } else if (correctInRun === 2) {
+                document.getElementById('base2nd').classList.add('active');
+            } else if (correctInRun === 3) {
+                document.getElementById('base3rd').classList.add('active');
+            }
+
+            document.getElementById('runsScored').textContent = runsScored;
         }
         
         // Firebase Realtime Database URL
