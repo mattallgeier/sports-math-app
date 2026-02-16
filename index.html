@@ -342,7 +342,68 @@
         .hidden {
             display: none;
         }
-        
+
+        /* Level-Up Celebration Overlay */
+        .level-up-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            animation: fadeIn 0.3s ease;
+        }
+        .level-up-overlay.hidden {
+            display: none;
+        }
+        .level-up-card {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            border: 4px solid #FFD700;
+            border-radius: 24px;
+            padding: 40px 50px;
+            text-align: center;
+            box-shadow: 0 0 60px rgba(255, 215, 0, 0.4), 0 0 120px rgba(255, 215, 0, 0.1);
+            animation: levelUpPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            max-width: 360px;
+            width: 90%;
+        }
+        .level-up-emoji {
+            font-size: 4em;
+            margin-bottom: 10px;
+            animation: bounce 0.6s infinite;
+        }
+        .level-up-title {
+            font-size: 2.2em;
+            font-weight: 900;
+            color: #FFD700;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            letter-spacing: 4px;
+            margin-bottom: 15px;
+        }
+        .level-up-level {
+            font-size: 1.6em;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+        .level-up-message {
+            font-size: 1.1em;
+            color: #a0c4ff;
+            font-style: italic;
+        }
+        @keyframes levelUpPop {
+            0% { transform: scale(0.3); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
         .start-screen {
             text-align: center;
             padding: 40px 20px;
@@ -807,24 +868,13 @@
                 </div>
             </div>
 
-            <div class="level-selector">
-                <button class="level-btn active" onclick="selectLevel('rookie')">🌟 Rookie</button>
-                <button class="level-btn" onclick="selectLevel('allstar')">⭐ All-Star</button>
-                <button class="level-btn" onclick="selectLevel('mvp')">🏆 MVP</button>
-            </div>
             <div style="text-align: center;">
-                <button class="btn btn-start" onclick="startGame(selectedStartLevel)">🏆 Start the Challenge!</button>
+                <button class="btn btn-start" onclick="startGame()">🏆 Start the Challenge!</button>
             </div>
         </div>
         
         <!-- Question Screen -->
         <div id="questionScreen" class="hidden">
-            <div class="level-selector">
-                <button class="level-btn" onclick="changeLevel(&#39;rookie&#39;)">🌟 Rookie</button>
-                <button class="level-btn" onclick="changeLevel(&#39;allstar&#39;)">⭐ All-Star</button>
-                <button class="level-btn" onclick="changeLevel(&#39;mvp&#39;)">🏆 MVP</button>
-            </div>
-            
             <div class="question-card">
                 <div class="sport-icon" id="sportIcon"></div>
                 <div class="question-text" id="questionText"></div>
@@ -851,7 +901,17 @@
             </div>
         </div>
     </div>
-    
+
+    <!-- Level-Up Celebration Overlay -->
+    <div id="levelUpOverlay" class="level-up-overlay hidden">
+        <div class="level-up-card">
+            <div class="level-up-emoji" id="levelUpEmoji">⬆️</div>
+            <div class="level-up-title">LEVEL UP!</div>
+            <div class="level-up-level" id="levelUpLevel"></div>
+            <div class="level-up-message" id="levelUpMessage"></div>
+        </div>
+    </div>
+
     <script>
         // Game State
         let score = 0;
@@ -860,12 +920,12 @@
         let currentLevel = 'rookie';
         let currentQuestion = null;
         let selectedTopics = ['geometry', 'word', 'fraction', 'multiplication', 'algebra', 'roman'];
-        let selectedStartLevel = 'rookie';
         let playerName = '';
-        let usedQuestions = { rookie: [], allstar: [], mvp: [] };
+        let usedQuestions = { rookie: [], veteran: [], allstar: [], mvp: [] };
         let questionAnswered = false;
         let correctInRun = 0;
         let runsScored = 0;
+        const levelOrder = ['rookie', 'veteran', 'allstar', 'mvp'];
         
         // Question Bank with Bay Area Teams
         const questions = {
@@ -1834,6 +1894,848 @@
                     hint: '6 ÷ 8 = 0.75',
                     funFact: 'Home ice advantage is a big deal in the NHL!'
                 }
+            ],
+
+            veteran: [
+                // Geometry - Veteran (17 questions)
+{
+    type: 'geometry',
+    sport: '🏀',
+    question: 'The Warriors want to put a new border around the rectangular court at Chase Center (94 ft × 50 ft). If the border material costs $3 per foot, what is the total cost?',
+    answer: 864,
+    hint: 'First find the perimeter: 2 × (94 + 50), then multiply by $3',
+    diagram: 'Rectangle: 94 ft × 50 ft, border = $3/ft',
+    funFact: 'Chase Center cost over $1.4 billion to build and opened in 2019!'
+},
+{
+    type: 'geometry',
+    sport: '🏈',
+    question: 'The 49ers end zone at Levi\'s Stadium is a rectangle 53⅓ yards wide and 10 yards deep. What is the area of one end zone? (Round to nearest whole number)',
+    answer: 533,
+    hint: 'Area = width × depth. 53.33 × 10',
+    diagram: 'Rectangle: 53⅓ yards × 10 yards',
+    funFact: 'Levi\'s Stadium in Santa Clara uses solar panels to help power the building!'
+},
+{
+    type: 'geometry',
+    sport: '⚾',
+    question: 'The pitcher\'s mound at Oracle Park is a circle with a radius of 9 feet. What is the area? Use π = 3.14. (Round to nearest whole number)',
+    answer: 254,
+    hint: 'Area of a circle = π × r². So 3.14 × 9 × 9',
+    diagram: 'Circle: radius = 9 ft',
+    funFact: 'The distance from the pitcher\'s mound to home plate is exactly 60 feet 6 inches!'
+},
+{
+    type: 'geometry',
+    sport: '🏒',
+    question: 'The Sharks\' ice rink at SAP Center is 200 feet long and 85 feet wide. If they need to resurface the ice, what is the total area in square feet?',
+    answer: 17000,
+    hint: 'Area = length × width',
+    diagram: 'Rectangle: 200 ft × 85 ft',
+    funFact: 'It takes about 10,600 gallons of water to create the ice surface at SAP Center!'
+},
+{
+    type: 'geometry',
+    sport: '⚽',
+    question: 'The Earthquakes want to paint a triangle logo on the field at PayPal Park. The triangle has a base of 12 yards and a height of 8 yards. What is the area?',
+    answer: 48,
+    hint: 'Area of a triangle = (base × height) ÷ 2',
+    diagram: 'Triangle: base = 12 yards, height = 8 yards',
+    funFact: 'PayPal Park holds about 18,000 fans and opened in 2015!'
+},
+{
+    type: 'geometry',
+    sport: '🏀',
+    question: 'The Warriors\' center circle on the court has a diameter of 12 feet. What is the circumference? Use π = 3.14. (Round to nearest tenth)',
+    answer: 37.7,
+    hint: 'Circumference = π × diameter. So 3.14 × 12',
+    diagram: 'Circle: diameter = 12 ft',
+    funFact: 'The center circle is where every basketball game begins with a tip-off!'
+},
+{
+    type: 'geometry',
+    sport: '🏈',
+    question: 'The Commanders want to cover their rectangular practice field (120 yards × 53 yards) with new turf that costs $2 per square yard. What is the total cost?',
+    answer: 12720,
+    hint: 'First find area: 120 × 53, then multiply by $2',
+    diagram: 'Rectangle: 120 yards × 53 yards, turf = $2/sq yard',
+    funFact: 'Northwest Stadium, home of the Commanders, can seat over 67,000 fans!'
+},
+{
+    type: 'geometry',
+    sport: '⚾',
+    question: 'Fenway Park\'s Green Monster is a rectangle that is 37 feet tall and 231 feet wide. What is its area in square feet?',
+    answer: 8547,
+    hint: 'Area = height × width',
+    diagram: 'Rectangle: 37 ft × 231 ft',
+    funFact: 'The Green Monster at Fenway Park is one of the most famous walls in all of sports!'
+},
+{
+    type: 'geometry',
+    sport: '🏒',
+    question: 'The Capitals want to paint a circular logo at center ice with a radius of 15 feet. What is the area? Use π = 3.14. (Round to nearest whole number)',
+    answer: 707,
+    hint: 'Area = π × r² = 3.14 × 15 × 15',
+    diagram: 'Circle: radius = 15 ft',
+    funFact: 'Alex Ovechkin holds the Capitals franchise record for goals scored by a huge margin!'
+},
+{
+    type: 'geometry',
+    sport: '⚽',
+    question: 'Inter Miami\'s penalty box is 44 yards wide and 18 yards deep. What is the perimeter of the penalty box?',
+    answer: 124,
+    hint: 'Perimeter = 2 × (length + width) = 2 × (44 + 18)',
+    diagram: 'Rectangle: 44 yards × 18 yards',
+    funFact: 'Lionel Messi joined Inter Miami in 2023 and immediately became the team\'s biggest star!'
+},
+{
+    type: 'geometry',
+    sport: '🏀',
+    question: 'The free throw lane at Chase Center is a rectangle 19 feet long and 16 feet wide. What is the area?',
+    answer: 304,
+    hint: 'Area = length × width',
+    diagram: 'Rectangle: 19 ft × 16 ft',
+    funFact: 'Stephen Curry has a free throw percentage of over 90% for his career!'
+},
+{
+    type: 'geometry',
+    sport: '🏈',
+    question: 'A triangular 49ers pennant flag has a base of 18 inches and a height of 36 inches. What is the area in square inches?',
+    answer: 324,
+    hint: 'Area of triangle = (base × height) ÷ 2 = (18 × 36) ÷ 2',
+    diagram: 'Triangle: base = 18 in, height = 36 in',
+    funFact: 'The 49ers got their name from the gold miners who came to California in 1849!'
+},
+{
+    type: 'geometry',
+    sport: '⚾',
+    question: 'A circular batting practice area at Oracle Park has a diameter of 20 feet. What is the circumference? Use π = 3.14.',
+    answer: 62.8,
+    hint: 'Circumference = π × diameter = 3.14 × 20',
+    diagram: 'Circle: diameter = 20 ft',
+    funFact: 'Oracle Park sits right on the San Francisco Bay — home runs can splash into the water!'
+},
+{
+    type: 'geometry',
+    sport: '🏒',
+    question: 'The Sharks\' goal crease is a half-circle with a radius of 6 feet. What is the area of the full circle it comes from? Use π = 3.14. (Round to nearest whole number)',
+    answer: 113,
+    hint: 'Area of full circle = π × r² = 3.14 × 6 × 6',
+    diagram: 'Circle: radius = 6 ft',
+    funFact: 'The Sharks mascot S.J. Sharkie once rappelled from the rafters of SAP Center!'
+},
+{
+    type: 'geometry',
+    sport: '⚽',
+    question: 'The Earthquakes\' field at PayPal Park is 115 yards long and 75 yards wide. What is the perimeter of the field?',
+    answer: 380,
+    hint: 'Perimeter = 2 × (length + width)',
+    diagram: 'Rectangle: 115 yards × 75 yards',
+    funFact: 'The San Jose Earthquakes have won the MLS Cup twice in their history!'
+},
+{
+    type: 'geometry',
+    sport: '🏈',
+    question: 'The Commanders\' rectangular jumbotron screen is 36 feet wide and 20 feet tall. What is the area of the screen?',
+    answer: 720,
+    hint: 'Area = width × height',
+    diagram: 'Rectangle: 36 ft × 20 ft',
+    funFact: 'Modern stadium jumbotrons can display over 16 million colors!'
+},
+{
+    type: 'geometry',
+    sport: '🏒',
+    question: 'The Capitals want to build a rectangular team store that is 25 feet long, 18 feet wide, and 10 feet tall. What is the volume?',
+    answer: 4500,
+    hint: 'Volume = length × width × height',
+    diagram: 'Rectangular prism: 25 ft × 18 ft × 10 ft',
+    funFact: 'Capital One Arena in Washington D.C. hosts over 200 events per year!'
+},
+// Word Problems - Veteran (17 questions)
+{
+    type: 'word',
+    sport: '🏀',
+    question: 'Stephen Curry scored 28 points in the first half and 14 points in the second half. Klay Thompson scored half as many total points as Curry. How many points did Klay score?',
+    answer: 21,
+    hint: 'First add Curry\'s points: 28 + 14, then divide by 2',
+    funFact: 'Curry and Thompson were nicknamed the Splash Brothers for their three-point shooting!'
+},
+{
+    type: 'word',
+    sport: '🏈',
+    question: 'Brock Purdy completed 22 passes for the 49ers. Each pass averaged 11 yards. George Kittle caught 6 of those passes. How many total passing yards did Purdy throw for?',
+    answer: 242,
+    hint: 'Total yards = total passes × average yards per pass',
+    funFact: 'Brock Purdy was the very last pick of the 2022 NFL Draft — pick number 262!'
+},
+{
+    type: 'word',
+    sport: '⚾',
+    question: 'The Giants sold 156 hot dogs in the first 3 innings and 244 hot dogs in the next 3 innings at Oracle Park. How many hot dogs per inning on average did they sell over all 6 innings? (Round to nearest whole number)',
+    answer: 67,
+    hint: 'Add total hot dogs (156 + 244), then divide by 6 innings',
+    funFact: 'Baseball fans eat an estimated 20 million hot dogs at major league games each season!'
+},
+{
+    type: 'word',
+    sport: '🏒',
+    question: 'Alex Ovechkin scored 3 goals in each of his last 4 games for the Capitals. He needs 50 goals for the season and already had 35 before those 4 games. Has he reached 50? If so, by how many?',
+    answer: 47,
+    hint: 'Goals in 4 games: 3 × 4 = 12. Total: 35 + 12',
+    funFact: 'Alex Ovechkin is chasing Wayne Gretzky\'s all-time NHL goal record of 894!'
+},
+{
+    type: 'word',
+    sport: '⚽',
+    question: 'Lionel Messi scored 5 goals in September and twice as many in October for Inter Miami. How many goals did he score in both months combined?',
+    answer: 15,
+    hint: 'October goals: 5 × 2 = 10. Total: 5 + 10',
+    funFact: 'Lionel Messi has won the Ballon d\'Or award for best player in the world a record 8 times!'
+},
+{
+    type: 'word',
+    sport: '🏀',
+    question: 'Draymond Green had 8 rebounds per game over 5 games and 12 assists per game over those same 5 games. How many total rebounds AND assists combined?',
+    answer: 100,
+    hint: 'Total rebounds: 8 × 5 = 40. Total assists: 12 × 5 = 60. Add them together.',
+    funFact: 'Draymond Green is one of the best defensive players in NBA history and a 4-time champion!'
+},
+{
+    type: 'word',
+    sport: '🏈',
+    question: 'Christian McCaffrey rushed for 95 yards and caught passes for 63 yards for the 49ers. The next week he rushed for 112 yards and caught for 41 yards. What were his total yards from scrimmage across both games?',
+    answer: 311,
+    hint: 'Add all four numbers: 95 + 63 + 112 + 41',
+    funFact: 'Christian McCaffrey can run, catch, and even throw — he\'s one of the most versatile players ever!'
+},
+{
+    type: 'word',
+    sport: '⚾',
+    question: 'The Red Sox scored 4 runs in each of the first 3 innings, then 0 runs in the next 4 innings, then 2 runs in the last 2 innings. How many total runs?',
+    answer: 16,
+    hint: 'First 3 innings: 4 × 3 = 12. Last 2 innings: 2 × 2 = 4. Total: 12 + 0 + 4',
+    funFact: 'Fenway Park, home of the Red Sox, is the oldest active ballpark in Major League Baseball!'
+},
+{
+    type: 'word',
+    sport: '🏒',
+    question: 'The Sharks sold 14,500 tickets for Friday\'s game and 16,200 tickets for Saturday\'s game at SAP Center. How many more tickets did they sell on Saturday?',
+    answer: 1700,
+    hint: 'Subtract: 16,200 - 14,500',
+    funFact: 'SAP Center can hold up to 17,562 fans for a hockey game!'
+},
+{
+    type: 'word',
+    sport: '⚽',
+    question: 'The Earthquakes won 14 games, lost 8 games, and drew 12 games at PayPal Park. If they get 3 points for a win, 0 for a loss, and 1 for a draw, how many total points?',
+    answer: 54,
+    hint: 'Points = (14 × 3) + (8 × 0) + (12 × 1)',
+    funFact: 'In soccer, the points system (3 for a win) was adopted to encourage attacking play!'
+},
+{
+    type: 'word',
+    sport: '🏈',
+    question: 'The Commanders gained 185 yards rushing and 230 yards passing in the first half. In the second half they gained 94 yards rushing and 175 yards passing. What were the total yards for the game?',
+    answer: 684,
+    hint: 'Add all four: 185 + 230 + 94 + 175',
+    funFact: 'The Commanders have three Super Bowl victories in their franchise history!'
+},
+{
+    type: 'word',
+    sport: '🏀',
+    question: 'The Warriors scored 108 points and their opponents scored 99 points. In the next game, the Warriors scored 115 and their opponents scored 121. What was the Warriors\' average score over the 2 games? (Round to nearest whole number)',
+    answer: 112,
+    hint: 'Warriors total: 108 + 115 = 223. Average: 223 ÷ 2',
+    funFact: 'The Warriors once scored 92 points in a single half — an NBA record!'
+},
+{
+    type: 'word',
+    sport: '⚾',
+    question: 'A Giants pitcher threw 87 pitches through 6 innings. If he throws at the same rate, how many pitches will he throw through 9 innings? (Round to nearest whole number)',
+    answer: 131,
+    hint: 'Pitches per inning: 87 ÷ 6 = 14.5. For 9 innings: 14.5 × 9',
+    funFact: 'Most pitchers try to stay under 100 pitches per game to protect their arm!'
+},
+{
+    type: 'word',
+    sport: '🏒',
+    question: 'The Capitals scored 2 goals in the 1st period, 0 in the 2nd period, and 3 in the 3rd period. If each goal is celebrated with 15 seconds of horn blasts, how many total seconds of horn blasts were there?',
+    answer: 75,
+    hint: 'Total goals: 2 + 0 + 3 = 5. Horn time: 5 × 15',
+    funFact: 'Every NHL team has their own unique goal horn sound that plays when they score!'
+},
+{
+    type: 'word',
+    sport: '⚽',
+    question: 'Lionel Messi ran an average of 6 miles per game for Inter Miami. Over a 5-game stretch, how many total miles did he run? If his teammate ran 80% of that distance, how many miles did the teammate run?',
+    answer: 24,
+    hint: 'Messi total: 6 × 5 = 30. Teammate: 30 × 0.8',
+    funFact: 'Soccer players typically run between 6 and 9 miles during a single match!'
+},
+{
+    type: 'word',
+    sport: '🏈',
+    question: 'George Kittle caught 7 passes for the 49ers. His longest catch was 45 yards and his shortest was 3 yards. The rest of his catches averaged 12 yards each. What were his total receiving yards?',
+    answer: 108,
+    hint: 'Kittle had 7 catches: 1 for 45, 1 for 3, and 5 averaging 12. Total: 45 + 3 + (5 × 12)',
+    funFact: 'George Kittle once set the single-season record for receiving yards by a tight end with 1,377!'
+},
+{
+    type: 'word',
+    sport: '⚾',
+    question: 'Red Sox tickets cost $45 for adults and $25 for kids. A family buys 2 adult tickets and 3 kid tickets. How much do they spend total?',
+    answer: 165,
+    hint: 'Adults: 2 × $45 = $90. Kids: 3 × $25 = $75. Total: $90 + $75',
+    funFact: 'Fenway Park is so popular that the Red Sox have sold out hundreds of consecutive games!'
+},
+// Fraction - Veteran (17 questions)
+{
+    type: 'fraction',
+    sport: '🏀',
+    question: 'Stephen Curry made 7 out of 12 three-pointers in the first half and 5 out of 8 in the second half for the Warriors. What fraction of ALL his three-pointers did he make? (Enter as decimal, round to nearest hundredth)',
+    answer: 0.6,
+    hint: 'Total made: 7 + 5 = 12. Total attempted: 12 + 8 = 20. Fraction: 12/20',
+    funFact: 'Steph Curry once made 402 three-pointers in a single season — an NBA record!'
+},
+{
+    type: 'fraction',
+    sport: '🏈',
+    question: 'Brock Purdy completed 18 out of 24 passes for the 49ers. What percentage did he complete? (Enter as decimal)',
+    answer: 75,
+    hint: '18 ÷ 24 = 0.75 = 75%',
+    funFact: 'A completion rate above 65% is considered excellent in the NFL!'
+},
+{
+    type: 'fraction',
+    sport: '⚾',
+    question: 'A Giants batter has a batting average of 0.325 (he gets a hit 325 out of every 1000 at-bats). Out of 40 at-bats, how many hits would you expect? (Enter as whole number)',
+    answer: 13,
+    hint: '0.325 × 40 = 13',
+    funFact: 'A .300 batting average is considered the mark of an elite hitter in baseball!'
+},
+{
+    type: 'fraction',
+    sport: '🏒',
+    question: 'The Sharks\' goalie saved 28 out of 32 shots in a game. What percentage of shots did he save? (Enter as decimal)',
+    answer: 87.5,
+    hint: '28 ÷ 32 = 0.875 = 87.5%',
+    funFact: 'An NHL goalie with a save percentage above .920 is considered very good!'
+},
+{
+    type: 'fraction',
+    sport: '⚽',
+    question: 'The Earthquakes won 3/8 of their home games and 1/4 of their away games in a 32-game season (16 home, 16 away). How many total wins? (Enter as whole number)',
+    answer: 10,
+    hint: 'Home wins: 3/8 × 16 = 6. Away wins: 1/4 × 16 = 4. Total: 6 + 4',
+    funFact: 'Home field advantage is real — MLS teams win about 49% of home games!'
+},
+{
+    type: 'fraction',
+    sport: '🏀',
+    question: 'Klay Thompson made 5/6 of his free throws in the first quarter and 3/4 in the second quarter. If he took 6 in the first and 4 in the second, how many free throws did he make total?',
+    answer: 8,
+    hint: 'First quarter: 5/6 × 6 = 5. Second quarter: 3/4 × 4 = 3. Total: 5 + 3',
+    funFact: 'Klay Thompson once scored 37 points in a single quarter — an NBA record!'
+},
+{
+    type: 'fraction',
+    sport: '🏈',
+    question: 'The 49ers have won 5 out of 8 Super Bowl appearances. What is their winning percentage? (Enter as decimal)',
+    answer: 62.5,
+    hint: '5 ÷ 8 = 0.625 = 62.5%',
+    funFact: 'The 49ers\' five Super Bowl wins came between 1982 and 1995!'
+},
+{
+    type: 'fraction',
+    sport: '⚾',
+    question: 'At Fenway Park, 3/5 of the crowd are Red Sox fans and 1/10 are fans of the visiting team. If there are 35,000 people, how many are Red Sox fans?',
+    answer: 21000,
+    hint: '3/5 × 35,000 = 21,000',
+    funFact: 'Fenway Park has a capacity of about 37,755 — one of the smallest in MLB!'
+},
+{
+    type: 'fraction',
+    sport: '🏒',
+    question: 'Alex Ovechkin scores on 1/8 of his shots. If he takes 48 shots in a month, how many goals would you expect?',
+    answer: 6,
+    hint: '1/8 × 48 = 6',
+    funFact: 'Ovechkin has scored 50+ goals in a season multiple times in his career!'
+},
+{
+    type: 'fraction',
+    sport: '⚽',
+    question: 'Lionel Messi completes 7/10 of his passes for Inter Miami. In a game with 60 passes, how many would he complete?',
+    answer: 42,
+    hint: '7/10 × 60 = 42',
+    funFact: 'Messi is known for his incredible ball control and passing accuracy!'
+},
+{
+    type: 'fraction',
+    sport: '🏀',
+    question: 'The Warriors won 2/3 of their games in November (18 games) and 3/4 of their games in December (16 games). How many total wins in both months?',
+    answer: 24,
+    hint: 'November: 2/3 × 18 = 12. December: 3/4 × 16 = 12. Total: 12 + 12',
+    funFact: 'The 2015-16 Warriors won 73 regular season games — the most in NBA history!'
+},
+{
+    type: 'fraction',
+    sport: '🏈',
+    question: 'The Commanders\' kicker made 7 out of 8 field goal attempts. What percentage did he make? (Enter as decimal)',
+    answer: 87.5,
+    hint: '7 ÷ 8 = 0.875 = 87.5%',
+    funFact: 'The longest field goal in NFL history is 66 yards, kicked by Justin Tucker in 2021!'
+},
+{
+    type: 'fraction',
+    sport: '⚾',
+    question: 'A Giants pitcher threw strikes on 2/3 of his 90 pitches. How many strikes did he throw?',
+    answer: 60,
+    hint: '2/3 × 90 = 60',
+    funFact: 'A typical strike zone is about 17 inches wide — the width of home plate!'
+},
+{
+    type: 'fraction',
+    sport: '🏒',
+    question: 'The Sharks won 5/12 of their first 36 games. How many games did they win?',
+    answer: 15,
+    hint: '5/12 × 36 = 15',
+    funFact: 'An NHL regular season is 82 games long — one of the longest in professional sports!'
+},
+{
+    type: 'fraction',
+    sport: '⚽',
+    question: 'At PayPal Park, 2/5 of the 18,000 seats are in the lower bowl. How many seats are in the lower bowl?',
+    answer: 7200,
+    hint: '2/5 × 18,000 = 7,200',
+    funFact: 'PayPal Park is one of the most intimate soccer stadiums in MLS!'
+},
+{
+    type: 'fraction',
+    sport: '🏒',
+    question: 'The Capitals\' power play converts 1/4 of the time. If they had 24 power plays this month, how many power play goals did they score?',
+    answer: 6,
+    hint: '1/4 × 24 = 6',
+    funFact: 'Alex Ovechkin is famous for his one-timer shot from the left circle on the power play!'
+},
+{
+    type: 'fraction',
+    sport: '🏈',
+    question: 'The 49ers ran the ball on 3/7 of their 56 plays and passed on the rest. How many passing plays did they have?',
+    answer: 32,
+    hint: 'Running plays: 3/7 × 56 = 24. Passing plays: 56 - 24 = 32',
+    funFact: 'The 49ers are known for their creative offensive schemes under coach Kyle Shanahan!'
+},
+// Multiplication - Veteran (17 questions)
+{
+    type: 'multiplication',
+    sport: '🏀',
+    question: 'The Warriors played 12 home games and averaged 18,064 fans per game at Chase Center. What was the total attendance for all 12 games?',
+    answer: 216768,
+    hint: '18,064 × 12',
+    funFact: 'Chase Center sells out almost every Warriors game — it holds 18,064 fans!'
+},
+{
+    type: 'multiplication',
+    sport: '🏈',
+    question: 'Levi\'s Stadium has 68 luxury suites. Each suite holds 16 people. If every suite is full, how many people are in the suites?',
+    answer: 1088,
+    hint: '68 × 16',
+    funFact: 'Levi\'s Stadium hosted Super Bowl 50 in 2016!'
+},
+{
+    type: 'multiplication',
+    sport: '⚾',
+    question: 'The Giants play 81 home games per season at Oracle Park. If they sell an average of 35,000 tickets per game, what is the total home attendance?',
+    answer: 2835000,
+    hint: '81 × 35,000',
+    funFact: 'Oracle Park has a giant baseball glove sculpture made of steel that fans love to visit!'
+},
+{
+    type: 'multiplication',
+    sport: '🏒',
+    question: 'The Sharks have 23 players on their roster. Each player uses 4 sticks per week. How many sticks does the team go through in 6 weeks?',
+    answer: 552,
+    hint: 'Sticks per week: 23 × 4 = 92. For 6 weeks: 92 × 6',
+    funFact: 'NHL players can break multiple sticks per game — they go through about 250 sticks per season!'
+},
+{
+    type: 'multiplication',
+    sport: '⚽',
+    question: 'Lionel Messi\'s Inter Miami jersey costs $125. If the team store sold 350 Messi jerseys in one week, how much money did they make?',
+    answer: 43750,
+    hint: '125 × 350',
+    funFact: 'Messi\'s jersey was the best-selling MLS jersey within 24 hours of his signing!'
+},
+{
+    type: 'multiplication',
+    sport: '🏀',
+    question: 'Stephen Curry makes about 42% of his three-pointers. If he attempts 250 threes in a stretch, about how many does he make? (Round to nearest whole number)',
+    answer: 105,
+    hint: '250 × 0.42 = 105',
+    funFact: 'Curry holds the record for most three-pointers in NBA history with over 3,700!'
+},
+{
+    type: 'multiplication',
+    sport: '🏈',
+    question: 'The Commanders\' stadium serves 15 different food items. Each item requires 25 pounds of ingredients per game. How many total pounds of food ingredients are needed for 8 home games?',
+    answer: 3000,
+    hint: 'Per game: 15 × 25 = 375. For 8 games: 375 × 8',
+    funFact: 'NFL stadiums serve an estimated 1.25 million hot dogs over a season!'
+},
+{
+    type: 'multiplication',
+    sport: '⚾',
+    question: 'Red Sox pitchers throw an average of 145 pitches per game. Over a 3-game series, how many total pitches do the Red Sox pitchers throw?',
+    answer: 435,
+    hint: '145 × 3 = 435',
+    funFact: 'The fastest pitch ever recorded in MLB was 105.1 mph by Aroldis Chapman!'
+},
+{
+    type: 'multiplication',
+    sport: '🏒',
+    question: 'Alex Ovechkin\'s slapshot travels about 95 miles per hour. If he took 14 slapshots in a game for the Capitals, and each one traveled 95 feet before being stopped, what is the total distance in feet of all slapshots?',
+    answer: 1330,
+    hint: '14 × 95 = 1,330',
+    funFact: 'Ovechkin\'s slapshot is one of the hardest in the NHL — it has been clocked over 100 mph!'
+},
+{
+    type: 'multiplication',
+    sport: '⚽',
+    question: 'PayPal Park sells 1,250 scarves per match for the Earthquakes. If scarves cost $18 each, how much scarf revenue is earned per match?',
+    answer: 22500,
+    hint: '1,250 × 18 = 22,500',
+    funFact: 'Soccer fans around the world hold up scarves before matches as a tradition called a scarf wall!'
+},
+{
+    type: 'multiplication',
+    sport: '🏀',
+    question: 'Draymond Green averages 7 assists per game. The Warriors play 82 regular season games. About how many assists would Draymond have for the full season?',
+    answer: 574,
+    hint: '7 × 82 = 574',
+    funFact: 'Draymond Green is known as one of the smartest passers for a power forward in NBA history!'
+},
+{
+    type: 'multiplication',
+    sport: '🏈',
+    question: 'Each 49ers game uses 12 new footballs. If there are 17 regular season games, how many footballs are used in a season?',
+    answer: 204,
+    hint: '12 × 17 = 204',
+    funFact: 'Each NFL football is handmade from cowhide leather at a factory in Ada, Ohio!'
+},
+{
+    type: 'multiplication',
+    sport: '⚾',
+    question: 'The Giants\' concession stand sells popcorn for $8.50 a bag. They sold 240 bags during one game. How much popcorn revenue was that? (Enter as whole number)',
+    answer: 2040,
+    hint: '8.50 × 240 = 2,040',
+    funFact: 'Americans eat about 1.2 billion pounds of popcorn every year — a lot of it at ballparks!'
+},
+{
+    type: 'multiplication',
+    sport: '🏒',
+    question: 'The Sharks\' arena uses 450 pounds of ice resurfacing water per Zamboni run. If the Zamboni runs 6 times during a game, how many total pounds of water?',
+    answer: 2700,
+    hint: '450 × 6 = 2,700',
+    funFact: 'A Zamboni can resurface an entire ice rink in about 7 minutes!'
+},
+{
+    type: 'multiplication',
+    sport: '⚽',
+    question: 'Inter Miami plays 34 regular season games. If average attendance is 21,550 per game, what is the total season attendance?',
+    answer: 732700,
+    hint: '34 × 21,550',
+    funFact: 'Inter Miami\'s attendance skyrocketed after Lionel Messi joined the team!'
+},
+{
+    type: 'multiplication',
+    sport: '🏈',
+    question: 'The Commanders\' cheerleading squad has 36 members. Each member practices 14 hours per week. What is the total team practice hours per week?',
+    answer: 504,
+    hint: '36 × 14 = 504',
+    funFact: 'NFL cheerleaders are incredible athletes who train year-round for performances!'
+},
+{
+    type: 'multiplication',
+    sport: '⚾',
+    question: 'Fenway Park\'s Green Monster has 13 rows of seats on top of it. Each row holds 19 fans. How many total fans can sit atop the Green Monster?',
+    answer: 247,
+    hint: '13 × 19 = 247',
+    funFact: 'The Green Monster seats at Fenway Park are some of the most popular and expensive in baseball!'
+},
+// Algebra - Veteran (17 questions)
+{
+    type: 'algebra',
+    sport: '🏀',
+    question: 'Stephen Curry scored x points in the first half and 2x points in the second half for a total of 36 points. What is x? (x + 2x = 36)',
+    answer: 12,
+    hint: '3x = 36, so x = 36 ÷ 3 = 12',
+    funFact: 'Curry once scored 62 points in a single game against the Portland Trail Blazers!'
+},
+{
+    type: 'algebra',
+    sport: '🏈',
+    question: 'The 49ers scored 3 touchdowns worth (6 + x) points each (touchdown + extra point attempt) for a total of 21 points. What is x? 3 × (6 + x) = 21',
+    answer: 1,
+    hint: '6 + x = 21 ÷ 3 = 7, so x = 1',
+    funFact: 'An extra point kick after a touchdown is worth 1 point and is made over 90% of the time!'
+},
+{
+    type: 'algebra',
+    sport: '⚾',
+    question: 'A Giants player\'s batting average went up by x points each month for 4 months, starting at .250 and ending at .330. What is x? (Enter as whole number representing thousandths: .250 + 4x = .330)',
+    answer: 20,
+    hint: '4x = .330 - .250 = .080. x = .080 ÷ 4 = .020, which is 20 thousandths',
+    funFact: 'Ted Williams was the last player to hit over .400 in a season — he hit .406 in 1941!'
+},
+{
+    type: 'algebra',
+    sport: '🏒',
+    question: 'The Sharks scored x goals in each of 5 games and 2x goals in the 6th game for 28 total goals. What is x? (5x + 2x = 28)',
+    answer: 4,
+    hint: '7x = 28, so x = 4',
+    funFact: 'The most goals scored in a single NHL game by one team is 16 — set way back in 1920!'
+},
+{
+    type: 'algebra',
+    sport: '⚽',
+    question: 'The Earthquakes need to sell x tickets at $30 each to earn $5,400. How many tickets is x? (30x = 5400)',
+    answer: 180,
+    hint: 'x = 5,400 ÷ 30 = 180',
+    funFact: 'MLS average attendance has grown to over 22,000 fans per game!'
+},
+{
+    type: 'algebra',
+    sport: '🏀',
+    question: 'Klay Thompson made x three-pointers worth 3 points each and 4 free throws worth 1 point each for 25 total points. How many three-pointers? (3x + 4 = 25)',
+    answer: 7,
+    hint: '3x = 25 - 4 = 21. x = 21 ÷ 3 = 7',
+    funFact: 'Klay Thompson once made 14 three-pointers in a single game — an NBA record at the time!'
+},
+{
+    type: 'algebra',
+    sport: '🏈',
+    question: 'The Commanders gained x yards on their first drive and (x + 15) yards on their second drive for a total of 95 yards. What is x? (x + x + 15 = 95)',
+    answer: 40,
+    hint: '2x + 15 = 95. 2x = 80. x = 40',
+    funFact: 'An NFL drive that goes 80+ yards for a touchdown is called a "long drive" and takes great teamwork!'
+},
+{
+    type: 'algebra',
+    sport: '⚾',
+    question: 'A Red Sox pitcher struck out x batters and walked (x - 4) batters. The total of strikeouts and walks was 16. What is x? (x + x - 4 = 16)',
+    answer: 10,
+    hint: '2x - 4 = 16. 2x = 20. x = 10',
+    funFact: 'The record for most strikeouts in a 9-inning game is 20, done by several pitchers!'
+},
+{
+    type: 'algebra',
+    sport: '🏒',
+    question: 'Alex Ovechkin scored x goals and (x + 3) assists for 21 total points for the Capitals. How many goals (x)? (x + x + 3 = 21)',
+    answer: 9,
+    hint: '2x + 3 = 21. 2x = 18. x = 9',
+    funFact: 'In hockey, a point is earned for either a goal or an assist!'
+},
+{
+    type: 'algebra',
+    sport: '⚽',
+    question: 'Messi scored twice as many goals as assists for Inter Miami. If goals + assists = 18, and goals = 2 × assists, how many goals? (Let assists = x, so 2x + x = 18)',
+    answer: 12,
+    hint: '3x = 18, x = 6 assists. Goals = 2 × 6 = 12',
+    funFact: 'Messi is known not just for scoring goals but also for being an amazing playmaker!'
+},
+{
+    type: 'algebra',
+    sport: '🏀',
+    question: 'The Warriors\' arena sells a combo meal for $x. If 5 combo meals cost $62.50, what is the price of one combo meal? (5x = 62.50)',
+    answer: 12.5,
+    hint: 'x = 62.50 ÷ 5 = 12.50',
+    funFact: 'Food at NBA arenas is famously expensive — a simple hot dog can cost over $8!'
+},
+{
+    type: 'algebra',
+    sport: '🏈',
+    question: 'Brock Purdy threw for x yards in each of his first 3 games and (x + 50) yards in his 4th game for a total of 1,150 yards. What is x? (3x + x + 50 = 1150)',
+    answer: 275,
+    hint: '4x + 50 = 1,150. 4x = 1,100. x = 275',
+    funFact: 'Purdy led the 49ers to the NFC Championship game in his first season as a starter!'
+},
+{
+    type: 'algebra',
+    sport: '⚾',
+    question: 'Oracle Park sold x regular seats at $40 each and 200 premium seats at $85 each for $37,000 total. How many regular seats? (40x + 17000 = 37000)',
+    answer: 500,
+    hint: 'Premium revenue: 200 × 85 = 17,000. Regular revenue: 37,000 - 17,000 = 20,000. x = 20,000 ÷ 40',
+    funFact: 'Oracle Park is considered one of the most beautiful ballparks in America!'
+},
+{
+    type: 'algebra',
+    sport: '🏒',
+    question: 'The Sharks need to win x more games. They have 29 wins and need 40 to make the playoffs. What is x? (29 + x = 40)',
+    answer: 11,
+    hint: 'x = 40 - 29 = 11',
+    funFact: 'Making the NHL playoffs requires consistent play over an 82-game season!'
+},
+{
+    type: 'algebra',
+    sport: '⚽',
+    question: 'The Earthquakes scored x goals in home games and half that many (x/2) in away games for 18 total goals. How many home goals? (x + x/2 = 18)',
+    answer: 12,
+    hint: '3x/2 = 18. x = 18 × 2/3 = 12',
+    funFact: 'Home field advantage in soccer is one of the strongest in all major sports!'
+},
+{
+    type: 'algebra',
+    sport: '🏈',
+    question: 'The 49ers\' defense allowed x points per game. Over 4 games they allowed 76 total points. What is x? (4x = 76)',
+    answer: 19,
+    hint: 'x = 76 ÷ 4 = 19',
+    funFact: 'The 49ers have historically been known for having one of the best defenses in the NFL!'
+},
+{
+    type: 'algebra',
+    sport: '🏒',
+    question: 'Capitals tickets cost $x for lower bowl and $(x - 25) for upper bowl. If a lower bowl ticket is $75, what does an upper bowl ticket cost? (x - 25 = ?)',
+    answer: 50,
+    hint: 'x = 75, so upper bowl = 75 - 25 = 50',
+    funFact: 'Capital One Arena is located in the heart of Washington D.C.\'s Chinatown neighborhood!'
+},
+// Roman Numerals - Veteran (17 questions)
+{
+    type: 'roman',
+    sport: '🏈',
+    question: 'Super Bowl XLII was a famous upset. What number is XLII? (Answer in regular numbers)',
+    answer: 42,
+    hint: 'XL = 40, II = 2. So XLII = 42',
+    funFact: 'Super Bowl XLII is famous for the New York Giants upsetting the undefeated New England Patriots!'
+},
+{
+    type: 'roman',
+    sport: '🏈',
+    question: 'What is XIV + XXIII? (Answer in regular numbers)',
+    answer: 37,
+    hint: 'XIV = 14, XXIII = 23. 14 + 23 = 37',
+    funFact: 'The Super Bowl has used Roman numerals since Super Bowl V in 1971!'
+},
+{
+    type: 'roman',
+    sport: '🏀',
+    question: 'The Warriors have won VII NBA championships. What number is VII?',
+    answer: 7,
+    hint: 'V = 5, II = 2. VII = 7',
+    funFact: 'The Warriors won championships in 2015, 2017, 2018, and 2022 in the modern era!'
+},
+{
+    type: 'roman',
+    sport: '🏈',
+    question: 'Super Bowl LVIII was played in 2024. What number is LVIII? (Answer in regular numbers)',
+    answer: 58,
+    hint: 'L = 50, V = 5, III = 3. LVIII = 58',
+    funFact: 'Super Bowl LVIII was held in Las Vegas — the first Super Bowl ever held there!'
+},
+{
+    type: 'roman',
+    sport: '⚾',
+    question: 'If the Giants won their first World Series in MCMV (1905), what does the Roman numeral C represent?',
+    answer: 100,
+    hint: 'M = 1000, C = ?, M = 1000... Think about what makes MCMV = 1905',
+    funFact: 'The Giants won their first World Series when they were still based in New York City!'
+},
+{
+    type: 'roman',
+    sport: '🏒',
+    question: 'Alex Ovechkin wore jersey number VIII for the Capitals. What is XIX + VIII? (Answer in regular numbers)',
+    answer: 27,
+    hint: 'XIX = 19, VIII = 8. 19 + 8 = 27',
+    funFact: 'Ovechkin actually wears number 8, and he has worn it his entire NHL career!'
+},
+{
+    type: 'roman',
+    sport: '⚽',
+    question: 'Messi wears jersey number X for Inter Miami. What is X × IV? (Answer in regular numbers)',
+    answer: 40,
+    hint: 'X = 10, IV = 4. 10 × 4 = 40',
+    funFact: 'The number 10 jersey in soccer is traditionally worn by the team\'s best playmaker!'
+},
+{
+    type: 'roman',
+    sport: '🏈',
+    question: 'The 49ers won Super Bowl XXIX. What number is XXIX? (Answer in regular numbers)',
+    answer: 29,
+    hint: 'XX = 20, IX = 9. XXIX = 29',
+    funFact: 'Steve Young threw 6 touchdown passes in Super Bowl XXIX — still a record!'
+},
+{
+    type: 'roman',
+    sport: '🏀',
+    question: 'What is XXXV - XII? (Answer in regular numbers)',
+    answer: 23,
+    hint: 'XXXV = 35, XII = 12. 35 - 12 = 23',
+    funFact: 'The number 23 is one of the most famous jersey numbers in basketball, worn by Michael Jordan!'
+},
+{
+    type: 'roman',
+    sport: '🏈',
+    question: 'The Commanders won Super Bowls XVII, XXII, and XXVI. What is XVII + XXII? (Answer in regular numbers)',
+    answer: 39,
+    hint: 'XVII = 17, XXII = 22. 17 + 22 = 39',
+    funFact: 'The Commanders won three Super Bowls between 1983 and 1992!'
+},
+{
+    type: 'roman',
+    sport: '⚾',
+    question: 'What is XLIV - XVI? (Answer in regular numbers)',
+    answer: 28,
+    hint: 'XLIV = 44, XVI = 16. 44 - 16 = 28',
+    funFact: 'Buster Posey wore number 28 for the San Francisco Giants throughout his career!'
+},
+{
+    type: 'roman',
+    sport: '🏒',
+    question: 'If a Sharks game lasts LX minutes of regulation time, what is LX? (Answer in regular numbers)',
+    answer: 60,
+    hint: 'L = 50, X = 10. LX = 60',
+    funFact: 'An NHL game has 3 periods of 20 minutes each, totaling 60 minutes of regulation play!'
+},
+{
+    type: 'roman',
+    sport: '⚽',
+    question: 'A soccer match is XC minutes long. What number is XC? (Answer in regular numbers)',
+    answer: 90,
+    hint: 'XC = 100 - 10 = 90',
+    funFact: 'A regulation soccer match is 90 minutes plus stoppage time added by the referee!'
+},
+{
+    type: 'roman',
+    sport: '🏈',
+    question: 'What is XXXIII + XXVII? (Answer in regular numbers)',
+    answer: 60,
+    hint: 'XXXIII = 33, XXVII = 27. 33 + 27 = 60',
+    funFact: 'An NFL game clock runs for 60 minutes total, split into four 15-minute quarters!'
+},
+{
+    type: 'roman',
+    sport: '🏀',
+    question: 'An NBA game has XLVIII minutes of regulation time. What is XLVIII? (Answer in regular numbers)',
+    answer: 48,
+    hint: 'XL = 40, VIII = 8. XLVIII = 48',
+    funFact: 'NBA games have 4 quarters of 12 minutes each, making 48 minutes of game time!'
+},
+{
+    type: 'roman',
+    sport: '⚾',
+    question: 'What is LXXI - XXIV? (Answer in regular numbers)',
+    answer: 47,
+    hint: 'LXXI = 71, XXIV = 24. 71 - 24 = 47',
+    funFact: 'The Red Sox retired 11 jersey numbers to honor their greatest players!'
+},
+{
+    type: 'roman',
+    sport: '🏒',
+    question: 'The Capitals play LXXXII games in a regular season. What is LXXXII? (Answer in regular numbers)',
+    answer: 82,
+    hint: 'L = 50, XXX = 30, II = 2. LXXXII = 82',
+    funFact: 'The NHL regular season runs from October to April — it is one of the longest seasons in pro sports!'
+}
             ],
 
             allstar: [
@@ -3609,18 +4511,6 @@
             'The Capitals won their first Stanley Cup in 2018 after 44 years of trying!'
         ];
         
-        function selectLevel(level) {
-            selectedStartLevel = level;
-            const buttons = document.querySelectorAll('#startScreen .level-btn');
-            buttons.forEach(btn => {
-                btn.classList.remove('active');
-                const levelText = btn.textContent.toLowerCase();
-                if (levelText.includes(level) || (level === 'allstar' && levelText.includes('all-star'))) {
-                    btn.classList.add('active');
-                }
-            });
-        }
-
         function getSelectedTopics() {
             selectedTopics = [];
             const checkboxes = document.querySelectorAll('.topic-checkbox input[type="checkbox"]:checked');
@@ -3630,7 +4520,7 @@
             return selectedTopics;
         }
         
-        function startGame(level) {
+        function startGame() {
             playerName = document.getElementById('playerName').value.trim();
             if (!playerName) {
                 alert('Please enter your name first!');
@@ -3647,31 +4537,13 @@
             questionsAnswered = 0;
             correctInRun = 0;
             runsScored = 0;
-            usedQuestions = { rookie: [], allstar: [], mvp: [] };
-            currentLevel = level;
+            usedQuestions = { rookie: [], veteran: [], allstar: [], mvp: [] };
+            currentLevel = 'rookie';
             document.getElementById('startScreen').classList.add('hidden');
             document.getElementById('questionScreen').classList.remove('hidden');
-            updateLevelButtons();
             loadQuestion();
             updateStats();
             updateDiamond();
-        }
-        
-        function changeLevel(level) {
-            currentLevel = level;
-            updateLevelButtons();
-            loadQuestion();
-        }
-        
-        function updateLevelButtons() {
-            const buttons = document.querySelectorAll('.level-btn');
-            buttons.forEach(btn => {
-                btn.classList.remove('active');
-                const levelText = btn.textContent.toLowerCase();
-                if (levelText.includes(currentLevel)) {
-                    btn.classList.add('active');
-                }
-            });
         }
         
         function loadQuestion() {
@@ -3748,6 +4620,15 @@
                 if (correctInRun >= 4) {
                     correctInRun = 0;
                     runsScored++;
+                    // Auto level-up: advance to next level if not already MVP
+                    const currentIdx = levelOrder.indexOf(currentLevel);
+                    if (currentIdx < levelOrder.length - 1) {
+                        const nextLevel = levelOrder[currentIdx + 1];
+                        currentLevel = nextLevel;
+                        updateStats();
+                        // Show level-up celebration after a brief delay
+                        setTimeout(() => showLevelUp(nextLevel), 500);
+                    }
                 }
                 updateDiamond();
 
@@ -3809,22 +4690,24 @@
         function getLevelPoints() {
             const points = {
                 'rookie': 10,
+                'veteran': 15,
                 'allstar': 20,
                 'mvp': 30
             };
             return points[currentLevel] + (streak * 5);
         }
-        
+
         function getRandomFunFact() {
             return funFacts[Math.floor(Math.random() * funFacts.length)];
         }
-        
+
         function updateStats() {
             document.getElementById('score').textContent = score;
             document.getElementById('streak').textContent = streak;
 
             const levelNames = {
                 'rookie': '🌟 Rookie',
+                'veteran': '💪 Veteran',
                 'allstar': '⭐ All-Star',
                 'mvp': '🏆 MVP'
             };
@@ -3849,7 +4732,32 @@
 
             document.getElementById('runsScored').textContent = runsScored;
         }
-        
+
+        function showLevelUp(newLevel) {
+            const levelInfo = {
+                'veteran': { emoji: '💪🔥', name: '💪 Veteran', message: "You're getting warmed up!" },
+                'allstar': { emoji: '⭐🌟', name: '⭐ All-Star', message: "You're an All-Star now!" },
+                'mvp': { emoji: '🏆👑', name: '🏆 MVP', message: "MVP mode unlocked! You're unstoppable!" }
+            };
+            const info = levelInfo[newLevel];
+            if (!info) return;
+
+            document.getElementById('levelUpEmoji').textContent = info.emoji;
+            document.getElementById('levelUpLevel').textContent = info.name;
+            document.getElementById('levelUpMessage').textContent = info.message;
+
+            const overlay = document.getElementById('levelUpOverlay');
+            overlay.classList.remove('hidden');
+
+            // Auto-dismiss after 2.5 seconds, or click to dismiss
+            const dismiss = () => {
+                overlay.classList.add('hidden');
+                overlay.removeEventListener('click', dismiss);
+            };
+            overlay.addEventListener('click', dismiss);
+            setTimeout(dismiss, 2500);
+        }
+
         // Firebase Realtime Database URL
         const FIREBASE_DB_URL = 'https://reids-math-goat-default-rtdb.firebaseio.com';
 
