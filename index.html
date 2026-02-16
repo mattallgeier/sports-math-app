@@ -3751,10 +3751,21 @@
                 }
                 updateDiamond();
 
+                // Sport-specific celebration
+                const sportReactions = {
+                    '🏈': { emoji: '🏈💨', phrases: ['First Down!', 'Touchdown!', 'Big Gain!', 'Moving the Chains!'] },
+                    '⚾': { emoji: '⚾💥', phrases: ['Base Hit!', 'Line Drive!', 'Outta Here!', 'Crushed It!'] },
+                    '🏀': { emoji: '🏀🔥', phrases: ['Swish!', 'Nothing But Net!', 'Splash!', 'From Downtown!'] },
+                    '🏒': { emoji: '🏒🚨', phrases: ['Goal!', 'He Scores!', 'Top Shelf!', 'Bar Down!'] },
+                    '⚽': { emoji: '⚽🥅', phrases: ['Goooal!', 'Back of the Net!', 'What a Strike!', 'Clinical Finish!'] }
+                };
+                const reaction = sportReactions[currentQuestion.sport] || { emoji: '🎉', phrases: ['Correct!'] };
+                const phrase = reaction.phrases[Math.floor(Math.random() * reaction.phrases.length)];
+
                 feedback.className = 'feedback correct';
                 feedback.innerHTML = `
-                    <div class="celebration">🎉</div>
-                    <div>Correct! You're a GOAT!</div>
+                    <div class="celebration">${reaction.emoji}</div>
+                    <div>${phrase}</div>
                     <div style="font-size: 0.9em; margin-top: 10px;">+${getLevelPoints()} points</div>
                 `;
                 
