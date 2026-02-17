@@ -834,7 +834,7 @@
             </div>
 
             <div id="leaderboardSection" class="leaderboard-section">
-                <h3>🏆 All-Time Leaderboard</h3>
+                <h3>🏆 All-Time GOAT Leaderboard</h3>
                 <div id="leaderboardContent"></div>
             </div>
 
@@ -842,24 +842,32 @@
                 <h3>📚 Choose Your Math Topics:</h3>
                 <div class="topic-checkboxes">
                     <div class="topic-checkbox">
-                        <input type="checkbox" id="geometry" value="geometry" checked="">
-                        <label for="geometry">📐 Geometry</label>
-                    </div>
-                    <div class="topic-checkbox">
-                        <input type="checkbox" id="word" value="word" checked="">
-                        <label for="word">📊 Sports Stats</label>
-                    </div>
-                    <div class="topic-checkbox">
-                        <input type="checkbox" id="fraction" value="fraction" checked="">
-                        <label for="fraction">🍕 Fractions &amp; %</label>
+                        <input type="checkbox" id="addition" value="addition" checked="">
+                        <label for="addition">➕ Addition &amp; Subtraction</label>
                     </div>
                     <div class="topic-checkbox">
                         <input type="checkbox" id="multiplication" value="multiplication" checked="">
                         <label for="multiplication">✖️ Multiplication</label>
                     </div>
                     <div class="topic-checkbox">
+                        <input type="checkbox" id="division" value="division" checked="">
+                        <label for="division">➗ Division</label>
+                    </div>
+                    <div class="topic-checkbox">
+                        <input type="checkbox" id="geometry" value="geometry" checked="">
+                        <label for="geometry">📐 Geometry</label>
+                    </div>
+                    <div class="topic-checkbox">
                         <input type="checkbox" id="algebra" value="algebra" checked="">
                         <label for="algebra">📝 Algebra</label>
+                    </div>
+                    <div class="topic-checkbox">
+                        <input type="checkbox" id="fractions" value="fractions" checked="">
+                        <label for="fractions">🍕 Fractions</label>
+                    </div>
+                    <div class="topic-checkbox">
+                        <input type="checkbox" id="percentages" value="percentages" checked="">
+                        <label for="percentages">📊 Percentages &amp; Ratios</label>
                     </div>
                     <div class="topic-checkbox">
                         <input type="checkbox" id="roman" value="roman" checked="">
@@ -919,7 +927,7 @@
         let questionsAnswered = 0;
         let currentLevel = 'rookie';
         let currentQuestion = null;
-        let selectedTopics = ['geometry', 'word', 'fraction', 'multiplication', 'algebra', 'roman'];
+        let selectedTopics = ['addition', 'multiplication', 'division', 'geometry', 'algebra', 'fractions', 'percentages', 'roman'];
         let playerName = '';
         let usedQuestions = { rookie: [], veteran: [], allstar: [], mvp: [] };
         let questionAnswered = false;
@@ -951,14 +959,14 @@
                 },
                 // Word Problems - Rookie
                 {
-                    type: 'word',
+                    type: 'addition',
                     sport: '⚾',
                     question: 'Buster Posey hit 2 home runs in the first game, 1 home run in the second game, and 3 home runs in the third game for the Giants. How many total home runs did he hit?',
                     answer: 6,
                     funFact: 'Buster Posey helped the Giants win 3 World Series championships!'
                 },
                 {
-                    type: 'word',
+                    type: 'addition',
                     sport: '🏈',
                     question: 'The 49ers scored 3 touchdowns (6 points each) and 2 field goals (3 points each). How many total points did they score?',
                     answer: 24,
@@ -966,7 +974,7 @@
                 },
                 // Fractions - Rookie
                 {
-                    type: 'fraction',
+                    type: 'fractions',
                     sport: '🏀',
                     question: 'Steph Curry made 8 out of 10 three-point shots at practice. What fraction did he make? (Enter as decimal: 0.8)',
                     answer: 0.8,
@@ -974,7 +982,7 @@
                     funFact: 'Steph Curry is the all-time leader in three-pointers made!'
                 },
                 {
-                    type: 'fraction',
+                    type: 'fractions',
                     sport: '🏒',
                     question: 'The Sharks won 9 out of 15 games this month. What percentage of games did they win? (Round to nearest whole number)',
                     answer: 60,
@@ -998,7 +1006,7 @@
                 },
                 // Washington Commanders - Rookie
                 {
-                    type: 'word',
+                    type: 'addition',
                     sport: '🏈',
                     question: 'Jayden Daniels threw for 2 touchdowns (6 points each), ran for 1 touchdown (6 points), and the Commanders kicked 1 field goal (3 points). How many total points?',
                     answer: 21,
@@ -1013,7 +1021,7 @@
                 },
                 // Colorado Buffaloes - Rookie
                 {
-                    type: 'word',
+                    type: 'addition',
                     sport: '🏈',
                     question: 'Shedeur Sanders threw 4 touchdown passes for Colorado. If each touchdown is worth 6 points, how many points from touchdowns?',
                     answer: 24,
@@ -1028,7 +1036,7 @@
                 },
                 // Cal Bears - Rookie
                 {
-                    type: 'word',
+                    type: 'addition',
                     sport: '🏈',
                     question: 'The Cal Bears scored 2 touchdowns (7 points each including extra point) and 2 field goals (3 points each). How many total points?',
                     answer: 20,
@@ -1045,14 +1053,14 @@
                 },
                 // Inter Miami - Rookie
                 {
-                    type: 'word',
+                    type: 'addition',
                     sport: '⚽',
                     question: 'Lionel Messi scored 2 goals in the first half and 1 goal in the second half for Inter Miami. How many total goals?',
                     answer: 3,
                     funFact: 'Messi won the 2022 World Cup with Argentina before joining Inter Miami!'
                 },
                 {
-                    type: 'fraction',
+                    type: 'fractions',
                     sport: '⚽',
                     question: 'Inter Miami won 8 out of 10 games with Messi playing. What percentage of games did they win?',
                     answer: 80,
@@ -1068,7 +1076,7 @@
                     funFact: 'The Warriors set an NBA record with 29 three-pointers in a single game!'
                 },
                 {
-                    type: 'word',
+                    type: 'addition',
                     sport: '🏒',
                     question: 'The Sharks scored 3 goals in the first period, 1 goal in the second period, and 2 goals in the third period. How many goals total?',
                     answer: 6,
@@ -1084,7 +1092,7 @@
                     funFact: 'Soccer goals are the same size worldwide - set by FIFA rules!'
                 },
                 {
-                    type: 'fraction',
+                    type: 'fractions',
                     sport: '🏈',
                     question: 'The 49ers won 6 out of their first 8 games. What fraction did they win? (Enter as decimal: 0.xx)',
                     answer: 0.75,
@@ -1092,7 +1100,7 @@
                     funFact: 'The 49ers play at Levi\'s Stadium in Santa Clara!'
                 },
                 {
-                    type: 'word',
+                    type: 'addition',
                     sport: '🏀',
                     question: 'Steph Curry scored 15 points in the first half and 22 points in the second half. How many points did he score in the whole game?',
                     answer: 37,
@@ -1115,14 +1123,14 @@
                     funFact: 'End zones were originally 25 yards deep when football first started!'
                 },
                 {
-                    type: 'word',
+                    type: 'addition',
                     sport: '🏈',
                     question: 'Travis Hunter caught 4 passes for the Buffaloes. Each catch gained 12 yards. How many total receiving yards?',
                     answer: 48,
                     funFact: 'Travis Hunter was a 5-star recruit who originally committed to Florida State!'
                 },
                 {
-                    type: 'fraction',
+                    type: 'fractions',
                     sport: '⚾',
                     question: 'A Giants pitcher threw 60 pitches. 45 of them were strikes. What percentage were strikes?',
                     answer: 75,
@@ -1131,7 +1139,7 @@
                 },
                 // Boston Red Sox - Rookie
                 {
-                    type: 'word',
+                    type: 'addition',
                     sport: '⚾',
                     question: 'Rafael Devers hit 3 home runs in the first game, 0 in the second, and 2 in the third for the Red Sox. How many total home runs did he hit?',
                     answer: 5,
@@ -1154,7 +1162,7 @@
                     funFact: 'The pitcher\'s mound is exactly 60 feet 6 inches from home plate!'
                 },
                 {
-                    type: 'fraction',
+                    type: 'fractions',
                     sport: '⚾',
                     question: 'The Red Sox won 7 out of their first 10 games. What percentage of games did they win?',
                     answer: 70,
@@ -1359,7 +1367,7 @@
                 },
                 // More Word Problems - Rookie
                 {
-                    type: 'word',
+                    type: 'addition',
                     sport: '🏀',
                     question: 'Klay Thompson made 7 two-point shots and 5 three-point shots. How many total points did he score?',
                     answer: 29,
@@ -1367,7 +1375,7 @@
                     funFact: 'Klay Thompson once scored 37 points in a single quarter!'
                 },
                 {
-                    type: 'word',
+                    type: 'addition',
                     sport: '🏈',
                     question: 'Shedeur Sanders threw 3 touchdowns worth 6 points each and the kicker made 2 extra points worth 1 point each. How many total points?',
                     answer: 20,
@@ -1375,14 +1383,14 @@
                     funFact: 'Shedeur Sanders followed his father Deion to Colorado!'
                 },
                 {
-                    type: 'word',
+                    type: 'addition',
                     sport: '⚾',
                     question: 'The Red Sox scored 4 runs in the 1st inning, 0 in the 2nd, 2 in the 3rd, and 1 in the 4th. How many runs total?',
                     answer: 7,
                     funFact: 'The Red Sox play at historic Fenway Park!'
                 },
                 {
-                    type: 'word',
+                    type: 'addition',
                     sport: '⚽',
                     question: 'The Earthquakes had 8 shots on goal. They scored on 3 of them. How many shots did NOT result in goals?',
                     answer: 5,
@@ -1390,7 +1398,7 @@
                     funFact: 'On average, only about 10% of shots on goal result in a score!'
                 },
                 {
-                    type: 'word',
+                    type: 'addition',
                     sport: '🏒',
                     question: 'The Sharks had 5 players on the ice and 2 went to the penalty box. How many Sharks players were left on the ice?',
                     answer: 3,
@@ -1398,7 +1406,7 @@
                 },
                 // More Fractions - Rookie
                 {
-                    type: 'fraction',
+                    type: 'fractions',
                     sport: '🏀',
                     question: 'Draymond Green made 6 out of 12 free throws. What fraction did he make? (Enter as decimal)',
                     answer: 0.5,
@@ -1406,7 +1414,7 @@
                     funFact: 'Draymond Green is known more for his defense than his shooting!'
                 },
                 {
-                    type: 'fraction',
+                    type: 'fractions',
                     sport: '🏈',
                     question: 'Brock Purdy completed 15 out of 20 passes. What percentage did he complete?',
                     answer: 75,
@@ -1414,7 +1422,7 @@
                     funFact: 'Brock Purdy was the very last pick in the 2022 NFL Draft!'
                 },
                 {
-                    type: 'fraction',
+                    type: 'fractions',
                     sport: '⚽',
                     question: 'Inter Miami won 3 out of 5 games. What percentage of games did they win?',
                     answer: 60,
@@ -1530,7 +1538,7 @@
                 },
                 // More Word - Rookie
                 {
-                    type: 'word',
+                    type: 'addition',
                     sport: '🏈',
                     question: 'The Cal Bears had 3 rushing touchdowns and 2 passing touchdowns. Each touchdown is worth 6 points. How many total points from touchdowns?',
                     answer: 30,
@@ -1538,7 +1546,7 @@
                     funFact: 'Cal plays their games at historic California Memorial Stadium!'
                 },
                 {
-                    type: 'word',
+                    type: 'addition',
                     sport: '🏀',
                     question: 'Steph Curry made 9 baskets: 4 two-pointers and 5 three-pointers. How many total points?',
                     answer: 23,
@@ -1546,7 +1554,7 @@
                     funFact: 'Steph Curry changed the way basketball is played with his three-point shooting!'
                 },
                 {
-                    type: 'word',
+                    type: 'addition',
                     sport: '⚽',
                     question: 'Messi had 4 assists and 3 goals in a tournament. An assist is worth 1 point and a goal is worth 2 points in fantasy sports. How many fantasy points?',
                     answer: 10,
@@ -1555,7 +1563,7 @@
                 },
                 // More Fractions - Rookie
                 {
-                    type: 'fraction',
+                    type: 'fractions',
                     sport: '🏈',
                     question: 'The Buffaloes won 4 out of 8 games. What percentage did they win?',
                     answer: 50,
@@ -1563,7 +1571,7 @@
                     funFact: 'Colorado plays at Folsom Field at over 5,000 feet elevation!'
                 },
                 {
-                    type: 'fraction',
+                    type: 'fractions',
                     sport: '🏒',
                     question: 'A Sharks goalie saved 27 out of 30 shots. What percentage did he save?',
                     answer: 90,
@@ -1606,7 +1614,7 @@
                     funFact: 'The free throw line has been 15 feet from the basket since 1895!'
                 },
                 {
-                    type: 'word',
+                    type: 'addition',
                     sport: '🏈',
                     question: 'The Commanders\' defense forced 3 fumbles and 2 interceptions. How many total turnovers did they force?',
                     answer: 5,
@@ -1637,7 +1645,7 @@
                     funFact: 'Number 11 has been worn by many famous quarterbacks!'
                 },
                 {
-                    type: 'fraction',
+                    type: 'fractions',
                     sport: '⚽',
                     question: 'The Earthquakes completed 7 out of 10 passes in the final third. What percentage is that?',
                     answer: 70,
@@ -1654,7 +1662,7 @@
                     funFact: 'NHL goals are exactly 6 feet wide and 4 feet tall!'
                 },
                 {
-                    type: 'word',
+                    type: 'addition',
                     sport: '🏀',
                     question: 'Draymond Green had 8 rebounds, 6 assists, 4 steals, and 2 blocks. How many total stats?',
                     answer: 20,
@@ -1686,14 +1694,14 @@
                     funFact: 'The Warriors have been one of the most dominant teams of the 2010s and 2020s!'
                 },
                 {
-                    type: 'word',
+                    type: 'addition',
                     sport: '🏒',
                     question: 'The Sharks had 35 shots on goal and their opponent had 28. How many total shots on goal in the game?',
                     answer: 63,
                     funFact: 'A busy goalie might face 40+ shots in a single game!'
                 },
                 {
-                    type: 'fraction',
+                    type: 'fractions',
                     sport: '🏈',
                     question: 'The Cal Bears completed 12 out of 20 passes. What percentage did they complete?',
                     answer: 60,
@@ -1725,7 +1733,7 @@
                     funFact: 'Super Bowl XL was played in Detroit in 2006!'
                 },
                 {
-                    type: 'word',
+                    type: 'division',
                     sport: '🏈',
                     question: 'The 49ers punted 5 times for an average of 42 yards per punt. How many total punt yards?',
                     answer: 210,
@@ -1749,7 +1757,7 @@
                     funFact: 'Overtime in the NHL playoffs is sudden death - first goal wins!'
                 },
                 {
-                    type: 'fraction',
+                    type: 'fractions',
                     sport: '⚾',
                     question: 'The Giants won 5 out of 10 games. What is their winning percentage?',
                     answer: 50,
@@ -1773,7 +1781,7 @@
                     funFact: 'Every NFL team has their logo painted at the 50-yard line!'
                 },
                 {
-                    type: 'word',
+                    type: 'addition',
                     sport: '⚽',
                     question: 'The Earthquakes had 15 corner kicks and 8 free kicks. If they scored on 2 corners and 1 free kick, how many set pieces did NOT result in goals?',
                     answer: 20,
@@ -1805,7 +1813,7 @@
                     funFact: 'SAP Center has been the Sharks\' home since 1993!'
                 },
                 {
-                    type: 'fraction',
+                    type: 'fractions',
                     sport: '🏈',
                     question: 'The Buffaloes made 3 out of 4 field goal attempts. What percentage did they make?',
                     answer: 75,
@@ -1823,7 +1831,7 @@
                 },
                 // Washington Capitals - Rookie
                 {
-                    type: 'word',
+                    type: 'addition',
                     sport: '🏒',
                     question: 'Alex Ovechkin scored 3 goals in the first game, 1 goal in the second game, and 2 goals in the third game for the Capitals. How many total goals did he score?',
                     answer: 6,
@@ -1847,7 +1855,7 @@
                     funFact: 'Capital One Arena is located right in downtown Washington D.C.!'
                 },
                 {
-                    type: 'fraction',
+                    type: 'fractions',
                     sport: '🏒',
                     question: 'Ovechkin scored on 3 out of 10 shots in a game. What percentage of his shots were goals?',
                     answer: 30,
@@ -1871,7 +1879,7 @@
                     funFact: 'Ovechkin has worn number 8 his entire NHL career!'
                 },
                 {
-                    type: 'word',
+                    type: 'addition',
                     sport: '🏒',
                     question: 'The Capitals had 30 shots on goal. Their goalie Thompson saved 27 shots from the other team. How many total shots on goal were there in the game?',
                     answer: 57,
@@ -1887,13 +1895,253 @@
                     funFact: 'Capital One Arena holds over 18,000 fans for Capitals games!'
                 },
                 {
-                    type: 'fraction',
+                    type: 'fractions',
                     sport: '🏒',
                     question: 'The Capitals won 6 out of 8 games at home this month. What fraction did they win? (Enter as decimal)',
                     answer: 0.75,
                     hint: '6 ÷ 8 = 0.75',
                     funFact: 'Home ice advantage is a big deal in the NHL!'
-                }
+                },
+                {
+                type: 'division',
+                sport: '🏀',
+                question: 'The Warriors scored 108 points with 4 quarters in the game. What was their average points per quarter?',
+                answer: 27,
+                hint: '108 ÷ 4 = ?',
+                funFact: 'The Warriors hold the record for most wins in a regular season with 73 in 2015-16!'
+                },
+                {
+                type: 'division',
+                sport: '🏈',
+                question: 'The 49ers gained 150 rushing yards on 5 carries. How many yards per carry?',
+                answer: 30,
+                hint: '150 ÷ 5 = ?',
+                funFact: 'Frank Gore is the 49ers all-time leading rusher with over 11,000 yards!'
+                },
+                {
+                type: 'division',
+                sport: '⚾',
+                question: 'The Giants hit 18 home runs evenly over 6 games. How many home runs per game?',
+                answer: 3,
+                hint: '18 ÷ 6 = ?',
+                funFact: 'Barry Bonds hit 762 career home runs, the all-time MLB record!'
+                },
+                {
+                type: 'division',
+                sport: '🏒',
+                question: 'The Sharks scored 24 goals in 8 games. How many goals per game on average?',
+                answer: 3,
+                hint: '24 ÷ 8 = ?',
+                funFact: 'The Sharks joined the NHL in 1991 and play at SAP Center in San Jose!'
+                },
+                {
+                type: 'division',
+                sport: '⚽',
+                question: 'The Earthquakes had 20 shots on goal split evenly across 5 games. How many shots per game?',
+                answer: 4,
+                hint: '20 ÷ 5 = ?',
+                funFact: 'The Earthquakes won the MLS Cup in 2001 and 2003!'
+                },
+                {
+                type: 'division',
+                sport: '🏈',
+                question: 'The Commanders ran 36 plays evenly in 4 quarters. How many plays per quarter?',
+                answer: 9,
+                hint: '36 ÷ 4 = ?',
+                funFact: 'The Commanders were originally founded in 1932 as the Boston Braves!'
+                },
+                {
+                type: 'division',
+                sport: '⚾',
+                question: 'The Red Sox had 27 outs in a complete game. If each inning has 3 outs, how many innings did they play?',
+                answer: 9,
+                hint: '27 ÷ 3 = ?',
+                funFact: 'A standard MLB game is 9 innings long!'
+                },
+                {
+                type: 'division',
+                sport: '🏒',
+                question: 'The Capitals had 42 penalty minutes in 7 games. What was the average penalty minutes per game?',
+                answer: 6,
+                hint: '42 ÷ 7 = ?',
+                funFact: 'Alexander Ovechkin led the Capitals to their first Stanley Cup in 2018!'
+                },
+                {
+                type: 'division',
+                sport: '⚽',
+                question: 'Inter Miami scored 16 goals and Lionel Messi scored half of them. How many goals did Messi score?',
+                answer: 8,
+                hint: '16 ÷ 2 = ?',
+                funFact: 'Lionel Messi joined Inter Miami in 2023 and immediately won the Leagues Cup!'
+                },
+                {
+                type: 'division',
+                sport: '🏀',
+                question: 'Steph Curry made 45 three-pointers in 9 games. How many threes did he average per game?',
+                answer: 5,
+                hint: '45 ÷ 9 = ?',
+                funFact: 'Steph Curry holds the record for most three-pointers in NBA history!'
+                },
+                {
+                type: 'division',
+                sport: '🏈',
+                question: 'The 49ers gained 56 yards on 8 pass plays. How many yards per pass play on average?',
+                answer: 7,
+                hint: '56 ÷ 8 = ?',
+                funFact: 'Joe Montana threw for over 40,000 career yards with the 49ers and Chiefs!'
+                },
+                {
+                type: 'division',
+                sport: '⚾',
+                question: 'The Giants had 32 hits spread evenly across 4 games. How many hits per game?',
+                answer: 8,
+                hint: '32 ÷ 4 = ?',
+                funFact: 'The Giants moved from New York to San Francisco in 1958!'
+                },
+                {
+                type: 'division',
+                sport: '🏒',
+                question: 'The Sharks had 18 shots on goal over 3 periods. How many shots per period on average?',
+                answer: 6,
+                hint: '18 ÷ 3 = ?',
+                funFact: 'A hockey game has 3 periods of 20 minutes each!'
+                },
+                {
+                type: 'division',
+                sport: '⚽',
+                question: 'The Earthquakes traveled 630 miles for 7 away games. How many miles per trip on average?',
+                answer: 90,
+                hint: '630 ÷ 7 = ?',
+                funFact: 'MLS teams can travel thousands of miles across the country for away games!'
+                },
+                {
+                type: 'division',
+                sport: '🏈',
+                question: 'The Commanders had 48 completions in 6 games. How many completions per game on average?',
+                answer: 8,
+                hint: '48 ÷ 6 = ?',
+                funFact: 'The Commanders play their home games at Northwest Stadium in Landover, Maryland!'
+                },
+                {
+                type: 'percentages',
+                sport: '🏀',
+                question: 'Stephen Curry made 50% of his 20 three-point attempts in a Warriors game. How many threes did he make?',
+                answer: 10,
+                hint: '50% means half. Divide 20 by 2.',
+                funFact: 'Stephen Curry is the NBA\'s all-time leader in three-pointers made!'
+                },
+                {
+                type: 'percentages',
+                sport: '🏀',
+                question: 'The Warriors won 75% of their 80 games one season. How many games did they win?',
+                answer: 60,
+                hint: '75% means 3 out of every 4. Multiply 80 × 0.75.',
+                funFact: 'The 2015-16 Warriors won 73 games, the most regular season wins in NBA history!'
+                },
+                {
+                type: 'percentages',
+                sport: '🏀',
+                question: 'Draymond Green made 10 of his 20 free throws. What percentage did he make?',
+                answer: 50,
+                hint: 'Divide 10 by 20 and multiply by 100.',
+                funFact: 'Draymond Green is one of the few players in NBA history to record a triple-double without scoring many points!'
+                },
+                {
+                type: 'percentages',
+                sport: '🏈',
+                question: 'The 49ers scored 25% of their 40 points in the first quarter. How many points did they score in the first quarter?',
+                answer: 10,
+                hint: '25% means one quarter. Divide 40 by 4.',
+                funFact: 'The 49ers have won 5 Super Bowl championships!'
+                },
+                {
+                type: 'percentages',
+                sport: '🏈',
+                question: 'The Commanders completed 10 out of 20 passes. What is their completion percentage?',
+                answer: 50,
+                hint: 'Divide 10 by 20, then multiply by 100.',
+                funFact: 'The Commanders were originally founded in 1932, making them one of the oldest NFL teams!'
+                },
+                {
+                type: 'percentages',
+                sport: '🏈',
+                question: 'A 49ers running back gained 200 rushing yards. 50% came in the second half. How many yards did he gain in the second half?',
+                answer: 100,
+                hint: '50% means half. Divide 200 by 2.',
+                funFact: 'Frank Gore is the 49ers\' all-time leading rusher with over 11,000 yards!'
+                },
+                {
+                type: 'percentages',
+                sport: '⚾',
+                question: 'A Giants batter got 25 hits in 100 at-bats. What is his batting average as a percentage?',
+                answer: 25,
+                hint: 'Divide 25 by 100 and multiply by 100 to get the percentage.',
+                funFact: 'The Giants moved from New York to San Francisco in 1958!'
+                },
+                {
+                type: 'percentages',
+                sport: '⚾',
+                question: 'The Red Sox won 10% of their first 50 games. How many games did they win?',
+                answer: 5,
+                hint: '10% means 1 out of every 10. Multiply 50 × 0.10.',
+                funFact: 'The Red Sox broke an 86-year championship drought when they won the 2004 World Series!'
+                },
+                {
+                type: 'percentages',
+                sport: '⚾',
+                question: 'A Giants pitcher threw 80 pitches and 50% were strikes. How many strikes did he throw?',
+                answer: 40,
+                hint: '50% means half. Divide 80 by 2.',
+                funFact: 'The Giants\' Oracle Park is known for its beautiful views of the San Francisco Bay!'
+                },
+                {
+                type: 'percentages',
+                sport: '🏒',
+                question: 'The Sharks took 40 shots on goal and scored on 25% of them. How many goals did they score?',
+                answer: 10,
+                hint: '25% means 1 out of every 4. Multiply 40 × 0.25.',
+                funFact: 'The San Jose Sharks were founded in 1991 and play at the SAP Center, nicknamed "The Shark Tank!"'
+                },
+                {
+                type: 'percentages',
+                sport: '🏒',
+                question: 'A Capitals goalie saved 90 out of 100 shots. What is his save percentage (as a whole number)?',
+                answer: 90,
+                hint: 'Divide 90 by 100 and multiply by 100.',
+                funFact: 'The Washington Capitals won their first Stanley Cup in 2018 led by Alex Ovechkin!'
+                },
+                {
+                type: 'percentages',
+                sport: '🏒',
+                question: 'The Sharks played 20 games and won 10. What percentage of games did they win?',
+                answer: 50,
+                hint: 'Divide 10 by 20, then multiply by 100.',
+                funFact: 'The Sharks\' teal jerseys were one of the most popular in the NHL when they debuted!'
+                },
+                {
+                type: 'percentages',
+                sport: '⚽',
+                question: 'Inter Miami attempted 30 shots in a match and 10% were goals. How many goals did they score?',
+                answer: 3,
+                hint: '10% means 1 out of every 10. Multiply 30 × 0.10.',
+                funFact: 'Lionel Messi joined Inter Miami in 2023 and immediately helped them win the Leagues Cup!'
+                },
+                {
+                type: 'percentages',
+                sport: '⚽',
+                question: 'The Earthquakes had 50% possession in a 90-minute match. How many minutes did they have the ball?',
+                answer: 45,
+                hint: '50% means half. Divide 90 by 2.',
+                funFact: 'The San Jose Earthquakes won the MLS Cup in 2001 and 2003!'
+                },
+                {
+                type: 'percentages',
+                sport: '⚽',
+                question: 'An Inter Miami player made 8 out of 16 passes. What is his pass completion percentage?',
+                answer: 50,
+                hint: 'Divide 8 by 16 and multiply by 100.',
+                funFact: 'Inter Miami\'s home stadium is located in Fort Lauderdale, Florida!'
+                },
             ],
 
             veteran: [
@@ -2053,7 +2301,7 @@
 },
 // Word Problems - Veteran (17 questions)
 {
-    type: 'word',
+    type: 'addition',
     sport: '🏀',
     question: 'Stephen Curry scored 28 points in the first half and 14 points in the second half. Klay Thompson scored half as many total points as Curry. How many points did Klay score?',
     answer: 21,
@@ -2061,7 +2309,7 @@
     funFact: 'Curry and Thompson were nicknamed the Splash Brothers for their three-point shooting!'
 },
 {
-    type: 'word',
+    type: 'division',
     sport: '🏈',
     question: 'Brock Purdy completed 22 passes for the 49ers. Each pass averaged 11 yards. George Kittle caught 6 of those passes. How many total passing yards did Purdy throw for?',
     answer: 242,
@@ -2069,7 +2317,7 @@
     funFact: 'Brock Purdy was the very last pick of the 2022 NFL Draft — pick number 262!'
 },
 {
-    type: 'word',
+    type: 'division',
     sport: '⚾',
     question: 'The Giants sold 156 hot dogs in the first 3 innings and 244 hot dogs in the next 3 innings at Oracle Park. How many hot dogs per inning on average did they sell over all 6 innings? (Round to nearest whole number)',
     answer: 67,
@@ -2077,7 +2325,7 @@
     funFact: 'Baseball fans eat an estimated 20 million hot dogs at major league games each season!'
 },
 {
-    type: 'word',
+    type: 'addition',
     sport: '🏒',
     question: 'Alex Ovechkin scored 3 goals in each of his last 4 games for the Capitals. He needs 50 goals for the season and already had 35 before those 4 games. Has he reached 50? If so, by how many?',
     answer: 47,
@@ -2085,7 +2333,7 @@
     funFact: 'Alex Ovechkin is chasing Wayne Gretzky\'s all-time NHL goal record of 894!'
 },
 {
-    type: 'word',
+    type: 'addition',
     sport: '⚽',
     question: 'Lionel Messi scored 5 goals in September and twice as many in October for Inter Miami. How many goals did he score in both months combined?',
     answer: 15,
@@ -2093,7 +2341,7 @@
     funFact: 'Lionel Messi has won the Ballon d\'Or award for best player in the world a record 8 times!'
 },
 {
-    type: 'word',
+    type: 'division',
     sport: '🏀',
     question: 'Draymond Green had 8 rebounds per game over 5 games and 12 assists per game over those same 5 games. How many total rebounds AND assists combined?',
     answer: 100,
@@ -2101,7 +2349,7 @@
     funFact: 'Draymond Green is one of the best defensive players in NBA history and a 4-time champion!'
 },
 {
-    type: 'word',
+    type: 'addition',
     sport: '🏈',
     question: 'Christian McCaffrey rushed for 95 yards and caught passes for 63 yards for the 49ers. The next week he rushed for 112 yards and caught for 41 yards. What were his total yards from scrimmage across both games?',
     answer: 311,
@@ -2109,7 +2357,7 @@
     funFact: 'Christian McCaffrey can run, catch, and even throw — he\'s one of the most versatile players ever!'
 },
 {
-    type: 'word',
+    type: 'addition',
     sport: '⚾',
     question: 'The Red Sox scored 4 runs in each of the first 3 innings, then 0 runs in the next 4 innings, then 2 runs in the last 2 innings. How many total runs?',
     answer: 16,
@@ -2117,7 +2365,7 @@
     funFact: 'Fenway Park, home of the Red Sox, is the oldest active ballpark in Major League Baseball!'
 },
 {
-    type: 'word',
+    type: 'addition',
     sport: '🏒',
     question: 'The Sharks sold 14,500 tickets for Friday\'s game and 16,200 tickets for Saturday\'s game at SAP Center. How many more tickets did they sell on Saturday?',
     answer: 1700,
@@ -2125,7 +2373,7 @@
     funFact: 'SAP Center can hold up to 17,562 fans for a hockey game!'
 },
 {
-    type: 'word',
+    type: 'addition',
     sport: '⚽',
     question: 'The Earthquakes won 14 games, lost 8 games, and drew 12 games at PayPal Park. If they get 3 points for a win, 0 for a loss, and 1 for a draw, how many total points?',
     answer: 54,
@@ -2133,7 +2381,7 @@
     funFact: 'In soccer, the points system (3 for a win) was adopted to encourage attacking play!'
 },
 {
-    type: 'word',
+    type: 'addition',
     sport: '🏈',
     question: 'The Commanders gained 185 yards rushing and 230 yards passing in the first half. In the second half they gained 94 yards rushing and 175 yards passing. What were the total yards for the game?',
     answer: 684,
@@ -2141,7 +2389,7 @@
     funFact: 'The Commanders have three Super Bowl victories in their franchise history!'
 },
 {
-    type: 'word',
+    type: 'division',
     sport: '🏀',
     question: 'The Warriors scored 108 points and their opponents scored 99 points. In the next game, the Warriors scored 115 and their opponents scored 121. What was the Warriors\' average score over the 2 games? (Round to nearest whole number)',
     answer: 112,
@@ -2149,7 +2397,7 @@
     funFact: 'The Warriors once scored 92 points in a single half — an NBA record!'
 },
 {
-    type: 'word',
+    type: 'division',
     sport: '⚾',
     question: 'A Giants pitcher threw 87 pitches through 6 innings. If he throws at the same rate, how many pitches will he throw through 9 innings? (Round to nearest whole number)',
     answer: 131,
@@ -2157,7 +2405,7 @@
     funFact: 'Most pitchers try to stay under 100 pitches per game to protect their arm!'
 },
 {
-    type: 'word',
+    type: 'division',
     sport: '🏒',
     question: 'The Capitals scored 2 goals in the 1st period, 0 in the 2nd period, and 3 in the 3rd period. If each goal is celebrated with 15 seconds of horn blasts, how many total seconds of horn blasts were there?',
     answer: 75,
@@ -2165,7 +2413,7 @@
     funFact: 'Every NHL team has their own unique goal horn sound that plays when they score!'
 },
 {
-    type: 'word',
+    type: 'division',
     sport: '⚽',
     question: 'Lionel Messi ran an average of 6 miles per game for Inter Miami. Over a 5-game stretch, how many total miles did he run? If his teammate ran 80% of that distance, how many miles did the teammate run?',
     answer: 24,
@@ -2173,7 +2421,7 @@
     funFact: 'Soccer players typically run between 6 and 9 miles during a single match!'
 },
 {
-    type: 'word',
+    type: 'division',
     sport: '🏈',
     question: 'George Kittle caught 7 passes for the 49ers. His longest catch was 45 yards and his shortest was 3 yards. The rest of his catches averaged 12 yards each. What were his total receiving yards?',
     answer: 108,
@@ -2181,7 +2429,7 @@
     funFact: 'George Kittle once set the single-season record for receiving yards by a tight end with 1,377!'
 },
 {
-    type: 'word',
+    type: 'addition',
     sport: '⚾',
     question: 'Red Sox tickets cost $45 for adults and $25 for kids. A family buys 2 adult tickets and 3 kid tickets. How much do they spend total?',
     answer: 165,
@@ -2190,7 +2438,7 @@
 },
 // Fraction - Veteran (17 questions)
 {
-    type: 'fraction',
+    type: 'fractions',
     sport: '🏀',
     question: 'Stephen Curry made 7 out of 12 three-pointers in the first half and 5 out of 8 in the second half for the Warriors. What fraction of ALL his three-pointers did he make? (Enter as decimal, round to nearest hundredth)',
     answer: 0.6,
@@ -2198,7 +2446,7 @@
     funFact: 'Steph Curry once made 402 three-pointers in a single season — an NBA record!'
 },
 {
-    type: 'fraction',
+    type: 'fractions',
     sport: '🏈',
     question: 'Brock Purdy completed 18 out of 24 passes for the 49ers. What percentage did he complete? (Enter as decimal)',
     answer: 75,
@@ -2206,7 +2454,7 @@
     funFact: 'A completion rate above 65% is considered excellent in the NFL!'
 },
 {
-    type: 'fraction',
+    type: 'fractions',
     sport: '⚾',
     question: 'A Giants batter has a batting average of 0.325 (he gets a hit 325 out of every 1000 at-bats). Out of 40 at-bats, how many hits would you expect? (Enter as whole number)',
     answer: 13,
@@ -2214,7 +2462,7 @@
     funFact: 'A .300 batting average is considered the mark of an elite hitter in baseball!'
 },
 {
-    type: 'fraction',
+    type: 'fractions',
     sport: '🏒',
     question: 'The Sharks\' goalie saved 28 out of 32 shots in a game. What percentage of shots did he save? (Enter as decimal)',
     answer: 87.5,
@@ -2222,7 +2470,7 @@
     funFact: 'An NHL goalie with a save percentage above .920 is considered very good!'
 },
 {
-    type: 'fraction',
+    type: 'fractions',
     sport: '⚽',
     question: 'The Earthquakes won 3/8 of their home games and 1/4 of their away games in a 32-game season (16 home, 16 away). How many total wins? (Enter as whole number)',
     answer: 10,
@@ -2230,7 +2478,7 @@
     funFact: 'Home field advantage is real — MLS teams win about 49% of home games!'
 },
 {
-    type: 'fraction',
+    type: 'fractions',
     sport: '🏀',
     question: 'Klay Thompson made 5/6 of his free throws in the first quarter and 3/4 in the second quarter. If he took 6 in the first and 4 in the second, how many free throws did he make total?',
     answer: 8,
@@ -2238,7 +2486,7 @@
     funFact: 'Klay Thompson once scored 37 points in a single quarter — an NBA record!'
 },
 {
-    type: 'fraction',
+    type: 'fractions',
     sport: '🏈',
     question: 'The 49ers have won 5 out of 8 Super Bowl appearances. What is their winning percentage? (Enter as decimal)',
     answer: 62.5,
@@ -2246,7 +2494,7 @@
     funFact: 'The 49ers\' five Super Bowl wins came between 1982 and 1995!'
 },
 {
-    type: 'fraction',
+    type: 'fractions',
     sport: '⚾',
     question: 'At Fenway Park, 3/5 of the crowd are Red Sox fans and 1/10 are fans of the visiting team. If there are 35,000 people, how many are Red Sox fans?',
     answer: 21000,
@@ -2254,7 +2502,7 @@
     funFact: 'Fenway Park has a capacity of about 37,755 — one of the smallest in MLB!'
 },
 {
-    type: 'fraction',
+    type: 'fractions',
     sport: '🏒',
     question: 'Alex Ovechkin scores on 1/8 of his shots. If he takes 48 shots in a month, how many goals would you expect?',
     answer: 6,
@@ -2262,7 +2510,7 @@
     funFact: 'Ovechkin has scored 50+ goals in a season multiple times in his career!'
 },
 {
-    type: 'fraction',
+    type: 'fractions',
     sport: '⚽',
     question: 'Lionel Messi completes 7/10 of his passes for Inter Miami. In a game with 60 passes, how many would he complete?',
     answer: 42,
@@ -2270,7 +2518,7 @@
     funFact: 'Messi is known for his incredible ball control and passing accuracy!'
 },
 {
-    type: 'fraction',
+    type: 'fractions',
     sport: '🏀',
     question: 'The Warriors won 2/3 of their games in November (18 games) and 3/4 of their games in December (16 games). How many total wins in both months?',
     answer: 24,
@@ -2278,7 +2526,7 @@
     funFact: 'The 2015-16 Warriors won 73 regular season games — the most in NBA history!'
 },
 {
-    type: 'fraction',
+    type: 'fractions',
     sport: '🏈',
     question: 'The Commanders\' kicker made 7 out of 8 field goal attempts. What percentage did he make? (Enter as decimal)',
     answer: 87.5,
@@ -2286,7 +2534,7 @@
     funFact: 'The longest field goal in NFL history is 66 yards, kicked by Justin Tucker in 2021!'
 },
 {
-    type: 'fraction',
+    type: 'fractions',
     sport: '⚾',
     question: 'A Giants pitcher threw strikes on 2/3 of his 90 pitches. How many strikes did he throw?',
     answer: 60,
@@ -2294,7 +2542,7 @@
     funFact: 'A typical strike zone is about 17 inches wide — the width of home plate!'
 },
 {
-    type: 'fraction',
+    type: 'fractions',
     sport: '🏒',
     question: 'The Sharks won 5/12 of their first 36 games. How many games did they win?',
     answer: 15,
@@ -2302,7 +2550,7 @@
     funFact: 'An NHL regular season is 82 games long — one of the longest in professional sports!'
 },
 {
-    type: 'fraction',
+    type: 'fractions',
     sport: '⚽',
     question: 'At PayPal Park, 2/5 of the 18,000 seats are in the lower bowl. How many seats are in the lower bowl?',
     answer: 7200,
@@ -2310,7 +2558,7 @@
     funFact: 'PayPal Park is one of the most intimate soccer stadiums in MLS!'
 },
 {
-    type: 'fraction',
+    type: 'fractions',
     sport: '🏒',
     question: 'The Capitals\' power play converts 1/4 of the time. If they had 24 power plays this month, how many power play goals did they score?',
     answer: 6,
@@ -2318,7 +2566,7 @@
     funFact: 'Alex Ovechkin is famous for his one-timer shot from the left circle on the power play!'
 },
 {
-    type: 'fraction',
+    type: 'fractions',
     sport: '🏈',
     question: 'The 49ers ran the ball on 3/7 of their 56 plays and passed on the rest. How many passing plays did they have?',
     answer: 32,
@@ -2735,7 +2983,247 @@
     answer: 82,
     hint: 'L = 50, XXX = 30, II = 2. LXXXII = 82',
     funFact: 'The NHL regular season runs from October to April — it is one of the longest seasons in pro sports!'
-}
+},
+{
+type: 'division',
+sport: '🏀',
+question: 'The Warriors scored 324 points in their last 3 games. They want to average 100 points over 4 games total. How many points do they need in the 4th game?',
+answer: 76,
+hint: '4 × 100 = 400 total needed. 400 - 324 = ?',
+funFact: 'The Warriors averaged over 115 points per game during their 2016-17 championship season!'
+},
+{
+type: 'division',
+sport: '🏈',
+question: 'The 49ers had 288 passing yards in a game. If the quarterback threw 32 passes, how many yards per pass attempt?',
+answer: 9,
+hint: '288 ÷ 32 = ?',
+funFact: 'Steve Young had a career passer rating of 96.8, one of the best ever!'
+},
+{
+type: 'division',
+sport: '⚾',
+question: 'The Red Sox scored 72 runs in 12 games. The Giants scored 84 runs in 14 games. Which team had a higher runs-per-game average? Enter the Red Sox average.',
+answer: 6,
+hint: 'Red Sox: 72 ÷ 12 = ? and Giants: 84 ÷ 14 = ?',
+funFact: 'The Red Sox broke an 86-year championship drought in 2004!'
+},
+{
+type: 'division',
+sport: '🏒',
+question: 'The Sharks spent 240 minutes on the ice during 4 games. Each game has 3 periods. How many minutes per period on average?',
+answer: 20,
+hint: '4 games × 3 periods = 12 total periods. 240 ÷ 12 = ?',
+funFact: 'Each NHL period is 20 minutes of game time, but takes about 40 minutes in real time!'
+},
+{
+type: 'division',
+sport: '⚽',
+question: 'Inter Miami had 126 corner kicks in a 14-game stretch. How many corner kicks per game on average?',
+answer: 9,
+hint: '126 ÷ 14 = ?',
+funFact: 'Corner kicks are awarded when the defending team last touches the ball before it crosses their goal line!'
+},
+{
+type: 'division',
+sport: '🏀',
+question: 'Klay Thompson scored 132 points in 6 games. Draymond Green scored 54 points in those same 6 games. How many more points per game did Klay average than Draymond?',
+answer: 13,
+hint: 'Klay: 132 ÷ 6 = 22. Draymond: 54 ÷ 6 = 9. Difference = ?',
+funFact: 'Klay Thompson once scored 37 points in a single quarter against the Kings!'
+},
+{
+type: 'division',
+sport: '🏈',
+question: 'The Commanders gained 396 total yards in a game. If they ran 66 plays, how many yards per play?',
+answer: 6,
+hint: '396 ÷ 66 = ?',
+funFact: 'An NFL team typically runs between 60 and 70 plays per game!'
+},
+{
+type: 'division',
+sport: '⚾',
+question: 'A Giants pitcher threw 108 pitches over 9 innings. How many pitches per inning on average?',
+answer: 12,
+hint: '108 ÷ 9 = ?',
+funFact: 'A pitch count of 100 or more often means the pitcher is getting tired!'
+},
+{
+type: 'division',
+sport: '🏒',
+question: 'The Capitals scored 156 goals in a 52-game stretch. How many goals per game on average?',
+answer: 3,
+hint: '156 ÷ 52 = ?',
+funFact: 'The Capitals have had some of the best goal scorers in NHL history including Ovechkin!'
+},
+{
+type: 'division',
+sport: '⚽',
+question: 'The Earthquakes ran a total of 231 kilometers in 3 games with 11 players. How many kilometers per player per game on average?',
+answer: 7,
+hint: '231 ÷ 3 = 77 per game. 77 ÷ 11 = 7 per player.',
+funFact: 'Soccer players typically run between 7 and 13 kilometers per match!'
+},
+{
+type: 'division',
+sport: '🏀',
+question: 'The Warriors had 168 assists in 8 games. If 7 players contributed equally, how many assists per player total?',
+answer: 24,
+hint: '168 ÷ 7 = ?',
+funFact: 'The Warriors are known for their unselfish passing and team-first style of play!'
+},
+{
+type: 'division',
+sport: '🏈',
+question: 'The 49ers defense allowed 168 points in 14 games. How many points did they allow per game on average?',
+answer: 12,
+hint: '168 ÷ 14 = ?',
+funFact: 'The 49ers had one of the best defenses in the NFL during their dynasty years in the 1980s!'
+},
+{
+type: 'division',
+sport: '⚾',
+question: 'The Red Sox had 810 at-bats and 270 hits over a 10-game stretch. What was their batting average as a whole number (hits per at-bat × 1000)?',
+answer: 333,
+hint: '270 ÷ 810 = 0.333. Multiply by 1000.',
+funFact: 'Ted Williams of the Red Sox hit .406 in 1941, the last player to bat over .400!'
+},
+{
+type: 'division',
+sport: '🏒',
+question: 'The Sharks traveled 1,260 miles over 9 road trips. What was the average distance per trip?',
+answer: 140,
+hint: '1260 ÷ 9 = ?',
+funFact: 'NHL teams can travel over 50,000 miles in a single season!'
+},
+{
+type: 'division',
+sport: '⚽',
+question: 'Inter Miami sold 4,500 jerseys in 5 months. How many jerseys per month on average?',
+answer: 900,
+hint: '4500 ÷ 5 = ?',
+funFact: 'Lionel Messi jerseys became the fastest-selling in MLS history when he joined Inter Miami!'
+},
+{
+type: 'percentages',
+sport: '🏀',
+question: 'Klay Thompson scored 30 points. 60% were from three-pointers (worth 3 points each). How many three-pointers did he make?',
+answer: 6,
+hint: 'First find 60% of 30 points (= 18 points from threes), then divide by 3.',
+funFact: 'Klay Thompson once scored 37 points in a single quarter, an NBA record!'
+},
+{
+type: 'percentages',
+sport: '🏀',
+question: 'The Warriors scored 90 points in the first game and 110 points in the second game. What is the percentage increase from game 1 to game 2?',
+answer: 22,
+hint: 'Find the difference (20), divide by the original (90), multiply by 100. Round to the nearest whole number.',
+funFact: 'The Warriors have been one of the highest-scoring teams in NBA history during the Steph Curry era!'
+},
+{
+type: 'percentages',
+sport: '🏀',
+question: 'A Warriors player shot 40% from the field and attempted 50 shots. His teammate shot 60% on 30 attempts. How many more baskets did the first player make?',
+answer: 2,
+hint: 'First player: 50 × 0.40 = 20 baskets. Second player: 30 × 0.60 = 18 baskets. Find the difference.',
+funFact: 'The Warriors\' "Splash Brothers" era changed how the entire NBA approached three-point shooting!'
+},
+{
+type: 'percentages',
+sport: '🏈',
+question: 'Brock Purdy completed 70% of his 40 passes. His opponent completed 60% of 50 passes. How many more completions did the opponent have?',
+answer: 2,
+hint: 'Purdy: 40 × 0.70 = 28. Opponent: 50 × 0.60 = 30. Find the difference.',
+funFact: 'Brock Purdy was the last pick in the 2022 NFL Draft — pick #262, known as "Mr. Irrelevant!"'
+},
+{
+type: 'percentages',
+sport: '🏈',
+question: 'The Commanders gained 300 total yards. 40% were passing yards and the rest were rushing. How many rushing yards did they have?',
+answer: 180,
+hint: 'If 40% were passing, then 60% were rushing. Calculate 60% of 300.',
+funFact: 'The Commanders play their home games at Northwest Stadium in Landover, Maryland!'
+},
+{
+type: 'percentages',
+sport: '🏈',
+question: 'A 49ers kicker made 80% of his field goals last season (20 out of 25). This season he made 90% of 20 attempts. How many total field goals did he make across both seasons?',
+answer: 38,
+hint: 'Last season: 20 makes. This season: 90% of 20 = 18 makes. Add them together.',
+funFact: 'The 49ers\' Levi\'s Stadium in Santa Clara can hold over 68,000 fans!'
+},
+{
+type: 'percentages',
+sport: '⚾',
+question: 'A Red Sox pitcher threw 120 pitches. 65% were strikes. Of those strikes, 25% were swinging strikes. How many swinging strikes were there?',
+answer: 20,
+hint: 'First find strikes: 120 × 0.65 = 78. Then find 25% of 78. Round to nearest whole number.',
+funFact: 'Fenway Park, home of the Red Sox, is the oldest ballpark in Major League Baseball, built in 1912!'
+},
+{
+type: 'percentages',
+sport: '⚾',
+question: 'A Giants player had a .300 batting average (30%) over 200 at-bats in the first half. In the second half he had 40 hits in 200 at-bats. What was his overall batting percentage for the season?',
+answer: 25,
+hint: 'First half: 200 × 0.30 = 60 hits. Second half: 40 hits. Total: 100 hits in 400 at-bats. Divide and multiply by 100.',
+funFact: 'The Giants have won 8 World Series titles — 3 of them since moving to San Francisco!'
+},
+{
+type: 'percentages',
+sport: '⚾',
+question: 'The Red Sox won 60% of their first 80 games and 50% of their last 82 games. How many total wins did they have?',
+answer: 89,
+hint: 'First: 80 × 0.60 = 48 wins. Last: 82 × 0.50 = 41 wins. Add them.',
+funFact: 'The Red Sox and Yankees rivalry is considered one of the fiercest in all of sports!'
+},
+{
+type: 'percentages',
+sport: '🏒',
+question: 'A Sharks player had 15 goals in his first 30 games (50% scoring rate per game). In his next 20 games, his scoring rate dropped by 20 percentage points. How many total goals did he score in all 50 games?',
+answer: 21,
+hint: '50% - 20 percentage points = 30%. Second stretch: 20 × 0.30 = 6 goals. Total: 15 + 6.',
+funFact: 'Joe Pavelski was one of the Sharks\' greatest captains, known as "Captain America!"'
+},
+{
+type: 'percentages',
+sport: '🏒',
+question: 'The Capitals scored 4 power-play goals on 20 opportunities (20%). Their opponents scored 3 power-play goals on 15 opportunities. Whose power-play percentage was higher and by how many percentage points?',
+answer: 0,
+hint: 'Capitals: 4/20 = 20%. Opponents: 3/15 = 20%. Find the difference.',
+funFact: 'Alex Ovechkin has scored more power-play goals than any other player in NHL history!'
+},
+{
+type: 'percentages',
+sport: '🏒',
+question: 'A Capitals goalie faced 35 shots and saved 91% of them (rounded). The Sharks goalie faced 28 shots and saved 75%. How many more goals were scored on the Sharks goalie?',
+answer: 4,
+hint: 'Capitals goals allowed: 35 × 0.09 ≈ 3. Sharks goals allowed: 28 × 0.25 = 7. Difference = 4.',
+funFact: 'The NHL requires goalies to wear masks — but they didn\'t always! Jacques Plante popularized goalie masks in 1959.'
+},
+{
+type: 'percentages',
+sport: '⚽',
+question: 'Lionel Messi scored 20 goals for Inter Miami. 35% were from free kicks and 40% were from inside the box. The rest were from outside the box (not free kicks). How many were from outside the box?',
+answer: 5,
+hint: '35% + 40% = 75% accounted for. The remaining 25% were from outside the box. 20 × 0.25 = ?',
+funFact: 'Messi has won 8 Ballon d\'Or awards, more than any other player in history!'
+},
+{
+type: 'percentages',
+sport: '⚽',
+question: 'The Earthquakes had 55% possession in the first half (45 min) and 45% in the second half (45 min). How many total minutes did they have possession?',
+answer: 45,
+hint: 'First half: 45 × 0.55 = 24.75 min. Second half: 45 × 0.45 = 20.25 min. Add them.',
+funFact: 'The Earthquakes\' PayPal Park is one of the most intimate stadiums in MLS with about 18,000 seats!'
+},
+{
+type: 'percentages',
+sport: '⚽',
+question: 'Inter Miami won 12 games and lost 8 games (no draws). They then won their next 5 games. What is their new win percentage?',
+answer: 68,
+hint: 'New totals: 17 wins out of 25 games. Divide 17 by 25 and multiply by 100.',
+funFact: 'Inter Miami\'s pink jerseys have become one of the best-selling in all of MLS!'
+},
             ],
 
             allstar: [
@@ -2760,14 +3248,14 @@
                 },
                 // Word Problems - All-Star
                 {
-                    type: 'word',
+                    type: 'addition',
                     sport: '🏈',
                     question: 'Christian McCaffrey ran for 85 yards, caught passes for 42 yards, and returned a kick for 18 yards. How many total yards did he gain?',
                     answer: 145,
                     funFact: 'Christian McCaffrey was NFL Offensive Player of the Year in 2023!'
                 },
                 {
-                    type: 'word',
+                    type: 'division',
                     sport: '⚾',
                     question: 'Matt Chapman had a batting average of .250 for the Giants. If he had 200 at-bats, how many hits did he get?',
                     answer: 50,
@@ -2776,7 +3264,7 @@
                 },
                 // Fractions - All-Star
                 {
-                    type: 'fraction',
+                    type: 'fractions',
                     sport: '🏀',
                     question: 'Draymond Green played 3/4 of a 48-minute game. Kevon Looney played 5/6 of the game. How many MORE minutes did Looney play? (Round to nearest whole number)',
                     answer: 4,
@@ -2784,7 +3272,7 @@
                     funFact: 'Draymond Green is a 4-time NBA champion and Defensive Player of the Year!'
                 },
                 {
-                    type: 'fraction',
+                    type: 'fractions',
                     sport: '🏒',
                     question: 'The Sharks won 2/3 of their 18 home games and lost 1/6 of them. How many home games did they tie?',
                     answer: 3,
@@ -2809,7 +3297,7 @@
                 },
                 // Washington Commanders - All-Star
                 {
-                    type: 'word',
+                    type: 'addition',
                     sport: '🏈',
                     question: 'Jayden Daniels completed 3/4 of his 32 pass attempts. How many passes did he complete?',
                     answer: 24,
@@ -2817,7 +3305,7 @@
                     funFact: 'Jayden Daniels won the Heisman Trophy at LSU before joining the Commanders!'
                 },
                 {
-                    type: 'fraction',
+                    type: 'fractions',
                     sport: '🏈',
                     question: 'Terry McLaurin caught 5/8 of the passes thrown to him in a game. If he was targeted 16 times, how many catches did he make?',
                     answer: 10,
@@ -2826,7 +3314,7 @@
                 },
                 // Colorado Buffaloes - All-Star
                 {
-                    type: 'word',
+                    type: 'addition',
                     sport: '🏈',
                     question: 'Shedeur Sanders threw for 285 yards, ran for 42 yards, and had 18 yards receiving on a trick play. How many total yards?',
                     answer: 345,
@@ -2843,7 +3331,7 @@
                 },
                 // Cal Bears - All-Star
                 {
-                    type: 'fraction',
+                    type: 'fractions',
                     sport: '🏈',
                     question: 'The Cal Bears won 2/3 of their 12 conference games. How many conference games did they win?',
                     answer: 8,
@@ -2851,7 +3339,7 @@
                     funFact: 'Cal has produced over 90 Olympic medalists - more than most countries!'
                 },
                 {
-                    type: 'word',
+                    type: 'division',
                     sport: '🏈',
                     question: 'A Cal running back gained 125 yards on 25 carries. What was his average yards per carry?',
                     answer: 5,
@@ -2860,7 +3348,7 @@
                 },
                 // Inter Miami - All-Star
                 {
-                    type: 'fraction',
+                    type: 'fractions',
                     sport: '⚽',
                     question: 'Messi took 20 shots on goal and scored on 3/10 of them. How many goals did he score?',
                     answer: 6,
@@ -2868,7 +3356,7 @@
                     funFact: 'Messi scored 672 goals for Barcelona - the most by any player for one club!'
                 },
                 {
-                    type: 'word',
+                    type: 'division',
                     sport: '⚽',
                     question: 'Inter Miami scored 48 goals in 24 games. What was their average goals per game?',
                     answer: 2,
@@ -2886,7 +3374,7 @@
                     funFact: 'The NBA expanded the paint from 12 feet to 16 feet wide in 1951!'
                 },
                 {
-                    type: 'word',
+                    type: 'addition',
                     sport: '🏒',
                     question: 'A Sharks player had 14 goals and 23 assists for 37 points. His teammate had 18 goals and 15 assists. How many more total points does the first player have?',
                     answer: 4,
@@ -2902,7 +3390,7 @@
                     funFact: 'Steph Curry\'s career three-point percentage is over 42%!'
                 },
                 {
-                    type: 'fraction',
+                    type: 'fractions',
                     sport: '⚾',
                     question: 'The Giants won 5/9 of their 27 games in a month. How many games did they win?',
                     answer: 15,
@@ -2910,7 +3398,7 @@
                     funFact: 'The Giants moved from New York to San Francisco in 1958!'
                 },
                 {
-                    type: 'word',
+                    type: 'addition',
                     sport: '🏈',
                     question: 'The Commanders gained 156 rushing yards and 248 passing yards. The opponent gained 180 rushing yards and 195 passing yards. How many more total yards did the Commanders have?',
                     answer: 29,
@@ -2935,7 +3423,7 @@
                     funFact: 'Shedeur Sanders was named Big 12 Offensive Player of the Year!'
                 },
                 {
-                    type: 'word',
+                    type: 'addition',
                     sport: '🏈',
                     question: 'Cal scored 14 points in the first quarter, 7 in the second, 0 in the third, and 10 in the fourth. Their opponent scored 7 in each quarter. Did Cal win, and by how many points?',
                     answer: 3,
@@ -2944,7 +3432,7 @@
                 },
                 // Boston Red Sox - All-Star
                 {
-                    type: 'word',
+                    type: 'division',
                     sport: '⚾',
                     question: 'Rafael Devers had a batting average of .280 for the Red Sox. If he had 500 at-bats, how many hits did he get?',
                     answer: 140,
@@ -2952,7 +3440,7 @@
                     funFact: 'Rafael Devers signed a 10-year contract extension with the Red Sox!'
                 },
                 {
-                    type: 'fraction',
+                    type: 'fractions',
                     sport: '⚾',
                     question: 'The Red Sox won 5/8 of their 40 home games at Fenway Park. How many home games did they win?',
                     answer: 25,
@@ -3168,7 +3656,7 @@
                 },
                 // More Word - All-Star
                 {
-                    type: 'word',
+                    type: 'addition',
                     sport: '🏀',
                     question: 'The Warriors scored 112 points in a game. Their opponent scored 98. The Warriors also had 15 turnovers. How many more points did the Warriors score?',
                     answer: 14,
@@ -3176,7 +3664,7 @@
                     funFact: 'Turnovers give the ball to the other team - fewer is better!'
                 },
                 {
-                    type: 'word',
+                    type: 'addition',
                     sport: '🏈',
                     question: 'Travis Hunter had 6 receptions for 85 yards and 2 interceptions on defense. What were his total reception yards plus interception return yards of 32 and 15?',
                     answer: 132,
@@ -3184,7 +3672,7 @@
                     funFact: 'Travis Hunter is one of the few modern players to play both offense and defense!'
                 },
                 {
-                    type: 'word',
+                    type: 'division',
                     sport: '⚾',
                     question: 'The Giants scored 3 runs in the first 5 innings and 4 runs in the last 4 innings. The Red Sox scored 2 runs per inning for 3 innings and 0 for the rest. Who won and by how many runs?',
                     answer: 1,
@@ -3193,7 +3681,7 @@
                 },
                 // More Fractions - All-Star
                 {
-                    type: 'fraction',
+                    type: 'fractions',
                     sport: '🏀',
                     question: 'Steph Curry made 2/5 of his three-pointers on 30 attempts. How many did he make?',
                     answer: 12,
@@ -3201,7 +3689,7 @@
                     funFact: 'Even making 2 out of 5 threes is above average in the NBA!'
                 },
                 {
-                    type: 'fraction',
+                    type: 'fractions',
                     sport: '🏈',
                     question: 'The Commanders converted 3/7 of their third-down attempts. They had 21 third-down attempts. How many did they convert?',
                     answer: 9,
@@ -3209,7 +3697,7 @@
                     funFact: 'Third-down conversion rate is one of the most important stats in football!'
                 },
                 {
-                    type: 'fraction',
+                    type: 'fractions',
                     sport: '⚽',
                     question: 'Messi played 5/6 of a 90-minute game. How many minutes did he play?',
                     answer: 75,
@@ -3293,7 +3781,7 @@
                 },
                 // Additional All-Star questions
                 {
-                    type: 'word',
+                    type: 'division',
                     sport: '🏀',
                     question: 'Kevon Looney grabbed 14 rebounds: 5 offensive and 9 defensive. If each offensive rebound leads to 1.5 points on average, how many extra points did his offensive rebounds generate? (Round to nearest whole)',
                     answer: 8,
@@ -3309,7 +3797,7 @@
                     funFact: 'The center ice circle is used for faceoffs at the start of each period!'
                 },
                 {
-                    type: 'fraction',
+                    type: 'fractions',
                     sport: '🏈',
                     question: 'The Buffaloes made 4/5 of their extra point attempts on 25 tries. How many did they make?',
                     answer: 20,
@@ -3341,7 +3829,7 @@
                     funFact: 'Super Bowl LX will be played in the late 2020s!'
                 },
                 {
-                    type: 'word',
+                    type: 'addition',
                     sport: '⚾',
                     question: 'A Giants player hit .300 over 400 at-bats, then .250 over 200 at-bats. How many total hits?',
                     answer: 170,
@@ -3358,7 +3846,7 @@
                     funFact: 'Kickers practice hundreds of kicks every week!'
                 },
                 {
-                    type: 'fraction',
+                    type: 'fractions',
                     sport: '⚾',
                     question: 'The Red Sox bullpen pitched 3/8 of the total innings in a game. If the game was 8 innings long, how many innings did the bullpen pitch?',
                     answer: 3,
@@ -3390,7 +3878,7 @@
                     funFact: 'The World Cup is expanding to 48 teams starting in 2026!'
                 },
                 {
-                    type: 'word',
+                    type: 'addition',
                     sport: '🏈',
                     question: 'The Commanders had 125 rushing yards and 275 passing yards on offense. Their defense allowed 95 rushing and 210 passing yards. What was the total yardage difference?',
                     answer: 95,
@@ -3414,7 +3902,7 @@
                     funFact: 'RBI stands for Runs Batted In!'
                 },
                 {
-                    type: 'fraction',
+                    type: 'fractions',
                     sport: '🏈',
                     question: 'Travis Hunter caught 7/10 of his targets for the Buffaloes. He was targeted 30 times. How many catches did he make?',
                     answer: 21,
@@ -3438,7 +3926,7 @@
                     funFact: 'The NFL was originally called the American Professional Football Association!'
                 },
                 {
-                    type: 'word',
+                    type: 'addition',
                     sport: '🏒',
                     question: 'The Sharks scored 2 power play goals, 1 short-handed goal, and 3 even-strength goals. How many total goals?',
                     answer: 6,
@@ -3453,7 +3941,7 @@
                     funFact: 'A strong bench is essential for winning championships!'
                 },
                 {
-                    type: 'word',
+                    type: 'percentages',
                     sport: '🏈',
                     question: 'The 49ers had 28 first downs: 12 rushing, 14 passing, and 2 by penalty. What percentage were from passing? (Round to nearest whole)',
                     answer: 50,
@@ -3469,7 +3957,7 @@
                     funFact: 'Center field at Oracle Park is one of the deepest in baseball!'
                 },
                 {
-                    type: 'fraction',
+                    type: 'fractions',
                     sport: '⚽',
                     question: 'Messi converted 4/5 of his penalty kicks. He took 15 penalties. How many did he score?',
                     answer: 12,
@@ -3493,7 +3981,7 @@
                     funFact: 'A sack is when the quarterback is tackled behind the line of scrimmage!'
                 },
                 {
-                    type: 'word',
+                    type: 'addition',
                     sport: '🏒',
                     question: 'The Sharks scored 3 goals in the 1st period, 0 in the 2nd, and 2 in the 3rd. Their opponent scored 1, 2, and 1. Who won and by how many goals?',
                     answer: 1,
@@ -3526,7 +4014,7 @@
                 },
                 // Washington Capitals - All-Star
                 {
-                    type: 'word',
+                    type: 'addition',
                     sport: '🏒',
                     question: 'Ovechkin had 42 goals and 28 assists in a season. His linemate Protas had 24 goals and 35 assists. How many more total points did Ovechkin have?',
                     answer: 11,
@@ -3534,7 +4022,7 @@
                     funFact: 'Ovechkin and Protas formed one of the top lines in the NHL!'
                 },
                 {
-                    type: 'fraction',
+                    type: 'fractions',
                     sport: '🏒',
                     question: 'The Capitals won 51 out of 82 games in the 2024-25 season. What percentage did they win? (Round to nearest whole number)',
                     answer: 62,
@@ -3574,7 +4062,7 @@
                     funFact: 'The Capitals joined the NHL as an expansion team in 1974!'
                 },
                 {
-                    type: 'word',
+                    type: 'addition',
                     sport: '🏒',
                     question: 'The Capitals had a record of 51 wins, 22 losses, and 9 overtime losses in 2024-25. In the NHL, wins are 2 points and OT losses are 1 point. How many standings points did they earn?',
                     answer: 111,
@@ -3582,13 +4070,253 @@
                     funFact: 'The Capitals clinched first place in the Metropolitan Division in 2024-25!'
                 },
                 {
-                    type: 'fraction',
+                    type: 'fractions',
                     sport: '🏒',
                     question: 'Ovechkin took 5/8 of his shots from the left faceoff circle. If he took 240 total shots in a season, how many came from the left circle?',
                     answer: 150,
                     hint: '240 × 5/8 = 150',
                     funFact: 'Ovechkin\'s office is the left faceoff circle — that\'s where he scores most of his goals!'
-                }
+                },
+                {
+                type: 'division',
+                sport: '🏀',
+                question: 'Steph Curry scored 28, 35, and 42 points in 3 games. What was his scoring average? (Round to nearest whole number)',
+                answer: 35,
+                hint: 'Add all points: 28 + 35 + 42 = 105. Then divide by 3.',
+                funFact: 'Steph Curry won the scoring title in 2015-16 averaging 30.1 points per game!'
+                },
+                {
+                type: 'division',
+                sport: '🏈',
+                question: 'The 49ers drove 75 yards in 12 plays on one drive, then 60 yards in 8 plays on the next. What was the overall yards per play across both drives? (Round to nearest tenth)',
+                answer: 6.75,
+                hint: 'Total yards: 75 + 60 = 135. Total plays: 12 + 8 = 20. Divide 135 ÷ 20.',
+                funFact: 'A typical NFL drive covers about 30-40 yards on average!'
+                },
+                {
+                type: 'division',
+                sport: '⚾',
+                question: 'A Giants pitcher threw 95 pitches: 57 were strikes and 38 were balls. What percentage of his pitches were strikes? (Round to nearest whole number)',
+                answer: 60,
+                hint: '57 ÷ 95 = 0.6. Multiply by 100.',
+                funFact: 'A strike percentage above 65% is considered excellent for a pitcher!'
+                },
+                {
+                type: 'division',
+                sport: '🏒',
+                question: 'The Capitals scored 5 power-play goals on 25 power-play opportunities. What is their power-play percentage?',
+                answer: 20,
+                hint: '5 ÷ 25 = 0.20. Multiply by 100.',
+                funFact: 'An NHL power play percentage above 20% is considered very good!'
+                },
+                {
+                type: 'division',
+                sport: '⚽',
+                question: 'The Earthquakes had possession for 1,620 seconds out of a 2,700-second game. What was their possession percentage?',
+                answer: 60,
+                hint: '1620 ÷ 2700 = 0.6. Multiply by 100.',
+                funFact: 'Top soccer teams often aim for possession percentages above 55%!'
+                },
+                {
+                type: 'division',
+                sport: '🏀',
+                question: 'The Warriors shot 84 free throws in a 7-game series, making 63 of them. What was their free throw percentage?',
+                answer: 75,
+                hint: '63 ÷ 84 = 0.75. Multiply by 100.',
+                funFact: 'The NBA average free throw percentage is around 77%!'
+                },
+                {
+                type: 'division',
+                sport: '🏈',
+                question: 'The Commanders QB completed 18 passes for 234 yards and 12 passes for 156 yards in two games. What was his overall yards per completion?',
+                answer: 13,
+                hint: 'Total yards: 234 + 156 = 390. Total completions: 18 + 12 = 30. Then 390 ÷ 30.',
+                funFact: 'An NFL yards-per-completion average above 12 is considered very efficient!'
+                },
+                {
+                type: 'division',
+                sport: '⚾',
+                question: 'The Red Sox scored 4, 7, 2, 8, and 9 runs in a 5-game series. What was the median number of runs scored?',
+                answer: 7,
+                hint: 'In order: 2, 4, 7, 8, 9. The middle value is the 3rd number.',
+                funFact: 'The Red Sox and Yankees have one of the greatest rivalries in all of sports!'
+                },
+                {
+                type: 'division',
+                sport: '🏒',
+                question: 'The Sharks goalie faced 128 shots over 4 games and allowed 12 goals. What was his save percentage? (Round to nearest whole number, multiply by 100)',
+                answer: 91,
+                hint: 'Saves = 128 - 12 = 116. Save % = 116 ÷ 128 × 100 = 90.6. Round to 91.',
+                funFact: 'An NHL save percentage above .920 is considered elite!'
+                },
+                {
+                type: 'division',
+                sport: '⚽',
+                question: 'Inter Miami had 48 shots in 6 games, with 18 on target. What percentage of shots were on target? (Round to nearest whole number)',
+                answer: 38,
+                hint: '18 ÷ 48 = 0.375. Multiply by 100 and round.',
+                funFact: 'A shots-on-target rate above 35% is considered good in professional soccer!'
+                },
+                {
+                type: 'division',
+                sport: '🏀',
+                question: 'In 3 games, the Warriors scored 112, 98, and 130 points. Their opponents scored 105, 102, and 118. What was the Warriors average margin of victory?',
+                answer: 5,
+                hint: 'Margins: 7, -4, 12. Average: (7 + (-4) + 12) ÷ 3 = 15 ÷ 3.',
+                funFact: 'The Warriors won the 2017 NBA Finals with an average margin over 15 points!'
+                },
+                {
+                type: 'division',
+                sport: '🏈',
+                question: 'The 49ers running back gained 1,248 yards on 312 carries. What was his yards per carry average?',
+                answer: 4,
+                hint: '1248 ÷ 312 = ?',
+                funFact: 'An NFL yards-per-carry average above 4.5 is considered excellent!'
+                },
+                {
+                type: 'division',
+                sport: '⚾',
+                question: 'A Giants outfielder had 168 hits in 560 at-bats. What was his batting average? (Enter as 3-digit number, e.g., .300 = 300)',
+                answer: 300,
+                hint: '168 ÷ 560 = 0.300. Enter 300.',
+                funFact: 'Hitting .300 in a season is a major benchmark of excellence in baseball!'
+                },
+                {
+                type: 'division',
+                sport: '🏒',
+                question: 'The Capitals had 186 shots on goal in 6 games. Their opponents had 156. How many more shots per game did the Capitals average?',
+                answer: 5,
+                hint: 'Capitals per game: 186 ÷ 6 = 31. Opponents: 156 ÷ 6 = 26. Difference = ?',
+                funFact: 'Teams that outshoot their opponents typically win more games over the season!'
+                },
+                {
+                type: 'division',
+                sport: '⚽',
+                question: 'The Earthquakes midfielder covered 18 km total in a 90-minute match. What was his average speed in km per 10 minutes?',
+                answer: 2,
+                hint: '18 ÷ 9 (there are 9 ten-minute segments in 90 minutes) = 2',
+                funFact: 'Professional soccer players average about 10-13 km per 90-minute match!'
+                },
+                {
+                type: 'percentages',
+                sport: '🏀',
+                question: 'Stephen Curry shot 42% from three-point range on 10 attempts per game over 5 games. He then shot 50% on 8 attempts per game for the next 3 games. What was his overall three-point percentage across all 8 games? Round to the nearest whole number.',
+                answer: 45,
+                hint: 'First: 5 × 10 × 0.42 = 21 makes out of 50 attempts. Next: 3 × 8 × 0.50 = 12 makes out of 24 attempts. Total: 33/74.',
+                funFact: 'Stephen Curry once made 402 three-pointers in a single season, shattering his own record!'
+                },
+                {
+                type: 'percentages',
+                sport: '🏀',
+                question: 'The Warriors won 65% of their games last month (13 out of 20). This month they need an overall record of 70% through both months. If they play 15 games this month, how many must they win?',
+                answer: 12,
+                hint: 'Total games = 35. Need 70% of 35 = 24.5, so 25 wins. Already have 13. Need 25 - 13 = 12.',
+                funFact: 'The Warriors dynasty won 4 championships in 8 years from 2015 to 2022!'
+                },
+                {
+                type: 'percentages',
+                sport: '🏀',
+                question: 'A Warriors player\'s scoring increased by 20% from his rookie year (15 points per game) to his second year. It then increased by 10% from his second to third year. What was his scoring average in year 3?',
+                answer: 19.8,
+                hint: 'Year 2: 15 × 1.20 = 18. Year 3: 18 × 1.10 = 19.8.',
+                funFact: 'Many NBA players see their biggest statistical improvements between their first and third seasons!'
+                },
+                {
+                type: 'percentages',
+                sport: '🏈',
+                question: 'Brock Purdy\'s passer rating improved 25% from 96 in Week 1. His rating then dropped 10% the following week. What was his rating in Week 3?',
+                answer: 108,
+                hint: 'Week 2: 96 × 1.25 = 120. Week 3: 120 × 0.90 = 108.',
+                funFact: 'Brock Purdy has one of the highest career passer ratings for a quarterback in 49ers history!'
+                },
+                {
+                type: 'percentages',
+                sport: '🏈',
+                question: 'The 49ers defense allowed 20 points per game in the first 10 games. In the last 6 games they allowed 15% fewer points per game. What was the team\'s average points allowed per game for the full 16-game season?',
+                answer: 18.625,
+                hint: 'Last 6 games: 20 × 0.85 = 17 ppg. Total points: (20×10) + (17×6) = 302. Average: 302/16.',
+                funFact: 'The 49ers defense has historically been one of the most dominant in the NFL!'
+                },
+                {
+                type: 'percentages',
+                sport: '🏈',
+                question: 'A Commanders receiver caught 70% of 60 targets for 840 yards. What were his yards per catch?',
+                answer: 20,
+                hint: 'Catches: 60 × 0.70 = 42 catches. Yards per catch: 840 ÷ 42.',
+                funFact: 'Art Monk of Washington was the first NFL player to record 900 career receptions!'
+                },
+                {
+                type: 'percentages',
+                sport: '⚾',
+                question: 'A Giants pitcher has an ERA of 3.00 over 60 innings. He then gives up 6 earned runs over his next 12 innings. What is his new ERA? (ERA = earned runs × 9 ÷ innings pitched)',
+                answer: 3.5,
+                hint: 'Original earned runs: 3.00 × 60 / 9 = 20. New total: 20 + 6 = 26 runs in 72 innings. ERA = 26 × 9 / 72.',
+                funFact: 'An ERA under 3.00 is considered excellent in Major League Baseball!'
+                },
+                {
+                type: 'percentages',
+                sport: '⚾',
+                question: 'A Red Sox hitter has a .280 batting average over 500 at-bats. How many hits does he need in his next 50 at-bats to raise his average to .300?',
+                answer: 25,
+                hint: 'Current hits: 500 × 0.280 = 140. Need: 550 × 0.300 = 165 hits total. Difference: 165 - 140.',
+                funFact: 'Ted Williams of the Red Sox hit .406 in 1941 — the last player to bat over .400 in a season!'
+                },
+                {
+                type: 'percentages',
+                sport: '⚾',
+                question: 'The Giants\' on-base percentage was .320 and their slugging percentage was .420. What is their OPS (on-base plus slugging) expressed as a number out of 1000? (Multiply OPS by 1000)',
+                answer: 740,
+                hint: 'OPS = OBP + SLG = .320 + .420 = .740. Multiply by 1000.',
+                funFact: 'Barry Bonds of the Giants holds the all-time single-season OPS record of 1.422, set in 2004!'
+                },
+                {
+                type: 'percentages',
+                sport: '🏒',
+                question: 'The Sharks scored on 18% of their power plays through 50 games (4 power plays per game). In their last 10 games they scored on 30% of 5 power plays per game. What is their overall power-play percentage for the season? Round to the nearest whole number.',
+                answer: 20,
+                hint: 'First 50: 200 PP, 36 goals. Last 10: 50 PP, 15 goals. Total: 51 goals on 250 PP. 51/250 × 100.',
+                funFact: 'A good NHL power play converts at about 20-25% of opportunities!'
+                },
+                {
+                type: 'percentages',
+                sport: '🏒',
+                question: 'A Capitals player scored 40 goals. The ratio of even-strength goals to power-play goals to short-handed goals is 5:3:2. How many power-play goals did he score?',
+                answer: 12,
+                hint: 'Total ratio parts: 5 + 3 + 2 = 10. Each part = 40/10 = 4 goals. Power-play = 3 × 4.',
+                funFact: 'Alex Ovechkin is widely considered the greatest goal scorer of his generation!'
+                },
+                {
+                type: 'percentages',
+                sport: '🏒',
+                question: 'A Sharks goalie had a .910 save percentage through 30 games facing 30 shots per game. Over the next 10 games (25 shots per game), he saved 94% of shots. What is his new overall save percentage (multiply by 1000 and round)?',
+                answer: 917,
+                hint: 'First: 900 shots, 819 saves. Next: 250 shots, 235 saves. Total: 1054/1150. Multiply by 1000.',
+                funFact: 'A save percentage above .920 is considered elite for an NHL goalie!'
+                },
+                {
+                type: 'percentages',
+                sport: '⚽',
+                question: 'Inter Miami had 58% possession in a match. Messi personally had the ball for 12% of Inter Miami\'s total possession time. If the match was 90 minutes, how many minutes did Messi have the ball? Round to the nearest tenth.',
+                answer: 6.3,
+                hint: 'Inter Miami possession: 90 × 0.58 = 52.2 min. Messi\'s share: 52.2 × 0.12 = 6.264, round to 6.3.',
+                funFact: 'Messi is known for his efficiency — he often has the ball for less time than you\'d think but makes every touch count!'
+                },
+                {
+                type: 'percentages',
+                sport: '⚽',
+                question: 'The Earthquakes scored 45 goals in a season. The ratio of home goals to away goals was 5:4. How many goals did they score at home?',
+                answer: 25,
+                hint: 'Total ratio parts: 5 + 4 = 9. Each part = 45/9 = 5 goals. Home = 5 × 5.',
+                funFact: 'Home field advantage in MLS is significant — teams typically win about 50% of their home matches!'
+                },
+                {
+                type: 'percentages',
+                sport: '⚽',
+                question: 'An Earthquakes goalkeeper saved 78% of the 50 shots he faced in the first half of the season. In the second half he saved 82% of 50 shots. What was his overall save percentage for the season?',
+                answer: 80,
+                hint: 'First half: 50 × 0.78 = 39 saves. Second half: 50 × 0.82 = 41 saves. Total: 80/100 × 100.',
+                funFact: 'MLS goalkeepers typically face between 3-5 shots on target per match!'
+                },
             ],
 
             mvp: [
@@ -3613,7 +4341,7 @@
                 },
                 // Word Problems - MVP
                 {
-                    type: 'word',
+                    type: 'addition',
                     sport: '🏈',
                     question: 'The 49ers gained 78 yards on their first drive, lost 15 yards on second drive, gained 52 yards on third drive, and scored a touchdown from 22 yards out. What was their total yardage?',
                     answer: 137,
@@ -3621,7 +4349,7 @@
                     funFact: 'The 49ers had a 16-game winning streak in the 1989-1990 season!'
                 },
                 {
-                    type: 'word',
+                    type: 'division',
                     sport: '⚾',
                     question: 'In a doubleheader, a Giants player went 3-for-5 in game one and 2-for-4 in game two. What was his batting average for both games? (Enter as decimal: 0.xxx)',
                     answer: 0.556,
@@ -3630,7 +4358,7 @@
                 },
                 // Advanced Fractions - MVP
                 {
-                    type: 'fraction',
+                    type: 'fractions',
                     sport: '🏀',
                     question: 'Steph Curry made 7/10 of his three-pointers and Klay Thompson made 3/5 of his. Steph shot 30 threes and Klay shot 25. How many total three-pointers did they make?',
                     answer: 36,
@@ -3638,7 +4366,7 @@
                     funFact: 'Steph and Klay are known as the "Splash Brothers"!'
                 },
                 {
-                    type: 'fraction',
+                    type: 'fractions',
                     sport: '🏒',
                     question: 'A Sharks player scored in 3/8 of his 32 games. The team won 75% of the games he scored in. How many wins came when he scored?',
                     answer: 9,
@@ -3664,7 +4392,7 @@
                 },
                 // Washington Commanders - MVP
                 {
-                    type: 'word',
+                    type: 'addition',
                     sport: '🏈',
                     question: 'The Commanders gained 92 yards on drive 1, lost 8 yards on drive 2, gained 67 yards on drive 3, and scored from 28 yards out. What was their total yardage?',
                     answer: 179,
@@ -3681,7 +4409,7 @@
                 },
                 // Colorado Buffaloes - MVP
                 {
-                    type: 'fraction',
+                    type: 'fractions',
                     sport: '🏈',
                     question: 'Shedeur Sanders completed 5/8 of his passes and Travis Hunter caught 3/5 of his targets. Shedeur threw 40 passes, Travis was targeted 25 times. How many total: completions + catches?',
                     answer: 40,
@@ -3699,7 +4427,7 @@
                 },
                 // Cal Bears - MVP
                 {
-                    type: 'word',
+                    type: 'addition',
                     sport: '🏈',
                     question: 'In "The Play" (famous 1982 game), Cal returned a kickoff through 5 laterals for a touchdown. Each lateral gained: 25, 15, 20, 10, and 5 yards. How many total yards?',
                     answer: 75,
@@ -3707,7 +4435,7 @@
                     funFact: '"The Play" is one of the most famous plays in college football history!'
                 },
                 {
-                    type: 'fraction',
+                    type: 'fractions',
                     sport: '🏈',
                     question: 'Cal won 3/7 of their 14 games and lost 4/7 of them. How many games did they tie?',
                     answer: 0,
@@ -3716,7 +4444,7 @@
                 },
                 // Inter Miami - MVP
                 {
-                    type: 'fraction',
+                    type: 'fractions',
                     sport: '⚽',
                     question: 'Messi scored in 7/12 of Inter Miami\'s 36 games. In games he scored, Miami won 5/6 of them. How many games did Miami win when Messi scored? (Round to nearest whole)',
                     answer: 18,
@@ -3724,7 +4452,7 @@
                     funFact: 'Messi scored 10 goals in his first 7 games for Inter Miami!'
                 },
                 {
-                    type: 'word',
+                    type: 'division',
                     sport: '⚽',
                     question: 'Inter Miami ticket prices went up after Messi joined. Before: $45 average. After: 3.5 times higher. What\'s the new average price? (Round to nearest dollar)',
                     answer: 158,
@@ -3742,7 +4470,7 @@
                     funFact: 'The Sharks\' teal jerseys are one of the most popular in the NHL!'
                 },
                 {
-                    type: 'fraction',
+                    type: 'fractions',
                     sport: '🏀',
                     question: 'The Warriors made 5/12 of their two-pointers (worth 2 pts each) on 48 attempts and 3/8 of their three-pointers (worth 3 pts each) on 40 attempts. How many total points from these shots?',
                     answer: 85,
@@ -3750,7 +4478,7 @@
                     funFact: 'The Warriors won 73 games in the 2015-16 season - an NBA record!'
                 },
                 {
-                    type: 'word',
+                    type: 'addition',
                     sport: '🏈',
                     question: 'The 49ers scored 7 points in Q1, 14 in Q2, 3 in Q3, and 10 in Q4. Their opponent scored 10, 7, 14, and 7. What was the final point difference?',
                     answer: -4,
@@ -3775,7 +4503,7 @@
                     funFact: 'Colorado\'s mascot Ralphie the Buffalo charges across the field before every home game!'
                 },
                 {
-                    type: 'word',
+                    type: 'division',
                     sport: '🏈',
                     question: 'Jayden Daniels threw for 275 yards and rushed for 68 yards. His passer rating bonus is (passing yards ÷ 5) + (rushing yards ÷ 2). What is his bonus? (Round to nearest whole number)',
                     answer: 89,
@@ -3783,7 +4511,7 @@
                     funFact: 'Jayden Daniels was the 2nd overall pick in the 2024 NFL Draft!'
                 },
                 {
-                    type: 'fraction',
+                    type: 'fractions',
                     sport: '🏈',
                     question: 'Cal\'s kicker made 7/8 of field goals under 40 yards and 3/5 of field goals over 40 yards. He attempted 16 short and 10 long. How many total field goals did he make?',
                     answer: 20,
@@ -3800,7 +4528,7 @@
                 },
                 // Boston Red Sox - MVP
                 {
-                    type: 'word',
+                    type: 'division',
                     sport: '⚾',
                     question: 'In a doubleheader, a Red Sox player went 4-for-5 in game one and 1-for-4 in game two. What was his batting average for both games? (Enter as decimal: 0.xxx)',
                     answer: 0.556,
@@ -3816,7 +4544,7 @@
                     funFact: 'Ted Williams is considered one of the greatest hitters in baseball history!'
                 },
                 {
-                    type: 'fraction',
+                    type: 'fractions',
                     sport: '⚾',
                     question: 'The Red Sox closer saved 5/7 of his save opportunities in April (28 chances) and 3/4 in May (20 chances). How many total saves did he earn?',
                     answer: 35,
@@ -4022,7 +4750,7 @@
                 },
                 // More Word - MVP
                 {
-                    type: 'word',
+                    type: 'addition',
                     sport: '🏀',
                     question: 'The Warriors scored 28 points in Q1, 32 in Q2, 18 in Q3, and 34 in Q4. Their opponents scored 25, 29, 31, and 27. What was the final margin of victory?',
                     answer: 0,
@@ -4030,7 +4758,7 @@
                     funFact: 'Tied NBA games go to overtime - an extra 5-minute period!'
                 },
                 {
-                    type: 'word',
+                    type: 'addition',
                     sport: '🏈',
                     question: 'The Buffaloes gained 312 passing yards, 148 rushing yards, but lost 45 yards to sacks and penalties. What were their net yards?',
                     answer: 415,
@@ -4038,7 +4766,7 @@
                     funFact: 'Colorado\'s high altitude can affect how far the ball travels!'
                 },
                 {
-                    type: 'word',
+                    type: 'addition',
                     sport: '⚽',
                     question: 'Inter Miami played 34 games, won 20, drew 8, and lost the rest. If a win is 3 points, a draw is 1 point, and a loss is 0, how many league points did they earn?',
                     answer: 68,
@@ -4047,7 +4775,7 @@
                 },
                 // More Fractions - MVP
                 {
-                    type: 'fraction',
+                    type: 'fractions',
                     sport: '🏀',
                     question: 'Steph Curry made 5/11 of his threes (worth 3 pts each) and 7/10 of his twos (worth 2 pts each) on 11 three-attempts and 10 two-attempts. How many total points?',
                     answer: 29,
@@ -4055,7 +4783,7 @@
                     funFact: 'Steph Curry has one of the highest true shooting percentages in NBA history!'
                 },
                 {
-                    type: 'fraction',
+                    type: 'fractions',
                     sport: '🏈',
                     question: 'Brock Purdy completed 5/8 of his passes for 320 yards on 40 attempts. How many completions did he have?',
                     answer: 25,
@@ -4063,7 +4791,7 @@
                     funFact: 'Brock Purdy has one of the highest passer ratings in 49ers history!'
                 },
                 {
-                    type: 'fraction',
+                    type: 'fractions',
                     sport: '🏒',
                     question: 'The Sharks won 2/5 of their 40 road games and 3/4 of their 40 home games. How many total wins?',
                     answer: 46,
@@ -4114,7 +4842,7 @@
                 },
                 // More Word - MVP
                 {
-                    type: 'word',
+                    type: 'addition',
                     sport: '🏈',
                     question: 'Cal\'s quarterback threw for 18 completions averaging 12.5 yards each and rushed 8 times averaging 4.5 yards each. How many total yards? (Round to nearest whole)',
                     answer: 261,
@@ -4122,7 +4850,7 @@
                     funFact: 'A quarterback with both passing and rushing ability is called a dual-threat!'
                 },
                 {
-                    type: 'word',
+                    type: 'division',
                     sport: '⚾',
                     question: 'The Giants had a team batting average of .255 over 5,500 at-bats. How many hits did the team get? (Round to nearest whole number)',
                     answer: 1403,
@@ -4148,7 +4876,7 @@
                 },
                 // Additional MVP questions
                 {
-                    type: 'word',
+                    type: 'addition',
                     sport: '🏀',
                     question: 'The Warriors had a 112-105 lead with 2 minutes left. They then scored 4 more but allowed 9 points. What was the final score difference?',
                     answer: 2,
@@ -4164,7 +4892,7 @@
                     funFact: 'The penalty arc keeps players 10 yards from the penalty spot during kicks!'
                 },
                 {
-                    type: 'fraction',
+                    type: 'fractions',
                     sport: '🏈',
                     question: 'The 49ers converted 5/12 of third downs and 3/4 of fourth downs. They had 24 third-down and 8 fourth-down attempts. How many total conversions?',
                     answer: 16,
@@ -4196,7 +4924,7 @@
                     funFact: 'XC is one of the trickier Roman numerals because of the subtractive notation!'
                 },
                 {
-                    type: 'word',
+                    type: 'addition',
                     sport: '⚾',
                     question: 'The Red Sox scored 5 runs with an OPS of .780. Their opponents scored 3 runs with an OPS of .720. What is the difference in OPS? (Enter as decimal)',
                     answer: 0.06,
@@ -4212,7 +4940,7 @@
                     funFact: 'Modern stadium scoreboards are essentially giant TV screens!'
                 },
                 {
-                    type: 'fraction',
+                    type: 'fractions',
                     sport: '⚽',
                     question: 'Messi attempted 15 dribbles and completed 2/3 of them. His teammate attempted 12 dribbles and completed 3/4. How many total successful dribbles?',
                     answer: 19,
@@ -4244,7 +4972,7 @@
                     funFact: 'Large Roman numerals were used for things like building dates and legal documents!'
                 },
                 {
-                    type: 'word',
+                    type: 'addition',
                     sport: '🏈',
                     question: 'Cal\'s offense had 35 plays for 280 yards in the first half and 30 plays for 165 yards in the second. What was their overall yards per play? (Round to nearest tenth)',
                     answer: 6.8,
@@ -4261,7 +4989,7 @@
                     funFact: 'Faceoffs in the defensive zone are high-pressure moments!'
                 },
                 {
-                    type: 'fraction',
+                    type: 'fractions',
                     sport: '🏈',
                     question: 'Jayden Daniels completed 7/12 of his long passes (over 20 yards) and 5/6 of his short passes. He attempted 24 long and 30 short passes. How many total completions?',
                     answer: 39,
@@ -4293,7 +5021,7 @@
                     funFact: 'DCLXVI uses each of the Roman numeral symbols from D down to I exactly once!'
                 },
                 {
-                    type: 'word',
+                    type: 'percentages',
                     sport: '🏒',
                     question: 'The Sharks had a power play percentage of 22% on 50 power play opportunities. How many power play goals did they score?',
                     answer: 11,
@@ -4301,7 +5029,7 @@
                     funFact: 'A 22% power play percentage is above average in the NHL!'
                 },
                 {
-                    type: 'word',
+                    type: 'percentages',
                     sport: '🏈',
                     question: 'The 49ers had 3 drives of 75+ yards, 4 drives of 40-74 yards, and 5 drives under 40 yards. What percentage of drives were 75+ yards? (Round to nearest whole)',
                     answer: 25,
@@ -4325,7 +5053,7 @@
                     funFact: 'Scoring 10 runs in a game usually guarantees a win!'
                 },
                 {
-                    type: 'fraction',
+                    type: 'fractions',
                     sport: '🏈',
                     question: 'The Buffaloes\' offense was on the field for 2/3 of the 60-minute game. Their defense was on for the remaining time. How many minutes was each unit on the field?',
                     answer: 40,
@@ -4349,7 +5077,7 @@
                     funFact: 'Messi jerseys are the best-selling in all of MLS!'
                 },
                 {
-                    type: 'word',
+                    type: 'division',
                     sport: '🏀',
                     question: 'Steph Curry scored 14, 28, 35, 22, and 41 points in his last 5 games. What was his average? (Round to nearest whole)',
                     answer: 28,
@@ -4373,7 +5101,7 @@
                     funFact: 'A football field is about 1.32 acres!'
                 },
                 {
-                    type: 'fraction',
+                    type: 'fractions',
                     sport: '⚾',
                     question: 'The Red Sox won 5/9 of their 162 games. How many games did they win?',
                     answer: 90,
@@ -4397,7 +5125,7 @@
                     funFact: 'Stopping the run is the foundation of good defense!'
                 },
                 {
-                    type: 'word',
+                    type: 'division',
                     sport: '⚽',
                     question: 'The Earthquakes conceded 1.5 goals per game over 34 games. They scored 1.8 goals per game. What was their goal difference for the season? (Round to nearest whole)',
                     answer: 10,
@@ -4413,7 +5141,7 @@
                     funFact: '8.5 yards per attempt is elite in the NFL!'
                 },
                 {
-                    type: 'fraction',
+                    type: 'fractions',
                     sport: '🏀',
                     question: 'The Warriors made 9/20 of their threes and 24/40 of their twos. How many total baskets did they make?',
                     answer: 33,
@@ -4422,7 +5150,7 @@
                 },
                 // Washington Capitals - MVP
                 {
-                    type: 'word',
+                    type: 'division',
                     sport: '🏒',
                     question: 'Ovechkin scored 42 goals in 78 games during the 2024-25 season. What was his goals-per-game rate? (Round to nearest hundredth)',
                     answer: 0.54,
@@ -4438,7 +5166,7 @@
                     funFact: 'Ovechkin broke Wayne Gretzky\'s all-time NHL goal record of 894!'
                 },
                 {
-                    type: 'fraction',
+                    type: 'fractions',
                     sport: '🏒',
                     question: 'The Capitals\' power play converted at 16.4% on 250 power play opportunities. How many power play goals did they score? (Round to nearest whole)',
                     answer: 41,
@@ -4470,7 +5198,7 @@
                     funFact: 'Ovechkin broke Gretzky\'s record that had stood for decades!'
                 },
                 {
-                    type: 'word',
+                    type: 'division',
                     sport: '🏒',
                     question: 'The Capitals\' record was 51-22-9 in 2024-25. If they scored 188 goals and allowed 172 goals, what was their goal differential, and how many goals per game did they average? (Enter the goals per game rounded to nearest tenth)',
                     answer: 2.3,
@@ -4484,7 +5212,247 @@
                     answer: 1638,
                     hint: '1800 × 0.910 = 1638',
                     funFact: 'A .910 save percentage is solid for an NHL goaltender!'
-                }
+                },
+                {
+                type: 'division',
+                sport: '🏀',
+                question: 'The Warriors True Shooting %: A player scored 504 points on 360 FGA and 120 FTA. TS% = points ÷ (2 × (FGA + 0.44 × FTA)) × 100. What is the TS%? (Round to nearest whole)',
+                answer: 61,
+                hint: '2 × (360 + 0.44×120) = 2 × 412.8 = 825.6. Then 504 ÷ 825.6 × 100 = 61.',
+                funFact: 'A True Shooting Percentage above 60% is considered elite efficiency in the NBA!'
+                },
+                {
+                type: 'division',
+                sport: '🏈',
+                question: 'The 49ers had a point differential of +84 over 14 games, and +36 over the next 3 playoff games. What was their average point differential per game across all 17 games? (Round to nearest whole)',
+                answer: 7,
+                hint: 'Total: 84 + 36 = 120. Games: 14 + 3 = 17. Divide: 120 ÷ 17 ≈ 7.',
+                funFact: 'A positive point differential strongly correlates with making the NFL playoffs!'
+                },
+                {
+                type: 'division',
+                sport: '⚾',
+                question: 'The Red Sox ERA calculation: 42 earned runs over 189 innings. ERA = (earned runs ÷ innings) × 9. What is their team ERA? (Round to nearest whole number)',
+                answer: 2,
+                hint: '42 ÷ 189 = 0.222. Times 9 = 2.0.',
+                funFact: 'An ERA under 3.00 is considered excellent in modern baseball!'
+                },
+                {
+                type: 'division',
+                sport: '🏒',
+                question: 'The Sharks had Corsi For of 840 shot attempts and Corsi Against of 720 in 15 games. What is their Corsi For percentage? (Round to nearest whole number)',
+                answer: 54,
+                hint: 'Total Corsi = 840 + 720 = 1560. CF% = 840 ÷ 1560 × 100 = 53.8. Round to 54.',
+                funFact: 'Corsi is an advanced hockey statistic that measures shot attempt differential!'
+                },
+                {
+                type: 'division',
+                sport: '⚽',
+                question: 'Inter Miami had xG of 2.4, 1.8, 0.6, and 3.2 in 4 matches. Actual goals were 3, 1, 1, 3. What is the difference between average actual goals and average xG per game?',
+                answer: 0,
+                hint: 'Average xG: (2.4+1.8+0.6+3.2) ÷ 4 = 2. Average goals: (3+1+1+3) ÷ 4 = 2.',
+                funFact: 'Expected goals (xG) measures the quality of scoring chances based on historical data!'
+                },
+                {
+                type: 'division',
+                sport: '🏀',
+                question: 'PER calculation: (points 25 + rebounds 10 + assists 8) ÷ minutes 36, then multiply by 15. What is the PER? (Round to nearest tenth)',
+                answer: 17.9,
+                hint: '(25 + 10 + 8) = 43. 43 ÷ 36 = 1.194. Times 15 = 17.9.',
+                funFact: 'A PER of 15 is league average in the NBA. Above 25 is MVP-caliber!'
+                },
+                {
+                type: 'division',
+                sport: '🏈',
+                question: 'The Commanders had 3 drives: 72 yards in 4 min, 45 yards in 2.5 min, 63 yards in 3.5 min. What was their overall yards per minute?',
+                answer: 18,
+                hint: 'Total yards: 72+45+63 = 180. Total minutes: 4+2.5+3.5 = 10. Then 180 ÷ 10.',
+                funFact: 'The fastest scoring drive in NFL history took just 8 seconds!'
+                },
+                {
+                type: 'division',
+                sport: '⚾',
+                question: 'A Giants pitcher WHIP: 63 hits and 27 walks allowed over 90 innings. What is his WHIP?',
+                answer: 1,
+                hint: '(63 + 27) ÷ 90 = 90 ÷ 90 = 1',
+                funFact: 'A WHIP under 1.00 is considered dominant pitching in MLB!'
+                },
+                {
+                type: 'division',
+                sport: '🏒',
+                question: 'The Capitals PDO: shooting % (30 goals ÷ 300 shots) plus save % (270 saves ÷ 300 shots faced). Add both and multiply by 100.',
+                answer: 100,
+                hint: 'Shooting%: 0.10. Save%: 0.90. PDO = (0.10+0.90) × 100 = 100.',
+                funFact: 'PDO tends to regress toward 100 over time, making it useful for predictions!'
+                },
+                {
+                type: 'division',
+                sport: '⚽',
+                question: 'The Earthquakes weighted possession: 55% for 60 minutes, 40% for 30 minutes. What is the weighted average possession percentage?',
+                answer: 50,
+                hint: '(55×60 + 40×30) ÷ (60+30) = (3300+1200) ÷ 90 = 50.',
+                funFact: 'Teams that dominate possession do not always win — counter-attacking can be very effective!'
+                },
+                {
+                type: 'division',
+                sport: '🏀',
+                question: 'The Warriors won 48 and lost 16. Rivals won 42 and lost 22. What is the Warriors win ratio numerator when simplified? (GCF of 48 and 42 is 6)',
+                answer: 8,
+                hint: 'Warriors: 48 ÷ 6 = 8. Rivals: 42 ÷ 6 = 7. Ratio is 8:7.',
+                funFact: 'The Warriors went 73-9 in 2015-16, the best regular season record ever!'
+                },
+                {
+                type: 'division',
+                sport: '🏈',
+                question: 'Completion % component of passer rating: (24 completions ÷ 36 attempts) × 100. Then subtract 30 and divide by 20. What is the result? (Round to nearest tenth)',
+                answer: 1.8,
+                hint: '24 ÷ 36 = 0.667. × 100 = 66.7. Subtract 30 = 36.7. ÷ 20 = 1.835 ≈ 1.8.',
+                funFact: 'The NFL passer rating formula has 4 components and a maximum of 158.3!'
+                },
+                {
+                type: 'division',
+                sport: '⚾',
+                question: 'Red Sox weighted batting avg: 4 players batted .280 with 400 ABs each, 2 players batted .320 with 300 ABs each. What is the weighted avg? (Enter as 3-digit number)',
+                answer: 291,
+                hint: '(4×0.280×400 + 2×0.320×300) ÷ (1600+600) = (448+192) ÷ 2200 = 0.291.',
+                funFact: 'The Red Sox have had legendary hitters including Ted Williams, David Ortiz, and Mookie Betts!'
+                },
+                {
+                type: 'division',
+                sport: '🏒',
+                question: 'The Sharks GF/60 at 5v5: 18 goals in 720 minutes of 5v5 ice time. Rate = (goals ÷ minutes) × 60. What is their GF/60?',
+                answer: 1.5,
+                hint: '18 ÷ 720 = 0.025. Times 60 = 1.5.',
+                funFact: 'Goals per 60 minutes is an important rate statistic in hockey analytics!'
+                },
+                {
+                type: 'division',
+                sport: '⚽',
+                question: 'Inter Miami pass completion in 3 games: 420/525, 380/500, 350/475. What was their overall pass completion percentage? (Round to nearest whole)',
+                answer: 77,
+                hint: 'Total completed: 1150. Total attempted: 1500. 1150÷1500 × 100 = 77.',
+                funFact: 'Teams with Messi tend to have higher pass completion rates due to his incredible ball control!'
+                },
+                {
+                type: 'percentages',
+                sport: '🏀',
+                question: 'Stephen Curry\'s True Shooting Percentage is calculated as Points / (2 × (FGA + 0.44 × FTA)). If Curry scored 32 points on 20 field goal attempts and 5 free throw attempts, what is his TS% rounded to the nearest whole number?',
+                answer: 72,
+                hint: 'TS% = 32 / (2 × (20 + 0.44 × 5)) × 100 = 32 / (2 × 22.2) = 32 / 44.4 ≈ 72.07.',
+                funFact: 'Stephen Curry consistently posts one of the highest True Shooting Percentages among volume scorers in NBA history!'
+                },
+                {
+                type: 'percentages',
+                sport: '🏀',
+                question: 'The Warriors had a weighted offensive rating across 3 stretches: 112 for 30 games, 108 for 25 games, and 115 for 27 games. What is their weighted average offensive rating for the season? Round to the nearest tenth.',
+                answer: 111.8,
+                hint: 'Weighted avg = (112×30 + 108×25 + 115×27) / (30+25+27) = (3360 + 2700 + 3105) / 82 = 9165/82.',
+                funFact: 'The Warriors\' 2016-17 team had one of the highest offensive ratings in NBA history!'
+                },
+                {
+                type: 'percentages',
+                sport: '🏀',
+                question: 'A Warriors player\'s Player Efficiency Rating increased 15% each year for 3 years, starting at 16.0. What is his PER after 3 years? Round to the nearest tenth.',
+                answer: 24.3,
+                hint: 'Year 1: 16.0 × 1.15 = 18.4. Year 2: 18.4 × 1.15 = 21.16. Year 3: 21.16 × 1.15 = 24.334.',
+                funFact: 'A PER of 15 is considered league average in the NBA. Michael Jordan holds the career record at 27.9!'
+                },
+                {
+                type: 'percentages',
+                sport: '🏈',
+                question: 'Brock Purdy completed 68% of 450 passes for 3,800 yards with 25 TDs and 8 INTs. His TD% is TDs/attempts × 100 and INT% is INTs/attempts × 100. What is his TD% minus his INT% rounded to the nearest tenth?',
+                answer: 3.8,
+                hint: 'TD% = 25/450 × 100 = 5.556%. INT% = 8/450 × 100 = 1.778%. Difference = 3.778 ≈ 3.8.',
+                funFact: 'The best NFL quarterbacks typically have a TD% at least 3 percentage points higher than their INT%!'
+                },
+                {
+                type: 'percentages',
+                sport: '🏈',
+                question: 'The Commanders had a 3rd-down conversion rate of 38% on 150 attempts. On 3rd-and-short (1-3 yards) they converted 65% of 40 attempts. What was their conversion rate on all other 3rd downs? Round to the nearest whole number.',
+                answer: 28,
+                hint: 'Total conversions: 150 × 0.38 = 57. Short conversions: 40 × 0.65 = 26. Other: 57-26 = 31 on 110 attempts. 31/110 × 100.',
+                funFact: 'Converting on 3rd down is one of the most important stats in football — the league average is around 38-42%!'
+                },
+                {
+                type: 'percentages',
+                sport: '🏈',
+                question: 'A 49ers player\'s salary increased from $2 million to $2.5 million (Year 1 to 2), then from $2.5 million to $3.5 million (Year 2 to 3). What is the percentage increase from Year 1 to Year 3?',
+                answer: 75,
+                hint: 'Increase = $3.5M - $2M = $1.5M. Percentage = (1.5/2) × 100 = 75%.',
+                funFact: 'The NFL salary cap has grown from $34 million in 1994 to over $250 million!'
+                },
+                {
+                type: 'percentages',
+                sport: '⚾',
+                question: 'A Red Sox pitcher has a WHIP (walks + hits per inning pitched) of 1.20 over 150 innings. He allowed 80 hits. How many walks did he allow?',
+                answer: 100,
+                hint: 'WHIP = (Walks + Hits) / IP. So 1.20 = (W + 80) / 150. Solve: W + 80 = 180. W = 100.',
+                funFact: 'A WHIP under 1.00 is considered dominant — Pedro Martinez posted a 0.737 WHIP for the Red Sox in 2000!'
+                },
+                {
+                type: 'percentages',
+                sport: '⚾',
+                question: 'A Giants outfielder has a weighted on-base average calculated as: (0.69×BB + 0.89×HBP + 0.88×1B + 1.27×2B + 1.62×3B + 2.10×HR) / (AB+BB+SF+HBP). He had 50 walks, 5 HBP, 80 singles, 25 doubles, 5 triples, 20 homers, 450 AB, 50 BB, 5 SF, 5 HBP. What is his wOBA? Round to the nearest thousandth and multiply by 1000.',
+                answer: 379,
+                hint: 'Numerator: 34.5 + 4.45 + 70.4 + 31.75 + 8.1 + 42.0 = 191.2. Denominator: 450+50+5+5 = 510. wOBA = 191.2/510 = 0.375. × 1000 = 375.',
+                funFact: 'wOBA (weighted on-base average) is one of the most accurate measures of a hitter\'s overall offensive value!'
+                },
+                {
+                type: 'percentages',
+                sport: '⚾',
+                question: 'A Red Sox pitcher has a 3.60 ERA. If he gives up 20% fewer earned runs over the same number of innings next season, what will his new ERA be?',
+                answer: 2.88,
+                hint: 'If earned runs decrease by 20% and innings stay the same, ERA decreases by 20%. New ERA = 3.60 × 0.80.',
+                funFact: 'The lowest single-season ERA in modern baseball history is 0.96 by Dutch Leonard in 1914!'
+                },
+                {
+                type: 'percentages',
+                sport: '🏒',
+                question: 'A Sharks forward has 25 goals and 35 assists in 60 games. His team scored 180 goals total. His goals-per-game rate is 15% higher than the league average of 0.36. What is his actual goals-per-game rate rounded to the nearest hundredth? Verify: does this match his stats?',
+                answer: 0.41,
+                hint: '0.36 × 1.15 = 0.414. His actual: 25/60 = 0.4167. Rounded to nearest hundredth = 0.42. But the stated "15% higher" gives 0.414 ≈ 0.41.',
+                funFact: 'Scoring 30+ goals in an NHL season is a major milestone that only the best forwards achieve!'
+                },
+                {
+                type: 'percentages',
+                sport: '🏒',
+                question: 'The Capitals have a Corsi For percentage (CF%) of 54% through 50 games, with 2,700 shot attempts for. If they need a CF% of 56% over the full 82 games while maintaining the same rate of shot attempts for, what must their Corsi Against total be for the season? Round to the nearest whole number.',
+                answer: 3483,
+                hint: 'Rate: 2700/50 = 54 per game. Full season CF = 54 × 82 = 4428. CF% = CF/(CF+CA). 0.56 = 4428/(4428+CA). CA = 4428/0.56 - 4428 = 7907.14 - 4428 = 3479.',
+                funFact: 'Corsi is an advanced hockey stat that measures all shot attempts (goals, saves, misses, blocked) as a proxy for puck possession!'
+                },
+                {
+                type: 'percentages',
+                sport: '🏒',
+                question: 'A Sharks goalie has a .915 save percentage over 40 games facing an average of 32 shots per game. How many goals has he allowed?',
+                answer: 109,
+                hint: 'Total shots: 40 × 32 = 1280. Goals allowed = shots × (1 - save%). 1280 × 0.085 = 108.8 ≈ 109.',
+                funFact: 'An NHL goalie faces thousands of shots per season — maintaining focus over 82 games is an incredible mental challenge!'
+                },
+                {
+                type: 'percentages',
+                sport: '⚽',
+                question: 'Messi has an expected goals (xG) of 0.45 per 90 minutes for Inter Miami. He actually scores at a rate 30% higher than his xG. Over 2,500 minutes played, how many goals has he scored? Round to the nearest whole number.',
+                answer: 16,
+                hint: 'Actual rate: 0.45 × 1.30 = 0.585 per 90 min. Number of 90-min periods: 2500/90 = 27.78. Goals: 27.78 × 0.585 = 16.25 ≈ 16.',
+                funFact: 'Expected Goals (xG) measures the quality of scoring chances — Messi consistently outperforms his xG, showing his elite finishing ability!'
+                },
+                {
+                type: 'percentages',
+                sport: '⚽',
+                question: 'The Earthquakes\' points-per-game in MLS is 1.4 through 25 matches (3 pts for win, 1 for draw, 0 for loss). They won 40% and drew 20% of their games. Verify: does this match their PPG?',
+                answer: 1.4,
+                hint: 'Wins: 25 × 0.40 = 10 (30 pts). Draws: 25 × 0.20 = 5 (5 pts). Total: 35 pts / 25 games = 1.4 PPG.',
+                funFact: 'In MLS, a points-per-game average of 1.7 or higher usually puts a team in playoff contention!'
+                },
+                {
+                type: 'percentages',
+                sport: '⚽',
+                question: 'Inter Miami\'s pass completion drops from 88% in the defensive third, to 82% in the middle third, to 71% in the attacking third. If they attempted 200, 250, and 150 passes in each third respectively, what is their overall pass completion percentage? Round to the nearest whole number.',
+                answer: 81,
+                hint: 'Completed: 200×0.88 + 250×0.82 + 150×0.71 = 176 + 205 + 106.5 = 487.5. Total attempts: 600. 487.5/600 × 100.',
+                funFact: 'Lionel Messi\'s teams typically have some of the highest pass completion rates in the league due to his precise passing!'
+                },
             ]
         };
 
