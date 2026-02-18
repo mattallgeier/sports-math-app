@@ -777,6 +777,442 @@
                 width: 28%;
             }
         }
+        /* ==================== LEARNING CENTER ==================== */
+        .learning-center {
+            max-width: 1000px;
+            margin: 30px auto 0;
+            padding: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .learning-center-title {
+            text-align: center;
+            color: #FDB927;
+            font-size: 2em;
+            margin-bottom: 8px;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+        }
+
+        .learning-center-subtitle {
+            text-align: center;
+            color: rgba(255,255,255,0.8);
+            font-size: 1.1em;
+            margin-bottom: 25px;
+        }
+
+        .learning-module {
+            margin-bottom: 20px;
+        }
+
+        .module-header {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(135deg, rgba(255,255,255,0.97) 0%, rgba(248,249,255,0.97) 100%);
+            border: 3px solid #006BB6;
+            border-radius: 20px;
+            padding: 20px 25px;
+            cursor: pointer;
+            font-family: 'Comic Sans MS', 'Arial Rounded MT Bold', sans-serif;
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #006BB6;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2), inset 0 0 30px rgba(0,107,182,0.05);
+        }
+
+        .module-header:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3), inset 0 0 30px rgba(0,107,182,0.05);
+            border-color: #FDB927;
+        }
+
+        .module-header:active {
+            transform: translateY(1px);
+        }
+
+        .module-header-text {
+            text-align: left;
+        }
+
+        .module-toggle-icon {
+            font-size: 1.2em;
+            transition: transform 0.3s ease;
+            color: #FDB927;
+        }
+
+        .module-header.expanded .module-toggle-icon {
+            transform: rotate(90deg);
+        }
+
+        .module-header.expanded {
+            border-radius: 20px 20px 0 0;
+            border-bottom: none;
+            border-color: #FDB927;
+        }
+
+        .module-content {
+            background: rgba(255, 255, 255, 0.97);
+            border: 3px solid #FDB927;
+            border-top: none;
+            border-radius: 0 0 20px 20px;
+            padding: 25px 30px 30px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2), inset 0 0 30px rgba(0,107,182,0.03);
+        }
+
+        .module-content.hidden {
+            display: none;
+        }
+
+        .module-intro {
+            font-size: 1.05em;
+            color: #444;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            padding: 0 5px;
+        }
+
+        .module-card {
+            background: #f8f9ff;
+            border: 2px solid #006BB6;
+            border-radius: 15px;
+            padding: 20px 25px;
+            margin-bottom: 18px;
+            box-shadow: inset 0 0 20px rgba(255,255,255,0.6);
+        }
+
+        .module-card-highlight {
+            background: linear-gradient(135deg, #fef3c7 0%, #fff7e6 100%);
+            border-color: #FDB927;
+        }
+
+        .module-card-title {
+            color: #006BB6;
+            font-size: 1.2em;
+            margin-bottom: 12px;
+        }
+
+        .module-card-highlight .module-card-title {
+            color: #92400e;
+        }
+
+        .module-table {
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto;
+            border-collapse: collapse;
+            font-size: 1.1em;
+        }
+
+        .module-table th {
+            background: linear-gradient(135deg, #FDB927 0%, #006BB6 100%);
+            color: white;
+            padding: 8px 15px;
+            text-align: center;
+        }
+
+        .module-table th:first-child {
+            border-radius: 10px 0 0 0;
+        }
+
+        .module-table th:last-child {
+            border-radius: 0 10px 0 0;
+        }
+
+        .module-table td {
+            padding: 8px 15px;
+            text-align: center;
+            border-bottom: 1px solid #e5e7eb;
+            font-weight: bold;
+        }
+
+        .module-table tr:nth-child(even) {
+            background: #eef2ff;
+        }
+
+        .module-table tr:last-child td:first-child {
+            border-radius: 0 0 0 10px;
+        }
+
+        .module-table tr:last-child td:last-child {
+            border-radius: 0 0 10px 0;
+        }
+
+        .module-example {
+            background: white;
+            border: 2px dashed #006BB6;
+            border-radius: 12px;
+            padding: 15px 20px;
+            margin-top: 12px;
+        }
+
+        .module-example p {
+            color: #333;
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .example-row {
+            padding: 6px 0;
+            font-size: 1.05em;
+            color: #333;
+            line-height: 1.5;
+        }
+
+        .example-roman {
+            font-weight: bold;
+            color: #006BB6;
+            font-size: 1.1em;
+        }
+
+        .example-answer {
+            font-weight: bold;
+            color: #10b981;
+            font-size: 1.1em;
+        }
+
+        .formula-box {
+            background: linear-gradient(135deg, #e8f5e9 0%, #f0f4ff 100%);
+            border: 2px solid #10b981;
+            border-radius: 12px;
+            padding: 15px 20px;
+            margin: 12px 0;
+        }
+
+        .formula-row {
+            display: flex;
+            gap: 10px;
+            align-items: baseline;
+            padding: 5px 0;
+            flex-wrap: wrap;
+        }
+
+        .formula-label {
+            font-weight: bold;
+            color: #006BB6;
+            min-width: 110px;
+        }
+
+        .formula-eq {
+            color: #333;
+            font-size: 1.05em;
+        }
+
+        .formula-short {
+            color: #888;
+            font-style: italic;
+        }
+
+        .vocab-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .vocab-item {
+            padding: 8px 12px;
+            background: white;
+            border-left: 4px solid #FDB927;
+            border-radius: 0 8px 8px 0;
+            color: #333;
+            line-height: 1.5;
+        }
+
+        .module-tip {
+            background: #fef3c7;
+            border: 2px solid #f59e0b;
+            border-radius: 12px;
+            padding: 15px 20px;
+            margin-top: 5px;
+            color: #78350f;
+            line-height: 1.5;
+        }
+
+        /* Shape Diagrams */
+        .shape-diagram {
+            display: flex;
+            justify-content: center;
+            margin: 10px 0 15px;
+        }
+
+        .rect-diagram {
+            position: relative;
+            display: inline-block;
+        }
+
+        .rect-shape {
+            width: 180px;
+            height: 100px;
+            border: 3px solid #006BB6;
+            border-radius: 4px;
+            background: rgba(0,107,182,0.05);
+            position: relative;
+        }
+
+        .rect-label-top {
+            position: absolute;
+            top: -22px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.9em;
+            color: #006BB6;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .rect-label-side {
+            position: absolute;
+            right: -65px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.9em;
+            color: #006BB6;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .tri-diagram {
+            position: relative;
+            display: inline-block;
+            width: 160px;
+            height: 130px;
+        }
+
+        .tri-shape {
+            width: 0;
+            height: 0;
+            border-left: 70px solid transparent;
+            border-right: 70px solid transparent;
+            border-bottom: 100px solid rgba(0,107,182,0.1);
+            position: absolute;
+            top: 0;
+            left: 10px;
+        }
+
+        .tri-label-base {
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.9em;
+            color: #006BB6;
+            font-weight: bold;
+        }
+
+        .tri-label-height {
+            position: absolute;
+            right: -15px;
+            top: 40%;
+            font-size: 0.9em;
+            color: #006BB6;
+            font-weight: bold;
+            writing-mode: vertical-rl;
+        }
+
+        .circle-diagram {
+            position: relative;
+            display: inline-block;
+        }
+
+        .circle-shape {
+            width: 120px;
+            height: 120px;
+            border: 3px solid #006BB6;
+            border-radius: 50%;
+            background: rgba(0,107,182,0.05);
+            position: relative;
+        }
+
+        .circle-radius-line {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 50%;
+            height: 2px;
+            background: #FF6900;
+            transform: translateY(-50%);
+        }
+
+        .circle-r-label {
+            position: absolute;
+            top: 42%;
+            left: 65%;
+            font-size: 0.85em;
+            color: #FF6900;
+            font-weight: bold;
+        }
+
+        .circle-diameter-line {
+            position: absolute;
+            top: 50%;
+            left: 5%;
+            width: 90%;
+            height: 0;
+            transform: translateY(-50%);
+            border-top: 2px dashed #006BB6;
+            opacity: 0.3;
+        }
+
+        .circle-d-label {
+            position: absolute;
+            bottom: 25%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.85em;
+            color: #006BB6;
+            font-weight: bold;
+        }
+
+        /* Learning Center Mobile */
+        @media (max-width: 768px) {
+            .learning-center {
+                padding: 15px;
+            }
+
+            .learning-center-title {
+                font-size: 1.5em;
+            }
+
+            .module-header {
+                font-size: 1.1em;
+                padding: 15px 18px;
+            }
+
+            .module-content {
+                padding: 15px 18px 20px;
+            }
+
+            .module-card {
+                padding: 15px 18px;
+            }
+
+            .formula-row {
+                flex-direction: column;
+                gap: 2px;
+            }
+
+            .formula-label {
+                min-width: unset;
+            }
+
+            .rect-shape {
+                width: 140px;
+                height: 80px;
+            }
+
+            .rect-label-side {
+                right: -55px;
+                font-size: 0.8em;
+            }
+
+            .circle-shape {
+                width: 100px;
+                height: 100px;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -906,6 +1342,180 @@
             <div class="button-group" style="margin-top: 20px;">
                 <button id="nextBtn" class="btn btn-next hidden" onclick="nextQuestion()">Next Question →</button>
                 <button class="btn btn-end" onclick="endGame()">🏁 End Game</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Learning Center Section -->
+    <div class="learning-center">
+        <h2 class="learning-center-title">📚 Study Hall - Crash Courses</h2>
+        <p class="learning-center-subtitle">Review these mini-lessons before you play to boost your score!</p>
+
+        <!-- Module 1: Roman Numerals -->
+        <div class="learning-module">
+            <button class="module-header" onclick="toggleModule('module-roman')" aria-expanded="false" aria-controls="module-roman">
+                <span class="module-header-text">🏛️ Crash Course: Roman Numerals</span>
+                <span class="module-toggle-icon" id="icon-module-roman">&#9654;</span>
+            </button>
+            <div class="module-content hidden" id="module-roman">
+
+                <div class="module-intro">
+                    <p>Ancient Romans used letters to write numbers — and we still use them today for Super Bowls, clocks, and outlines! Here's how they work.</p>
+                </div>
+
+                <div class="module-card">
+                    <h4 class="module-card-title">🔤 The 7 Basic Symbols</h4>
+                    <table class="module-table">
+                        <thead>
+                            <tr>
+                                <th>Symbol</th><th>Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>I</td><td>1</td></tr>
+                            <tr><td>V</td><td>5</td></tr>
+                            <tr><td>X</td><td>10</td></tr>
+                            <tr><td>L</td><td>50</td></tr>
+                            <tr><td>C</td><td>100</td></tr>
+                            <tr><td>D</td><td>500</td></tr>
+                            <tr><td>M</td><td>1,000</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="module-card">
+                    <h4 class="module-card-title">➕ Rule 1: Adding (Left to Right)</h4>
+                    <p>When a <strong>bigger</strong> number comes first, you <strong>add</strong>.</p>
+                    <div class="module-example">
+                        <div class="example-row"><span class="example-roman">VI</span> = V + I = 5 + 1 = <span class="example-answer">6</span></div>
+                        <div class="example-row"><span class="example-roman">XV</span> = X + V = 10 + 5 = <span class="example-answer">15</span></div>
+                        <div class="example-row"><span class="example-roman">LXII</span> = L + X + I + I = 50 + 10 + 1 + 1 = <span class="example-answer">62</span></div>
+                    </div>
+                </div>
+
+                <div class="module-card">
+                    <h4 class="module-card-title">➖ Rule 2: Subtracting (The Tricky Part!)</h4>
+                    <p>When a <strong>smaller</strong> number comes <strong>before</strong> a bigger one, you <strong>subtract</strong> it.</p>
+                    <div class="module-example">
+                        <div class="example-row"><span class="example-roman">IV</span> = V - I = 5 - 1 = <span class="example-answer">4</span></div>
+                        <div class="example-row"><span class="example-roman">IX</span> = X - I = 10 - 1 = <span class="example-answer">9</span></div>
+                        <div class="example-row"><span class="example-roman">XL</span> = L - X = 50 - 10 = <span class="example-answer">40</span></div>
+                        <div class="example-row"><span class="example-roman">XC</span> = C - X = 100 - 10 = <span class="example-answer">90</span></div>
+                        <div class="example-row"><span class="example-roman">CD</span> = D - C = 500 - 100 = <span class="example-answer">400</span></div>
+                        <div class="example-row"><span class="example-roman">CM</span> = M - C = 1000 - 100 = <span class="example-answer">900</span></div>
+                    </div>
+                </div>
+
+                <div class="module-card module-card-highlight">
+                    <h4 class="module-card-title">🏈 Super Bowl Practice!</h4>
+                    <p>Super Bowls use Roman numerals. Try these:</p>
+                    <div class="module-example">
+                        <div class="example-row"><span class="example-roman">Super Bowl III</span> = <span class="example-answer">3</span></div>
+                        <div class="example-row"><span class="example-roman">Super Bowl XX</span> = <span class="example-answer">20</span></div>
+                        <div class="example-row"><span class="example-roman">Super Bowl XLII</span> = XL + II = 40 + 2 = <span class="example-answer">42</span></div>
+                        <div class="example-row"><span class="example-roman">Super Bowl LIV</span> = L + IV = 50 + 4 = <span class="example-answer">54</span></div>
+                        <div class="example-row"><span class="example-roman">Super Bowl LVIII</span> = L + V + III = 50 + 5 + 3 = <span class="example-answer">58</span></div>
+                    </div>
+                </div>
+
+                <div class="module-tip">
+                    <strong>💡 Pro Tip:</strong> You never write more than 3 of the same letter in a row. That's why 4 is IV (not IIII) and 9 is IX (not VIIII).
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Module 2: Geometry Basics -->
+        <div class="learning-module">
+            <button class="module-header" onclick="toggleModule('module-geometry')" aria-expanded="false" aria-controls="module-geometry">
+                <span class="module-header-text">📐 Crash Course: Geometry Basics</span>
+                <span class="module-toggle-icon" id="icon-module-geometry">&#9654;</span>
+            </button>
+            <div class="module-content hidden" id="module-geometry">
+
+                <div class="module-intro">
+                    <p>Geometry is the math of shapes! Knowing a few key formulas will help you crush the geometry questions in this game.</p>
+                </div>
+
+                <div class="module-card">
+                    <h4 class="module-card-title">📏 Key Vocabulary</h4>
+                    <div class="vocab-list">
+                        <div class="vocab-item"><strong>Perimeter</strong> — the distance AROUND a shape (like walking around a field)</div>
+                        <div class="vocab-item"><strong>Area</strong> — the space INSIDE a shape (like how much grass covers a field)</div>
+                        <div class="vocab-item"><strong>Radius (r)</strong> — distance from the CENTER of a circle to the edge</div>
+                        <div class="vocab-item"><strong>Diameter (d)</strong> — distance ACROSS a circle through the center (d = 2 × r)</div>
+                        <div class="vocab-item"><strong>Circumference</strong> — the distance AROUND a circle (the perimeter of a circle)</div>
+                        <div class="vocab-item"><strong>Pi (π)</strong> — a special number, approximately <strong>3.14</strong>, used in circle math</div>
+                    </div>
+                </div>
+
+                <div class="module-card">
+                    <h4 class="module-card-title">▬ Rectangles (like a basketball court!)</h4>
+                    <div class="shape-diagram">
+                        <div class="rect-diagram">
+                            <div class="rect-shape">
+                                <span class="rect-label-top">length (l)</span>
+                                <span class="rect-label-side">width (w)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="formula-box">
+                        <div class="formula-row"><span class="formula-label">Area</span> <span class="formula-eq">= length × width</span> <span class="formula-short">= l × w</span></div>
+                        <div class="formula-row"><span class="formula-label">Perimeter</span> <span class="formula-eq">= 2 × (length + width)</span> <span class="formula-short">= 2(l + w)</span></div>
+                    </div>
+                    <div class="module-example">
+                        <p><strong>Example:</strong> A basketball court is 94 ft long and 50 ft wide.</p>
+                        <div class="example-row">Area = 94 × 50 = <span class="example-answer">4,700 sq ft</span></div>
+                        <div class="example-row">Perimeter = 2 × (94 + 50) = 2 × 144 = <span class="example-answer">288 ft</span></div>
+                    </div>
+                </div>
+
+                <div class="module-card">
+                    <h4 class="module-card-title">▲ Triangles</h4>
+                    <div class="shape-diagram">
+                        <div class="tri-diagram">
+                            <div class="tri-shape"></div>
+                            <span class="tri-label-base">base (b)</span>
+                            <span class="tri-label-height">height (h)</span>
+                        </div>
+                    </div>
+                    <div class="formula-box">
+                        <div class="formula-row"><span class="formula-label">Area</span> <span class="formula-eq">= ½ × base × height</span> <span class="formula-short">= (b × h) ÷ 2</span></div>
+                    </div>
+                    <div class="module-example">
+                        <p><strong>Example:</strong> A pennant flag has base 6 in and height 10 in.</p>
+                        <div class="example-row">Area = (6 × 10) ÷ 2 = 60 ÷ 2 = <span class="example-answer">30 sq in</span></div>
+                    </div>
+                </div>
+
+                <div class="module-card">
+                    <h4 class="module-card-title">⭕ Circles (like a baseball or a hockey puck!)</h4>
+                    <div class="shape-diagram">
+                        <div class="circle-diagram">
+                            <div class="circle-shape">
+                                <div class="circle-radius-line"></div>
+                                <span class="circle-r-label">r</span>
+                                <div class="circle-diameter-line"></div>
+                                <span class="circle-d-label">d</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="formula-box">
+                        <div class="formula-row"><span class="formula-label">Circumference</span> <span class="formula-eq">= π × diameter</span> <span class="formula-short">= π × d</span></div>
+                        <div class="formula-row"><span class="formula-label"></span> <span class="formula-eq">= 2 × π × radius</span> <span class="formula-short">= 2πr</span></div>
+                        <div class="formula-row"><span class="formula-label">Area</span> <span class="formula-eq">= π × radius × radius</span> <span class="formula-short">= πr²</span></div>
+                    </div>
+                    <div class="module-example">
+                        <p><strong>Example:</strong> A pitcher's mound has radius 9 ft. (Use 3.14 for π)</p>
+                        <div class="example-row">Circumference = 2 × 3.14 × 9 = <span class="example-answer">56.52 ft</span></div>
+                        <div class="example-row">Area = 3.14 × 9 × 9 = <span class="example-answer">254.34 sq ft</span></div>
+                    </div>
+                </div>
+
+                <div class="module-tip">
+                    <strong>💡 Pro Tip:</strong> When a problem says "use 3.14 for pi," do the multiplication and then round as the problem asks. Always check if it says "round to the nearest whole number"!
+                </div>
+
             </div>
         </div>
     </div>
@@ -5842,6 +6452,22 @@ funFact: 'Inter Miami\'s pink jerseys have become one of the best-selling in all
                 checkAnswer();
             }
         });
+
+        // Learning Module Accordion Toggle
+        function toggleModule(moduleId) {
+            const content = document.getElementById(moduleId);
+            const header = content.previousElementSibling;
+
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                header.classList.add('expanded');
+                header.setAttribute('aria-expanded', 'true');
+            } else {
+                content.classList.add('hidden');
+                header.classList.remove('expanded');
+                header.setAttribute('aria-expanded', 'false');
+            }
+        }
     </script>
 
 </body></html>
