@@ -1030,6 +1030,186 @@
             line-height: 1.5;
         }
 
+        /* Number Line Diagram */
+        .number-line-container {
+            margin: 15px 0;
+            padding: 10px 5px 30px;
+            overflow-x: auto;
+        }
+
+        .number-line {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            height: 40px;
+            margin: 0 auto;
+        }
+
+        .number-line-track {
+            position: absolute;
+            top: 18px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: #006BB6;
+        }
+
+        .number-line-tick {
+            position: absolute;
+            top: 10px;
+            width: 2px;
+            height: 20px;
+            background: #006BB6;
+            transform: translateX(-50%);
+        }
+
+        .number-line-tick.major {
+            height: 26px;
+            top: 7px;
+            width: 3px;
+        }
+
+        .number-line-label {
+            position: absolute;
+            top: 36px;
+            transform: translateX(-50%);
+            font-size: 0.75em;
+            color: #006BB6;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .number-line-point {
+            position: absolute;
+            top: 4px;
+            width: 14px;
+            height: 14px;
+            background: #FF6900;
+            border-radius: 50%;
+            transform: translateX(-50%);
+            border: 2px solid white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .number-line-point-label {
+            position: absolute;
+            top: -18px;
+            transform: translateX(-50%);
+            font-size: 0.8em;
+            color: #FF6900;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        /* Fraction Bar Diagram */
+        .fraction-bar-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            margin: 15px 0;
+        }
+
+        .fraction-bar {
+            display: flex;
+            width: 100%;
+            max-width: 320px;
+            height: 40px;
+            border: 2px solid #006BB6;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .fraction-bar-piece {
+            flex: 1;
+            border-right: 2px solid #006BB6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.85em;
+        }
+
+        .fraction-bar-piece:last-child {
+            border-right: none;
+        }
+
+        .fraction-bar-piece.filled {
+            background: linear-gradient(135deg, #006BB6 0%, #0088e0 100%);
+            color: white;
+        }
+
+        .fraction-bar-piece.empty {
+            background: #f0f4ff;
+            color: #aaa;
+        }
+
+        .fraction-bar-label {
+            font-size: 1em;
+            color: #333;
+            font-weight: bold;
+        }
+
+        /* Balance Scale Diagram */
+        .balance-diagram {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 15px 0;
+        }
+
+        .balance-scale {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 5px;
+        }
+
+        .balance-side {
+            width: 120px;
+            min-height: 45px;
+            background: #f0f4ff;
+            border: 2px solid #006BB6;
+            border-radius: 10px 10px 0 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.1em;
+            color: #006BB6;
+            padding: 8px;
+            text-align: center;
+        }
+
+        .balance-equals {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #10b981;
+            margin-bottom: 10px;
+        }
+
+        .balance-base {
+            width: 280px;
+            height: 6px;
+            background: linear-gradient(135deg, #FDB927 0%, #006BB6 100%);
+            border-radius: 3px;
+        }
+
+        .balance-fulcrum {
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-bottom: 15px solid #006BB6;
+            transform: rotate(180deg);
+        }
+
+        /* Wide table variant */
+        .module-table.wide {
+            max-width: 450px;
+        }
+
         /* Shape Diagrams */
         .shape-diagram {
             display: flex;
@@ -1210,6 +1390,24 @@
             .circle-shape {
                 width: 100px;
                 height: 100px;
+            }
+
+            .number-line-label {
+                font-size: 0.65em;
+            }
+
+            .fraction-bar {
+                max-width: 260px;
+                height: 35px;
+            }
+
+            .balance-side {
+                width: 100px;
+                font-size: 0.95em;
+            }
+
+            .balance-base {
+                width: 240px;
             }
         }
 
@@ -1514,6 +1712,434 @@
 
                 <div class="module-tip">
                     <strong>💡 Pro Tip:</strong> When a problem says "use 3.14 for pi," do the multiplication and then round as the problem asks. Always check if it says "round to the nearest whole number"!
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Module 3: Decimals -->
+        <div class="learning-module">
+            <button class="module-header" onclick="toggleModule('module-decimals')" aria-expanded="false" aria-controls="module-decimals">
+                <span class="module-header-text">🔢 Crash Course: Decimals</span>
+                <span class="module-toggle-icon" id="icon-module-decimals">&#9654;</span>
+            </button>
+            <div class="module-content hidden" id="module-decimals">
+
+                <div class="module-intro">
+                    <p>Decimals are everywhere in sports — batting averages, free throw percentages, and race times all use decimals! Let's learn how they work.</p>
+                </div>
+
+                <div class="module-card">
+                    <h4 class="module-card-title">📍 Place Values — What Each Digit Means</h4>
+                    <p>Every spot after the decimal point has a name:</p>
+                    <div class="vocab-list">
+                        <div class="vocab-item"><strong>Tenths</strong> — the first digit after the decimal point. In 0.<strong>5</strong>, the 5 is in the tenths place (five tenths = 5/10)</div>
+                        <div class="vocab-item"><strong>Hundredths</strong> — the second digit. In 0.2<strong>5</strong>, the 5 is in the hundredths place (twenty-five hundredths = 25/100)</div>
+                        <div class="vocab-item"><strong>Thousandths</strong> — the third digit. In 0.32<strong>5</strong>, the 5 is in the thousandths place (three hundred twenty-five thousandths = 325/1000)</div>
+                    </div>
+                    <div class="module-example">
+                        <p><strong>How to read decimals:</strong></p>
+                        <div class="example-row">0.5 = "five tenths" = <span class="example-answer">5/10</span></div>
+                        <div class="example-row">0.25 = "twenty-five hundredths" = <span class="example-answer">25/100</span></div>
+                        <div class="example-row">0.325 = "three hundred twenty-five thousandths" = <span class="example-answer">325/1000</span></div>
+                    </div>
+                </div>
+
+                <div class="module-card">
+                    <h4 class="module-card-title">📏 Decimals on a Number Line</h4>
+                    <p>Decimals live between whole numbers. Here's 0 to 1:</p>
+                    <div class="shape-diagram">
+                        <div class="number-line-container">
+                            <div class="number-line">
+                                <div class="number-line-track"></div>
+                                <div class="number-line-tick major" style="left: 0%"></div>
+                                <div class="number-line-label" style="left: 0%">0</div>
+                                <div class="number-line-tick" style="left: 10%"></div>
+                                <div class="number-line-label" style="left: 10%">0.1</div>
+                                <div class="number-line-tick" style="left: 20%"></div>
+                                <div class="number-line-label" style="left: 20%">0.2</div>
+                                <div class="number-line-tick" style="left: 30%"></div>
+                                <div class="number-line-label" style="left: 30%">0.3</div>
+                                <div class="number-line-tick" style="left: 40%"></div>
+                                <div class="number-line-label" style="left: 40%">0.4</div>
+                                <div class="number-line-tick major" style="left: 50%"></div>
+                                <div class="number-line-label" style="left: 50%">0.5</div>
+                                <div class="number-line-tick" style="left: 60%"></div>
+                                <div class="number-line-label" style="left: 60%">0.6</div>
+                                <div class="number-line-tick" style="left: 70%"></div>
+                                <div class="number-line-label" style="left: 70%">0.7</div>
+                                <div class="number-line-tick" style="left: 80%"></div>
+                                <div class="number-line-label" style="left: 80%">0.8</div>
+                                <div class="number-line-tick" style="left: 90%"></div>
+                                <div class="number-line-label" style="left: 90%">0.9</div>
+                                <div class="number-line-tick major" style="left: 100%"></div>
+                                <div class="number-line-label" style="left: 100%">1.0</div>
+                                <div class="number-line-point" style="left: 25%"></div>
+                                <div class="number-line-point-label" style="left: 25%">1/4</div>
+                                <div class="number-line-point" style="left: 50%"></div>
+                                <div class="number-line-point-label" style="left: 50%">1/2</div>
+                                <div class="number-line-point" style="left: 75%"></div>
+                                <div class="number-line-point-label" style="left: 75%">3/4</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="module-example">
+                        <p><strong>Notice:</strong> 0.25 is the same spot as 1/4, 0.5 is the same as 1/2, and 0.75 is the same as 3/4!</p>
+                    </div>
+                </div>
+
+                <div class="module-card">
+                    <h4 class="module-card-title">➕ Adding Decimals — Line Up the Points!</h4>
+                    <p>The #1 rule for adding decimals: <strong>line up the decimal points</strong>, then add like normal!</p>
+                    <div class="formula-box">
+                        <div class="formula-row"><span class="formula-label">Step 1</span> <span class="formula-eq">Write the numbers so the decimal points are stacked</span></div>
+                        <div class="formula-row"><span class="formula-label">Step 2</span> <span class="formula-eq">Add zeros to fill empty spots if needed</span></div>
+                        <div class="formula-row"><span class="formula-label">Step 3</span> <span class="formula-eq">Add from right to left, just like whole numbers</span></div>
+                        <div class="formula-row"><span class="formula-label">Step 4</span> <span class="formula-eq">Bring the decimal point straight down</span></div>
+                    </div>
+                    <div class="module-example">
+                        <p><strong>Example:</strong> Steph Curry scored 12.5 points in the 1st half and 15.3 in the 2nd half.</p>
+                        <div class="example-row">&nbsp;&nbsp;12.5</div>
+                        <div class="example-row">+ 15.3</div>
+                        <div class="example-row">------</div>
+                        <div class="example-row">&nbsp;&nbsp;<span class="example-answer">27.8 points total</span></div>
+                    </div>
+                    <div class="module-example">
+                        <p><strong>Example with different decimal places:</strong> A 49ers receiver ran 8.75 yards and then 3.5 more yards.</p>
+                        <div class="example-row">&nbsp;&nbsp;8.75</div>
+                        <div class="example-row">+ 3.50 &larr; (add a zero to fill the spot)</div>
+                        <div class="example-row">------</div>
+                        <div class="example-row"><span class="example-answer">12.25 yards total</span></div>
+                    </div>
+                </div>
+
+                <div class="module-card">
+                    <h4 class="module-card-title">➖ Subtracting Decimals — Same Rule!</h4>
+                    <p>Subtracting decimals works the same way: <strong>line up the decimal points</strong> and subtract!</p>
+                    <div class="module-example">
+                        <p><strong>Example:</strong> A Giants batter's average dropped from 0.325 to 0.280. How much did it drop?</p>
+                        <div class="example-row">&nbsp;&nbsp;0.325</div>
+                        <div class="example-row">- 0.280</div>
+                        <div class="example-row">-------</div>
+                        <div class="example-row">&nbsp;&nbsp;<span class="example-answer">0.045 (or 45 points)</span></div>
+                    </div>
+                    <div class="module-example">
+                        <p><strong>Example:</strong> The Sharks goalie's save percentage went from 0.920 to 0.875.</p>
+                        <div class="example-row">&nbsp;&nbsp;0.920</div>
+                        <div class="example-row">- 0.875</div>
+                        <div class="example-row">-------</div>
+                        <div class="example-row">&nbsp;&nbsp;<span class="example-answer">0.045</span></div>
+                    </div>
+                </div>
+
+                <div class="module-card module-card-highlight">
+                    <h4 class="module-card-title">🏟️ Decimals &amp; Fractions — The Connection</h4>
+                    <p>Every fraction can become a decimal! Just <strong>divide the top number by the bottom number</strong>.</p>
+                    <table class="module-table">
+                        <thead>
+                            <tr>
+                                <th>Fraction</th><th>Division</th><th>Decimal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>1/2</td><td>1 &divide; 2</td><td>0.5</td></tr>
+                            <tr><td>1/4</td><td>1 &divide; 4</td><td>0.25</td></tr>
+                            <tr><td>3/4</td><td>3 &divide; 4</td><td>0.75</td></tr>
+                            <tr><td>1/5</td><td>1 &divide; 5</td><td>0.2</td></tr>
+                            <tr><td>8/10</td><td>8 &divide; 10</td><td>0.8</td></tr>
+                            <tr><td>6/12</td><td>6 &divide; 12</td><td>0.5</td></tr>
+                        </tbody>
+                    </table>
+                    <div class="module-example">
+                        <p><strong>Sports examples:</strong></p>
+                        <div class="example-row">🏀 A player makes 8 out of 10 free throws: 8 &divide; 10 = <span class="example-answer">0.8 (or 80%)</span></div>
+                        <div class="example-row">⚾ A batter gets 13 hits in 40 at-bats: 13 &divide; 40 = <span class="example-answer">.325 batting average</span></div>
+                        <div class="example-row">🏒 A goalie saves 28 of 32 shots: 28 &divide; 32 = <span class="example-answer">.875 save percentage</span></div>
+                    </div>
+                </div>
+
+                <div class="module-tip">
+                    <strong>💡 Pro Tip:</strong> When a problem says "round to the nearest hundredth," look at the <strong>thousandths</strong> digit (the third one). If it's 5 or more, round up. If it's 4 or less, keep it. Example: 0.326 rounds to 0.33, but 0.324 rounds to 0.32.
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Module 4: Fractions -->
+        <div class="learning-module">
+            <button class="module-header" onclick="toggleModule('module-fractions')" aria-expanded="false" aria-controls="module-fractions">
+                <span class="module-header-text">🍕 Crash Course: Fractions</span>
+                <span class="module-toggle-icon" id="icon-module-fractions">&#9654;</span>
+            </button>
+            <div class="module-content hidden" id="module-fractions">
+
+                <div class="module-intro">
+                    <p>Fractions show up all over sports — shooting percentages, game records, and pizza at the team party! 🍕 Let's break them down piece by piece.</p>
+                </div>
+
+                <div class="module-card">
+                    <h4 class="module-card-title">🍕 What Is a Fraction?</h4>
+                    <p>A fraction means <strong>a part of a whole</strong>. It has two numbers:</p>
+                    <div class="vocab-list">
+                        <div class="vocab-item"><strong>Numerator (top number)</strong> — how many pieces you HAVE</div>
+                        <div class="vocab-item"><strong>Denominator (bottom number)</strong> — how many TOTAL equal pieces</div>
+                    </div>
+                    <div class="shape-diagram">
+                        <div class="fraction-bar-container">
+                            <div class="fraction-bar-label">3/4 = three out of four pieces</div>
+                            <div class="fraction-bar">
+                                <div class="fraction-bar-piece filled">&#10003;</div>
+                                <div class="fraction-bar-piece filled">&#10003;</div>
+                                <div class="fraction-bar-piece filled">&#10003;</div>
+                                <div class="fraction-bar-piece empty"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="module-example">
+                        <p><strong>Think of it like pizza:</strong></p>
+                        <div class="example-row">Cut a pizza into 4 slices. Eat 3 of them. You ate <span class="example-answer">3/4</span> of the pizza!</div>
+                        <div class="example-row">Cut a pizza into 8 slices. Eat 5 of them. You ate <span class="example-answer">5/8</span> of the pizza!</div>
+                    </div>
+                </div>
+
+                <div class="module-card">
+                    <h4 class="module-card-title">🔄 Equivalent Fractions</h4>
+                    <p>Different fractions can show the <strong>same amount</strong>! Multiply or divide the top and bottom by the same number.</p>
+                    <div class="shape-diagram">
+                        <div class="fraction-bar-container">
+                            <div class="fraction-bar-label">1/2</div>
+                            <div class="fraction-bar">
+                                <div class="fraction-bar-piece filled">&#10003;</div>
+                                <div class="fraction-bar-piece empty"></div>
+                            </div>
+                            <div class="fraction-bar-label">2/4 (same amount!)</div>
+                            <div class="fraction-bar">
+                                <div class="fraction-bar-piece filled">&#10003;</div>
+                                <div class="fraction-bar-piece filled">&#10003;</div>
+                                <div class="fraction-bar-piece empty"></div>
+                                <div class="fraction-bar-piece empty"></div>
+                            </div>
+                            <div class="fraction-bar-label">4/8 (still the same!)</div>
+                            <div class="fraction-bar">
+                                <div class="fraction-bar-piece filled">&#10003;</div>
+                                <div class="fraction-bar-piece filled">&#10003;</div>
+                                <div class="fraction-bar-piece filled">&#10003;</div>
+                                <div class="fraction-bar-piece filled">&#10003;</div>
+                                <div class="fraction-bar-piece empty"></div>
+                                <div class="fraction-bar-piece empty"></div>
+                                <div class="fraction-bar-piece empty"></div>
+                                <div class="fraction-bar-piece empty"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="module-example">
+                        <div class="example-row">1/2 = 2/4 = 3/6 = 4/8 = <span class="example-answer">all mean half!</span></div>
+                        <div class="example-row">To simplify: 6/12 &rarr; divide both by 6 &rarr; <span class="example-answer">1/2</span></div>
+                        <div class="example-row">To build up: 3/4 &rarr; multiply both by 2 &rarr; <span class="example-answer">6/8</span></div>
+                    </div>
+                </div>
+
+                <div class="module-card">
+                    <h4 class="module-card-title">➕ Adding &amp; Subtracting — Same Denominator</h4>
+                    <p>When the bottom numbers are the <strong>same</strong>, just add (or subtract) the top numbers!</p>
+                    <div class="formula-box">
+                        <div class="formula-row"><span class="formula-label">Adding</span> <span class="formula-eq">a/c + b/c = (a + b) / c</span></div>
+                        <div class="formula-row"><span class="formula-label">Subtracting</span> <span class="formula-eq">a/c - b/c = (a - b) / c</span></div>
+                    </div>
+                    <div class="module-example">
+                        <p><strong>Example:</strong> The Warriors won 3/8 of games in October and 4/8 in November.</p>
+                        <div class="example-row">3/8 + 4/8 = (3 + 4) / 8 = <span class="example-answer">7/8</span></div>
+                    </div>
+                    <div class="module-example">
+                        <p><strong>Example:</strong> A 49ers kicker made 5/6 of field goals one month, then 2/6 the next.</p>
+                        <div class="example-row">5/6 - 2/6 = (5 - 2) / 6 = <span class="example-answer">3/6 = 1/2</span></div>
+                    </div>
+                </div>
+
+                <div class="module-card">
+                    <h4 class="module-card-title">🔧 Adding &amp; Subtracting — Different Denominators</h4>
+                    <p>When the bottoms are <strong>different</strong>, you need a <strong>common denominator</strong> first!</p>
+                    <div class="formula-box">
+                        <div class="formula-row"><span class="formula-label">Step 1</span> <span class="formula-eq">Find a common denominator (a number both bottoms go into evenly)</span></div>
+                        <div class="formula-row"><span class="formula-label">Step 2</span> <span class="formula-eq">Convert both fractions to use that denominator</span></div>
+                        <div class="formula-row"><span class="formula-label">Step 3</span> <span class="formula-eq">Add or subtract the tops, keep the bottom</span></div>
+                        <div class="formula-row"><span class="formula-label">Step 4</span> <span class="formula-eq">Simplify if possible</span></div>
+                    </div>
+                    <div class="module-example">
+                        <p><strong>Example:</strong> 1/4 + 1/3 = ?</p>
+                        <div class="example-row">Common denominator of 4 and 3 = <strong>12</strong></div>
+                        <div class="example-row">1/4 = 3/12 &nbsp;&nbsp;(multiply top and bottom by 3)</div>
+                        <div class="example-row">1/3 = 4/12 &nbsp;&nbsp;(multiply top and bottom by 4)</div>
+                        <div class="example-row">3/12 + 4/12 = <span class="example-answer">7/12</span></div>
+                    </div>
+                    <div class="module-example">
+                        <p><strong>Example:</strong> 3/4 - 1/3 = ?</p>
+                        <div class="example-row">Common denominator = <strong>12</strong></div>
+                        <div class="example-row">3/4 = 9/12 &nbsp;&nbsp;(multiply top and bottom by 3)</div>
+                        <div class="example-row">1/3 = 4/12 &nbsp;&nbsp;(multiply top and bottom by 4)</div>
+                        <div class="example-row">9/12 - 4/12 = <span class="example-answer">5/12</span></div>
+                    </div>
+                </div>
+
+                <div class="module-card module-card-highlight">
+                    <h4 class="module-card-title">🏆 Sports Fraction Practice</h4>
+                    <p>These are the kinds of fraction problems you'll see in the game!</p>
+                    <div class="module-example">
+                        <p><strong>Finding a fraction of a total:</strong></p>
+                        <div class="example-row">🏀 Draymond played 3/4 of a 48-minute game. How many minutes?</div>
+                        <div class="example-row">3/4 &times; 48 = (3 &times; 48) &divide; 4 = 144 &divide; 4 = <span class="example-answer">36 minutes</span></div>
+                    </div>
+                    <div class="module-example">
+                        <p><strong>Converting fractions to decimals</strong> (divide top by bottom):</p>
+                        <div class="example-row">🏒 Sharks goalie saved 27 of 30 shots: 27 &divide; 30 = <span class="example-answer">0.9 (or 90%)</span></div>
+                        <div class="example-row">🏈 49ers won 5 of 8 games: 5 &divide; 8 = <span class="example-answer">0.625 (or 62.5%)</span></div>
+                    </div>
+                    <div class="module-example">
+                        <p><strong>Converting fractions to percentages</strong> (divide, then &times; 100):</p>
+                        <div class="example-row">⚾ Giants won 5 of 10 games: (5 &divide; 10) &times; 100 = <span class="example-answer">50%</span></div>
+                        <div class="example-row">🏈 Completed 12 of 20 passes: (12 &divide; 20) &times; 100 = <span class="example-answer">60%</span></div>
+                    </div>
+                </div>
+
+                <div class="module-tip">
+                    <strong>💡 Pro Tip:</strong> To compare two fractions quickly, <strong>cross-multiply</strong>! For 3/4 vs 2/3: do 3 &times; 3 = 9 and 4 &times; 2 = 8. Since 9 &gt; 8, then 3/4 is bigger! The bigger cross-product tells you which fraction wins.
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Module 5: Algebra -->
+        <div class="learning-module">
+            <button class="module-header" onclick="toggleModule('module-algebra')" aria-expanded="false" aria-controls="module-algebra">
+                <span class="module-header-text">📝 Crash Course: Algebra Basics</span>
+                <span class="module-toggle-icon" id="icon-module-algebra">&#9654;</span>
+            </button>
+            <div class="module-content hidden" id="module-algebra">
+
+                <div class="module-intro">
+                    <p>Algebra is like being a sports detective! 🔍 You know some of the stats, and you need to figure out the missing number. That missing number gets a letter name — usually <strong>x</strong>.</p>
+                </div>
+
+                <div class="module-card">
+                    <h4 class="module-card-title">🔤 What Is a Variable?</h4>
+                    <p>A <strong>variable</strong> is a letter that stands for a number we don't know yet. An <strong>equation</strong> is like a balanced scale — both sides must be equal!</p>
+                    <div class="vocab-list">
+                        <div class="vocab-item"><strong>Variable</strong> — a letter (like x, y, or n) that represents an unknown number</div>
+                        <div class="vocab-item"><strong>Equation</strong> — a math sentence with an equals sign (like x + 5 = 12)</div>
+                        <div class="vocab-item"><strong>Solve</strong> — find the value of the variable that makes the equation true</div>
+                    </div>
+                    <div class="shape-diagram">
+                        <div class="balance-diagram">
+                            <div class="balance-scale">
+                                <div class="balance-side">x + 5</div>
+                                <div class="balance-equals">=</div>
+                                <div class="balance-side">12</div>
+                            </div>
+                            <div class="balance-base"></div>
+                            <div class="balance-fulcrum"></div>
+                        </div>
+                    </div>
+                    <div class="module-example">
+                        <p><strong>The Big Rule:</strong> Whatever you do to one side, you MUST do to the other side to keep it balanced!</p>
+                        <div class="example-row">x + 5 = 12</div>
+                        <div class="example-row">x + 5 <strong>- 5</strong> = 12 <strong>- 5</strong> &nbsp;&nbsp;(subtract 5 from BOTH sides)</div>
+                        <div class="example-row">x = <span class="example-answer">7</span></div>
+                    </div>
+                </div>
+
+                <div class="module-card">
+                    <h4 class="module-card-title">➕➖ One-Step Equations: Add &amp; Subtract</h4>
+                    <p>If something is <strong>added</strong> to x, <strong>subtract</strong> it from both sides. If something is <strong>subtracted</strong> from x, <strong>add</strong> it to both sides.</p>
+                    <div class="formula-box">
+                        <div class="formula-row"><span class="formula-label">x + a = b</span> <span class="formula-eq">&rarr; x = b - a</span> <span class="formula-short">(subtract a from both sides)</span></div>
+                        <div class="formula-row"><span class="formula-label">x - a = b</span> <span class="formula-eq">&rarr; x = b + a</span> <span class="formula-short">(add a to both sides)</span></div>
+                    </div>
+                    <div class="module-example">
+                        <p><strong>Example:</strong> 🏀 Steph Curry scored x points plus 5 free throws for 17 total.</p>
+                        <div class="example-row">x + 5 = 17</div>
+                        <div class="example-row">x = 17 - 5</div>
+                        <div class="example-row">x = <span class="example-answer">12 points</span></div>
+                    </div>
+                    <div class="module-example">
+                        <p><strong>Example:</strong> 🏒 The Sharks need x more wins to reach 20. They have 13.</p>
+                        <div class="example-row">13 + x = 20</div>
+                        <div class="example-row">x = 20 - 13</div>
+                        <div class="example-row">x = <span class="example-answer">7 more wins</span></div>
+                    </div>
+                </div>
+
+                <div class="module-card">
+                    <h4 class="module-card-title">✖️➗ One-Step Equations: Multiply &amp; Divide</h4>
+                    <p>If x is <strong>multiplied</strong> by something, <strong>divide</strong> both sides. If x is <strong>divided</strong> by something, <strong>multiply</strong> both sides.</p>
+                    <div class="formula-box">
+                        <div class="formula-row"><span class="formula-label">a &times; x = b</span> <span class="formula-eq">&rarr; x = b &divide; a</span> <span class="formula-short">(divide both sides by a)</span></div>
+                        <div class="formula-row"><span class="formula-label">x &divide; a = b</span> <span class="formula-eq">&rarr; x = b &times; a</span> <span class="formula-short">(multiply both sides by a)</span></div>
+                    </div>
+                    <div class="module-example">
+                        <p><strong>Example:</strong> 🏈 The 49ers scored x touchdowns worth 6 points each for 18 total.</p>
+                        <div class="example-row">6 &times; x = 18</div>
+                        <div class="example-row">x = 18 &divide; 6</div>
+                        <div class="example-row">x = <span class="example-answer">3 touchdowns</span></div>
+                    </div>
+                    <div class="module-example">
+                        <p><strong>Example:</strong> ⚽ Messi scored 3 times as many goals as his teammate. Messi scored 12.</p>
+                        <div class="example-row">3 &times; x = 12</div>
+                        <div class="example-row">x = 12 &divide; 3</div>
+                        <div class="example-row">x = <span class="example-answer">4 goals (teammate's total)</span></div>
+                    </div>
+                </div>
+
+                <div class="module-card">
+                    <h4 class="module-card-title">2️⃣ Two-Step Equations</h4>
+                    <p>Some equations need <strong>two steps</strong> to solve. Always <strong>undo addition/subtraction first</strong>, then <strong>undo multiplication/division</strong>.</p>
+                    <div class="formula-box">
+                        <div class="formula-row"><span class="formula-label">Step 1</span> <span class="formula-eq">Undo addition or subtraction (move the plain number)</span></div>
+                        <div class="formula-row"><span class="formula-label">Step 2</span> <span class="formula-eq">Undo multiplication or division (deal with the number next to x)</span></div>
+                    </div>
+                    <div class="module-example">
+                        <p><strong>Example:</strong> 🏀 Klay made x three-pointers (3 pts each) and 4 free throws for 25 total.</p>
+                        <div class="example-row">3x + 4 = 25</div>
+                        <div class="example-row"><strong>Step 1:</strong> 3x + 4 - 4 = 25 - 4 &rarr; 3x = 21</div>
+                        <div class="example-row"><strong>Step 2:</strong> 3x &divide; 3 = 21 &divide; 3 &rarr; x = 7</div>
+                        <div class="example-row">x = <span class="example-answer">7 three-pointers</span></div>
+                    </div>
+                    <div class="module-example">
+                        <p><strong>Example:</strong> 🏀 Steph scored x in the first half and 2x in the second half for 36 total.</p>
+                        <div class="example-row">x + 2x = 36</div>
+                        <div class="example-row">3x = 36 &nbsp;&nbsp;(combine like terms: x + 2x = 3x)</div>
+                        <div class="example-row">x = 36 &divide; 3</div>
+                        <div class="example-row">x = <span class="example-answer">12 points</span></div>
+                    </div>
+                </div>
+
+                <div class="module-card module-card-highlight">
+                    <h4 class="module-card-title">🏟️ Word Problems &rarr; Equations</h4>
+                    <p>The trickiest part of algebra is turning <strong>words into math</strong>. Here are the key translations:</p>
+                    <table class="module-table wide">
+                        <thead>
+                            <tr>
+                                <th>Words</th><th>Math Symbol</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>"more than" / "plus" / "added to"</td><td>+</td></tr>
+                            <tr><td>"less than" / "minus" / "fewer"</td><td>-</td></tr>
+                            <tr><td>"times" / "each" / "per"</td><td>&times;</td></tr>
+                            <tr><td>"split" / "shared" / "divided"</td><td>&divide;</td></tr>
+                            <tr><td>"is" / "equals" / "total"</td><td>=</td></tr>
+                            <tr><td>"a number" / "unknown"</td><td>x</td></tr>
+                        </tbody>
+                    </table>
+                    <div class="module-example">
+                        <p><strong>Practice translating:</strong></p>
+                        <div class="example-row">⚾ "A player has x hits. 6 more gives him 15 total." &rarr; <span class="example-answer">x + 6 = 15</span></div>
+                        <div class="example-row">🏈 "3 field goals worth x points each total 9." &rarr; <span class="example-answer">3 &times; x = 9</span></div>
+                        <div class="example-row">🏀 "Scored 2x + 5 points for 35 total." &rarr; <span class="example-answer">2x + 5 = 35</span></div>
+                    </div>
+                </div>
+
+                <div class="module-tip">
+                    <strong>💡 Pro Tip:</strong> Always <strong>check your answer</strong> by plugging it back into the original equation! If x = 7 and the equation was 3x + 4 = 25, check: 3(7) + 4 = 21 + 4 = 25 &#10003; It works!
                 </div>
 
             </div>
